@@ -30,7 +30,7 @@ Our baseline recommendation is to choose REST over HTTP unless you need the perf
 api Versioning:
 Whenever possible, make API changes backward compatible. For example, avoid removing a field from a model, because that can break clients that expect the field to be there. Adding a field does not break compatibility, because clients should ignore any fields they don't understand in a response. However, the service must handle the case where an older client omits the new field in a request.
 
-Support versioning in your API contract
+Support versioning in your API contract:
 Consider using semantic versioning for service versions. Semantic versioning uses a MAJOR.MINOR.PATCH format. However, clients should only select an API by the major version number, or possibly the minor version if there are significant (but non-breaking) changes between minor versions
 
 ======================
