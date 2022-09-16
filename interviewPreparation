@@ -1375,3 +1375,270 @@ Identifying and resolving bottlenecks
 	  enough copies of different services running such that a few failures will  not cause total system shutdown 
 
 
+==============================
+
+Structurally Unique Trees
+Minimum Depth in Binary Tree
+Check if Two Nodes gets Swapped?( What if Swapped nodes are > 1)
+Print Tree Diagonally
+Populate next Right pointer in Chain: using Inorder Traversal
+Check if Tree are Symmetric
+Convert to Binary Tree to BST: without spatial changes
+Serialize BT and BST ? Why not using Inorder Traversal
+HuffMann Coding
+Nth Largest Number oin BST
+Diagonal Node sum: -1 and +1
+Print BT spirally(using Recursion)
+Convert Binary Tree to BST
+Reverse list recursively
+Proof for point of loop start in list
+Segregate even and odd nodes
+Find largest element to right of node
+     Using recursively/stack/variable
+Find next greater element in array
+Find element in rotated sorted array without pivot
+Spiral order traversal of tree using stack
+Median of two sorted arrays
+Palindromic substring
+Print maximum number of As in special keyboard
+Number of encodings of digit string
+KMP Algorithm:  Prefix Suffix part
+Repeated DNA sequences
+First non repeating character in string
+Binary strings with no consecutive 1s
+Island clusters
+Freinds circle
+Toggle bits
+Partioning of string into palindrome: real time example and time complexity
+Skyline array
+Buying selling stocks
+Knapsack 0/1 problem:  do we need to sort wts first
+
+Subset sum problem: determine values that make sum
+Binary Tree:
+http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
+Also for postOrder and preOrder iteratively
+Threaded Tree : Single Threaded and Double Threaded
+http://www.geeksforgeeks.org/write-an-efficient-c-function-to-convert-a-tree-into-its-mirror-tree/
+(Mirror order )
+http://www.geeksforgeeks.org/diameter-of-a-binary-tree/
+http://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/
+in O(n), with linear complexity
+http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
+Morris Traversal
+http://www.geeksforgeeks.org/root-to-leaf-path-sum-equal-to-a-given-number/
+http://www.geeksforgeeks.org/check-if-each-internal-node-of-a-bst-has-exactly-one-child/
+http://www.geeksforgeeks.org/maximum-width-of-a-binary-tree/
+http://www.geeksforgeeks.org/print-nodes-at-k-distance-from-root/(No result)
+http://www.geeksforgeeks.org/connect-nodes-at-same-level/
+http://www.geeksforgeeks.org/populate-inorder-successor-for-all-nodes/
+http://www.geeksforgeeks.org/convert-a-given-tree-to-sum-tree/
+http://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-complete-tree-or-not/
+http://www.geeksforgeeks.org/boundary-traversal-of-binary-tree/
+http://www.geeksforgeeks.org/find-sum-left-leaves-given-binary-tree/
+http://www.geeksforgeeks.org/given-a-binary-tree-how-do-you-remove-all-the-half-nodes/
+(root as half node)
+O(n)
+http://geeksquiz.com/convert-left-right-representation-bianry-tree-right/
+http://www.geeksforgeeks.org/bottom-view-binary-tree/
+http://www.geeksforgeeks.org/find-closest-leaf-binary-tree/
+http://www.geeksforgeeks.org/given-binary-tree-print-nodes-two-given-level-numbers/
+http://www.geeksforgeeks.org/check-two-nodes-cousins-binary-tree/
+(cousins)http://www.geeksforgeeks.org/reverse-alternate-levels-binary-tree/
+  http://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
+
+Arrays:
+http://www.geeksforgeeks.org/maximum-profit-by-buying-and-selling-a-share-at-most-twice/
+http://www.geeksforgeeks.org/online-algorithm-for-checking-palindrome-in-a-stream/
+http://geeksquiz.com/delete-an-element-from-array-using-two-traversals-and-one-traversal/
+http://www.geeksforgeeks.org/check-given-array-contains-duplicate-elements-within-k-distance/
+http://www.geeksforgeeks.org/find-position-element-sorted-array-infinite-numbers/
+http://www.geeksforgeeks.org/rearrange-array-arrj-becomes-arri-j/
+http://www.geeksforgeeks.org/minimum-length-subarray-sum-greater-given-value/
+http://www.geeksforgeeks.org/sort-array-wave-form-2/
+http://www.geeksforgeeks.org/maximum-sum-path-across-two-arrays/
+http://www.careercup.com/question?id=5202222520467456
+http://www.careercup.com/question?id=5461496492457984
+http://www.geeksforgeeks.org/maximum-difference-between-two-elements/
+http://www.geeksforgeeks.org/count-smaller-elements-on-right-side/
+http://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
+http://www.geeksforgeeks.org/find-subarray-with-given-sum/
+
+
+(AVL Tree implementation for the array stream)
+Matrix:
+http://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/
+http://www.geeksforgeeks.org/print-unique-rows/
+http://www.geeksforgeeks.org/dynamic-programming-set-27-max-sum-rectangle-in-a-2d-matrix/
+http://www.careercup.com/question?id=5818131813498880( resolve with O(n2))
+http://www.careercup.com/question?id=21517662
+http://www.geeksforgeeks.org/boggle-find-possible-words-board-characters/
+http://www.geeksforgeeks.org/dynamic-programming-set-32-word-break-problem/
+
+http://www.sanfoundry.com/java-program-flood-fill-algorithm/
+http://www.sanfoundry.com/c-program-sort-rows-ascending-columns-descendng/
+http://www.careercup.com/question?id=5709950686855168
+http://www.careercup.com/question?id=6299620974002176
+http://www.careercup.com/question?id=5164812231245824
+token bucket algorithm
+http://www.careercup.com/question?id=6287205129519104
+http://www.careercup.com/question?id=5076801539801088
+http://www.geeksforgeeks.org/searching-for-patterns-set-2-kmp-algorithm/
+Kadane's algorithm
+Design question:
+http://ydtech.blogspot.in/2010/06/state-design-pattern-by-example.html
+http://www.careercup.com/question?id=17251680
+https://en.wikipedia.org/wiki/A*_search_algorithm
+http://www.careercup.com/question?id=17805664
+http://www.careercup.com/question?id=17976674
+http://www.careercup.com/question?id=18813688
+http://www.careercup.com/question?id=19114716
+(Topologcal Sorting)
+http://www.careercup.com/question?id=24510663(LRU Cache)
+http://www.careercup.com/question?id=22809662
+http://www.careercup.com/question?id=22400668
+http://stackoverflow.com/questions/9755721/how-can-building-a-heap-be-on-time-complexity
+http://www.careercup.com/question?id=22369662
+www .geeksforgeeks.org/dynamic-programming-set-32-word-break-problem/ 
+why size - i
+
+
+http://www.careercup.com/question?id=22369662
+http://www.careercup.com/question?id=22049663
+(Derivation???) for catalian number???
+http://www.careercup.com/question?id=5125659319861248
+LinkedList:
+http://www.geeksforgeeks.org/alternating-split-of-a-given-singly-linked-list/
+https://www.youtube.com/watch?v=hPod1R6Zlaw??? what if loop is 4-5 nodes apart
+  amortized analysis
+  http://www.geeksforgeeks.org/alternating-split-of-a-given-singly-linked-list/ 
+  http://www.geeksforgeeks.org/flattening-a-linked-list/(Flatten he List)
+  http://www.geeksforgeeks.org/sort-a-linked-list-of-0s-1s-or-2s/
+  http://www.geeksforgeeks.org/clone-linked-list-next-arbit-pointer-set-2/
+  http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
+   http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
+  http://www.geeksforgeeks.org/maximum-sum-linked-list-two-sorted-linked-lists-common-nodes/
+  http://www.geeksforgeeks.org/given-linked-list-line-segments-remove-middle-points/
+  http://www.geeksforgeeks.org/merge-a-linked-list-into-another-linked-list-at-alternate-positions/
+  http://www.geeksforgeeks.org/flatten-a-linked-list-with-next-and-child-pointers/
+  http://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/(Find Loop and Number of  Nodes in loop and delete)
+  http://www.geeksforgeeks.org/alternating-split-of-a-given-singly-linked-list/
+Dynamic Programming:
+http://www.geeksforgeeks.org/weighted-job-scheduling/
+
+
+Design Questions:
+Design Questions:
+  Design the most recently viewed item for amazon , say 15 most recently viewed item which are scrollable for millions of products and users . scalable and extensible model. give apis , distributed systems, caching , reduce latency : critical
+  
+  Give Object oriented design for the snake game (that was in old nokia phones) . only class and obj diag was needed, no code/implementation. it should have extensibility to accomodate different types of fruits, (eg one gives + 5 len + 10 pts) it should be scalable to diff platforms
+
+2. Give an architecture diagram with all entities and relationships of a multi user wysiwyg editor . basically a web interface to multiple authors who can edit and store their docs . multiple ppl should be able to save it at once . also ownership should be present for documents.
+
+Design an Email client. should be having all features of email-client.
+How smart mobile/tv apps gets updated???
+http://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/
+  Find the merge point between two lists
+  http://www.ardendertat.com/2012/01/09/programming-interview-questions/
+  http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+  http://techinterviewsolutions.net/2012/08/13/amazon-interview-questions-cheatsheet/
+  http://stackoverflow.com/questions/7220232/compute-social-distance-between-two-users
+  Find the top k frequent items in a stream of numbers Space O(k)
+  find the longest path of consecutive alphabets given a starting alphabet.
+  http://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/ in O(n) time Complexity
+  given a pre and post order kindof a traversal (2 arrays) create an n-ary treee out of it with struct of the form :
+  http://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/
+  http://www.geeksforgeeks.org/fix-two-swapped-nodes-of-bst/
+  Given a snake and ladder game, write a function that returns the minimum number of jumps to take top or destination position.
+  Design Question: Design Clustered caching system for an web site like Amazon.com.
+In which millions of web servers deployed over the globe and only one inventory Database system
+Q3) Design question: Design only Train search functionality of IRCTC
+There are N bolts each of which different size and N nuts, they are also with different sizes. and each bolt fits with exactly 1 nut.
+Give an algorithm that combines those N bolts and nuts into N pairs of Matched bolt and nut.  
+  
+  
+
+
+
+
+
+
+
+
+
+
+  Find the merge point between two lists
+  http://www.ardendertat.com/2012/01/09/programming-interview-questions/
+  http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+  http://techinterviewsolutions.net/2012/08/13/amazon-interview-questions-cheatsheet/
+  http://stackoverflow.com/questions/7220232/compute-social-distance-between-two-users
+  Find the top k frequent items in a stream of numbers Space O(k)
+  find the longest path of consecutive alphabets given a starting alphabet.
+  http://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/ in O(n) time Complexity
+  given a pre and post order kindof a traversal (2 arrays) create an n-ary treee out of it with struct of the form :
+  http://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/
+  http://www.geeksforgeeks.org/fix-two-swapped-nodes-of-bst/
+  Given a snake and ladder game, write a function that returns the minimum number of jumps to take top or destination position.
+  Design Question: Design Clustered caching system for an web site like Amazon.com.
+In which millions of web servers deployed over the globe and only one inventory Database system
+Q3) Design question: Design only Train search functionality of IRCTC
+There are N bolts each of which different size and N nuts, they are also with different sizes. and each bolt fits with exactly 1 nut.
+Give an algorithm that combines those N bolts and nuts into N pairs of Matched bolt and nut.  
+Rotate image by 90 degree  
+http://www.geeksforgeeks.org/given-only-a-pointer-to-a-node-to-be-deleted-in-a-singly-linked-list-how-do-you-delete-it/
+(But for DLL)  
+Three type of recursions???
+http://www.geeksforgeeks.org/write-a-function-to-reverse-the-nodes-of-a-linked-list/
+http://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
+http://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
+http://www.geeksforgeeks.org/write-a-function-to-get-the-intersection-point-of-two-linked-lists/
+http://www.geeksforgeeks.org/merge-sort-for-linked-list/
+http://www.geeksforgeeks.org/reverse-alternate-k-nodes-in-a-singly-linked-list/
+http://www.geeksforgeeks.org/segregate-even-and-odd-elements-in-a-linked-list/
+http://www.geeksforgeeks.org/add-two-numbers-represented-by-linked-lists/
+http://www.geeksforgeeks.org/in-place-convert-a-given-binary-tree-to-doubly-linked-list/
+http://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/
+Dynamic Programming:
+https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/LongestCommonSubstring.java
+https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/LongestCommonSubsequence.java
+http://www.geeksforgeeks.org/minimum-number-of-jumps-to-reach-end-of-a-given-array/
+https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/MinCostPath.java
+https://github.com/mission-peace/interview/blob/master/src/com/interview/stackqueue/MaximumHistogram.java
+https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/MaximumRectangularSubmatrixOf1s.java
+http://www.geeksforgeeks.org/dynamic-programming-set-24-optimal-binary-search-tree/
+http://www.careercup.com/question?id=5630275595796480
+http://www.careercup.com/question?id=4893171974668288
+http://www.careercup.com/question?id=5640425534652416
+http://www.careercup.com/question?id=5641303050158080
+http://www.careercup.com/question?id=5638785930887168
+https://github.com/mission-peace/interview/blob/master/src/com/interview/linklist/AddNumberRepresentedByLinkList.java
+http://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/
+https://github.com/mission-peace/interview/blob/master/src/com/interview/linklist/FlattenLinkList.java
+(Flatten the list)
+
+
+Functional interface in lambda expression  java 8
+Stream in java 8
+
+Transactional cache vs 2nd level cache
+Session based cache---1st level
+Across sesdion---2nd level
+Cache across different application
+Cache across clusters
+
+Maximum subsquare matrix with X
+Longest increasing subsequence code
+
+Weighted job scheduling
+Text justification
+Word break
+Wildcard matching
+Staircase
+
+2D kadane
+Optimal BST using DP
+
+Weighted JOB SCHEDULING  DP
+
+Box stacking DP
+
