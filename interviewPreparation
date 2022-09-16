@@ -1179,3 +1179,199 @@ Real-world performance (relative performance RAM, disk, your network, SSD)
 Some example questions involve architecting a video distribution system or designing a mobile image search client.
  
 
+=================
+
+FACEBOOK:
+
+credentials:
+Ibmnow_00@p1234
+
+
+Combined:
+ref:
+https://leetcode.com/discuss/interview-question/675445/facebook-interview-experiences-all-combined-from-lc-till-date-07-jun-2020
+
+ref2:
+https://github.com/de-cryptor/Must-Do-Coding-Questions
+
+https://leetcode.com/discuss/career/448285/List-of-questions-sorted-by-common-patterns
+
+
+
+
+
+
+
+https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/60333/Concise-JAVA-solution-based-on-Quick-Select
+ (insert interval using 2D array)
+
+
+
+
+
+
+https://leetcode.com/problems/3sum-closest/discuss/7872/Java-solution-with-O(n2)-for-reference
+https://leetcode.com/problems/3sum-closest/
+(Solve using log n)
+
+-(see-the-similarities-yourself)
+(must backtracking)
+https://leetcode.com/problems/course-schedule/discuss/58516/Easy-BFS-Topological-sort-Java
+https://leetcode.com/problems/maximum-frequency-stack/
+
+
+
+
+
+
+>>>>>>>>>>>>>>
+previous interviews:
+https://leetcode.com/discuss/interview-question/586284/facebook-interview-question-reverse-to-make-equal// 698(must)
+chocolate wala problem
+https://leetcode.com/discuss/interview-question/632717/Facebook-or-Recruiting-Portal-or-Matching-Pairs
+https://leetcode.com/discuss/interview-question/709517/facebook-recruiting-portal-seating-arrangements
+
+
+
+Blind 75 must do:
+https://leetcode.com/list/xi4ci4ig/
+
+https://leetcode.com/problems/remove-nth-node-from-end-of-list/submissions/: why Dummy Node
+https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+https://leetcode.com/problems/redundant-connection/
+
+
+https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
+https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
+https://www.youtube.com/watch?v=PunLNRXcxlQ(Find and Union)
+
+
+>>>>>>>>>>>>
+6 Months List:
+65
+
+
+
+269
+
+How is done by Recursion; whcich is O(h) against O(n) when using BFS??????
+https://leetcode.com/problems/remove-invalid-parentheses/discuss/75027/Easy-Short-Concise-and-Fast-Java-DFS-3-ms-solution
+301
+636
+
+297
+438
+
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/submissions/
+
+47 permutation 2
+https://leetcode.com/problems/similar-string-groups/
+https://leetcode.com/problems/permutation-in-string/discuss/102588/Java-Solution-Sliding-Window**********
+
+
+>>>>>>>>>>
+Pattern based:
+N-Array Tree
+Serialize and deserialize a tree
+
+
+
+
+
+Low Level Design:
+https://leetcode.com/discuss/interview-question/1140451/Helpful-list-of-LeetCode-Posts-on-System-Design-at-Facebook-Google-Amazon-Uber-Microsoft
+
+===================================================  FINAL TO DO (PATTERNS)==================
+https://leetcode.com/problems/set-matrix-zeroes/discuss/26008/My-AC-java-O(1)-solution-(easy-to-read)
+https://leetcode.com/problems/word-search/submissions/
+https://leetcode.com/problems/shortest-unsorted-continuous-subarray/discuss/103057/Java-O(n)-Time-O(1)-Space
+https://leetcode.com/problems/number-of-matching-subsequences/discuss/117598/Java-solution-using-HashMap-and-Queue
+https://leetcode.com/problems/target-sum/
+https://leetcode.com/problems/combinations/
+https://leetcode.com/problems/permutations/
+https://leetcode.com/problems/permutations/discuss/18239/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partioning)(MUST)
+https://leetcode.com/problems/longest-repeating-character-replacement/
+https://leetcode.com/problems/count-unique-characters-of-all-substrings-of-a-given-string/(MUST)
+https://leetcode.com/problems/fruit-into-baskets/
+https://leetcode.com/problems/shortest-path-visiting-all-nodes/
+https://leetcode.com/problems/word-squares
+https://leetcode.com/problems/couples-holding-hands/
+https://leetcode.com/problems/remove-boxes/(DP) must do
+
+https://leetcode.com/problems/sliding-puzzle/discuss/146652/Java-8ms-BFS-with-algorithm-explained( must do : using BFS: queue)
+
+
+================ Lsat 6 months questions============
+https://leetcode.com/problems/non-decreasing-array/discuss/106826/JavaC%2B%2B-Simple-greedy-like-solution-with-explanation
+https://leetcode.com/problems/minesweeper/discuss/99826/Java-Solution-DFS-%2B-BFS(MUST BFS/DFS)
+https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/discuss/392933/JavaC%2B%2BPython-Two-Pointers-and-Stack-Solution
+(Stack: sing custom DS)
+https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/
+https://leetcode.com/problems/minimum-cost-for-tickets/discuss/226659/Two-DP-solutions-with-pictures
+(MUST DO)
+https://leetcode.com/problems/flatten-binary-tree-to-linked-list/discuss/36977/My-short-post-order-traversal-Java-solution-for-share
+https://leetcode.com/problems/reverse-linked-list-ii/discuss/30666/Simple-Java-solution-with-clear-explanation
+https://jaywin.gitbook.io/leetcode/mysolutions/536-construct-binary-tree-from-string
+https://leetcode.com/problems/making-a-large-island/(DFS)
+https://leetcode.com/problems/shortest-bridge/discuss/189321/Java-DFS-find-the-island-greater-BFS-expand-the-island(IMPORTANT: DFS)
+https://massivealgorithms.blogspot.com/2015/12/leetcode-317-shortest-distance-from-all.html(BFS MUST DO)
+https://massivealgorithms.blogspot.com/2015/12/leetcode-317-shortest-distance-from-all.html
+
+https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaC%2B%2BPython-Priority-Queue-Solution-(TLE-now)
+(MUST) DJKastra algorithm-explained
+https://leetcode.com/problems/number-of-closed-islands/discuss/425135/Java-Very-Simple-DFS-Solution
+(closed islands)
+
+
+According to frequency
+
+https://github.com/neerazz/FAANG/blob/master/Algorithms/All_Topics_top_leetcode_by_frequency.md
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Algorithm Pattern:
+
+0. String
+1. HashMap; count subarray with given sum
+2. 2 pointer; Minimum window with all characters
+3. binary search; chocolate problem
+4. two left and right array; histogram; max rectangle
+5. Heap; substring
+6. Sliding Windows
+7. Recursion: level Order Traversal
+8. matrix related problem
+9. Huffmann coding
+10. word break in the list of words
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+System Design:
+ORDER FOR SUCH QUESTIONS:
+1. Requirements clarifications 
+2. System interface definition
+   Method definations 
+
+Back-of-the-envelope estimation
+     Scaling; per sec
+	 Storage data
+	 Network Bandwidth Usage
+
+Define Data-Model
+      Define the entities
+      different aspect of data management like storage, transportation, encryption, etc	  
+	  
+High-level design
+      Draw a block diagram with 5-6 boxes representing the core components of our system
+
+
+Detailed design:
+      Seek Intervewer feedback
+      Discuss +ve and -ver and tradeOff of different Approaches
+	  
+Identifying and resolving bottlenecks
+      single point of failure; How to mitigate
+	  enough replicas of the data so that if we lose a few servers we can still serve
+	  enough copies of different services running such that a few failures will  not cause total system shutdown 
+
+
