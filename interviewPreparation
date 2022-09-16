@@ -1,0 +1,396 @@
+missed questions:
+
+
+
+1. comparable vs comparator
+2. default in java8
+3. groupBy in stream
+4. why kafka and one time gaurantee
+5. Api by role in spring security
+6. real time data processing in videos
+7. diamond problem
+8. static vs singleton
+9. rest endpoints and design service
+10. Design API for cowin App.
+11. lru cache
+12. chess / snakeladder/parking
+13. job schedular
+14.Stock leetcode
+15. make paranthesis valid
+16. PUT vs patch
+minstack
+minimum meeting rooms
+trapping wter
+spiral matrix
+producer consumer 
+threadlocal
+volatile vs atomic
+thread communication using synchronized
+circuit breaker
+resiliency pattern
+
+=====notes in copy========
+=============
+microservices pattern:
+https://docs.microsoft.com/en-us/azure/architecture/microservices/design/interservice-communication
+
+
+
+
+
+
+
+ JAVA
+    JAVA8 Features
+	
+ GO
+ SQL
+    Commands
+ REST
+ DATAMODEL
+ DS
+ kafka
+   ELT pipeline using kafka streams-with-kafka
+   https://github.com/kgshukla/data-streaming-kafka-quarkus
+   https://developers.redhat.com/blog/2020/09/28/build-a-data-streaming-pipeline-using-kafka-streams-and-quarkus#step_1__perform_the_outer_join
+   
+   https://www.youtube.com/watch?v=_Nk0v9qUWk4&t=54s
+   
+   tools of elt
+   https://www.kdnuggets.com/2021/12/mozart-seven-best-elt-tools-data-warehouses.html
+   ELT Pipeline is a better approach when the destination is a cloud-native data warehouse such as Amazon Redshift, Google BigQuery, Snowflake, or Microsoft Azure SQL Data Warehouse
+   
+   
+   
+   =================
+   design==
+   =================
+   
+   
+   source : db2 data using kafka steam and transform to cloud as aws/ibm cloud
+   the sink part:using CamelKafkaConnectors
+   S3/HDFS/Elasticsearch as Consumer.
+    implementaion of StreamSets/ kafka to snowflake
+   https://streamsets.com/blog/send-kafka-messages-to-s3/ using avro
+   https://github.com/rishi871/Blog_tutorial
+   
+   //ETL  pipeline:
+   https://chartio.com/blog/best-practices-for-developing-an-elt-pipeline/
+   
+   
+   
+   to do:
+     https://streamsets.com/blog/send-kafka-messages-to-s3/
+   
+   Distributed event transition platform:
+   https://medium.com/theleanprogrammer/apache-kafka-distributed-event-streaming-platform-64f7f6d2f244#:~:text=According%20to%20the%20official%20website,to%20a%20stream%20of%20events
+   
+   https://dzone.com/articles/reading-aws-s3-file-content-to-kafka-topic
+   
+   
+   
+   
+   
+   
+   
+   
+   
+ 
+ 
+ =============
+ product details:
+ ===============
+ Cloud Pak for Data is a modular platform for running integrated data and AI services allow to collect,organise and analyse data.
+1. Base platform:
+   wkc
+   Watson  openscale
+2. Cartridges
+ 
+ composed as integrated microservices that run on a multi-node Red Hat® OpenShift® cluster as is on top of Red Hat OpenShift
+ thus can run 
+ An on-premises, private cloud cluster
+Any public cloud infrastructure that supports Red Hat OpenShift
+Cloud Pak for Data leverages the Kubernetes cluster within Red Hat OpenShift for container management
+ 
+ https://www.youtube.com/watch?v=uAAZLCAowmQ
+ A centralized Data catalog; helps discover,curated; exchnage data between stewards,data engineers and BAs
+ =============
+ WKC
+ ===========
+ Cloud Pak for Data is a modular platform for running integrated data and AI services. 
+ Cloud Pak for Data is composed of integrated microservices that run on a multi-node Red Hat® OpenShift® cluster, 
+ which manages resources elastically and runs with minimal downtime
+ 
+ Cloud Pak for Data runs on top of Red Hat OpenShift, which means that you can run Cloud Pak for Data on:
+An on-premises, private cloud cluster
+Any public cloud infrastructure that supports Red Hat OpenShift
+
+Cloud Pak for Data leverages the Kubernetes cluster within Red Hat OpenShift for container management
+
+ WKC FAQs:
+ https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/faq.html#what-is-datahub
+ 
+ Watson Knowledge Catalog is a cloud-based enterprise metadata repository that lets you catalog your knowledge and analytics assets, 
+ including structured and unstructured data 
+ A catalog is where you share assets across the enterprise. A project is where you work with assets within smaller teams. 
+ An enterprise catalog can have thousands of assets that are shared with hundreds of users
+ Watson Knowledge Catalog supports over 50 connectors to cloud or on premises data source types
+ Watson Knowledge Catalog also supports other asset types, such as structured data, unstructured data, models, and notebooks.
+ Watson Knowledge Catalog stores and manages only the metadata of your assets.
+ When you create a project or catalog, you specify a IBM Cloud Object Storage and create a bucket 
+ that is dedicated to that project or catalog. These types of objects are stored in the IBM Cloud Object Storage bucket for the project 
+ or catalog:
+
+Files for data assets that you uploaded into the project or catalog.
+Files associated with operational assets, such as, notebooks, dashboards, and models.
+Metadata about assets, such as, the asset description, tags, and comments or reviews.
+
+
+======================
+rest apis
+API version:
+ https://cloud.ibm.com/apidocs/watson-data-api#versioning  
+ Some of the Watson Data API collections provide custom sorting support. Custom sorting is implemented using the sort query parameter. Service collections can also support single-field or multi-field sorting. The sort parameter in collections that support single-field s
+ GET /v2/accounts?sort=company_name.
+ 
+ 
+ Some of the Watson Data API collections provide filtering support.
+ 
+ The following rate limiting headers are supported by some of the Watson Data service APIs: 1. X-RateLimit-Limit: If rate limiting is active, this header indicates the number of requests permitted per hour; 2. X-RateLimit-Remaining: If rate limiting is active, this header indicates the number of requests remaining in the current rate limit window; 3. X-RateLimit-Reset: If rate limiting is active, this header indicates the time at which the current rate limit window resets, as a UNIX timestamp.
+ 
+ 
+ ================================
+ 
+ https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=resources-available-apis
+ APIS:
+ Implement data-driven processes and operations that feed your AI and ML applications.
+ 
+  1. IBM cpd PLATFORM API:
+  Description
+The IBM Cloud Pak for Data platform API is an administration API that you can use to perform these tasks:
+
+Authenticate to the platform.
+Manage the users who have access to the platform.
+Manage the roles that are defined on the platform.
+ 
+ 2. WDATA API:
+ The Watson Data API provides collect and organize capabilities. You can use the API to manage data-related assets and the people who need to use these assets. For example, you can use the API to perform these tasks:
+
+Manage analytics projects.
+Manage catalogs.
+Manage the connections that are available to analytics projects and to catalogs.
+Manage governance policies.
+Discover assets from a connection.
+View the lineage of an asset.
+
+
+
+
+ 
+ 
+ https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=catalog-installing
+ 
+ Lineage?
+ who do that
+ 
+ To install Watson Knowledge Catalog, you must install the Watson Knowledge Catalog operator and create the Operator Lifecycle Manager (OLM) objects, such as the catalog source and subscription, for the operator.
+ 
+ Watson Knowledge Catalog is installed when the apply-cr command 
+ 
+ After installation of the service, you must resize the PVC for the InfoSphere® Information Server Db2® instance to avoid running out of disk space.
+ 
+ you must be an administrator of the project (namespace) where you deployed the Watson Knowledge Catalog service.
+ 
+ >>>>>>>>>>>.
+ 
+ CPD ARCHITECTURE:
+ https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=planning-architecture
+ 
+ Cloud Pak for Data is a modular platform for running integrated data and AI services. 
+ Cloud Pak for Data is composed of integrated microservices that run on a multi-node Red Hat® OpenShift® cluster, which manages resources elastically and runs with minimal downtime
+ 
+ Cloud Pak for Data runs on top of Red Hat OpenShift, which means that you can run Cloud Pak for Data on:
+An on-premises, private cloud cluster
+Any public cloud infrastructure that supports Red Hat OpenShift
+
+Cloud Pak for Data leverages the Kubernetes cluster within Red Hat OpenShift for container management.
+
+
+
+CPD SYSTEM REQ:
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=planning-system-requirements
+
+1. Master + infra
+2. Worker/compute
+3. Load balancer
+300 GB of storage space per node for storing container images locally.
+the load balancer can either be in the cluster or external to the cluster. However, in a production-level cluster, an enterprise-grade external load balancer is strongly recommended. The load balancer distributes requests between the three master + infra nodes
+
+cluster node: The time on all of the nodes must be synchronized within 500 ms.
+Disk latency (4 KB block with 8 threads)
+For disk latency tests, 18 MB/s has been found to provide sufficient performance.
+Disk throughput (1 GB block with 2 thread)
+For disk throughput tests, 226 MB/s has been found to provide sufficient performance.
+
+
+The platform consists of a light-weight installation called the Cloud Pak for Data control plane. The control plane provides a command-line interface, an administration interface, a services catalog, and the central user experience.
+
+
+The common core services are automatically installed when you install a service that relies on them
+
+CPD OPERATOR
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=architecture-operators
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=architecture-operators
+
+The IBM Cloud Pak for Data control plane and services are installed using operators
+An operator is a custom Kubernetes controller. A controller implements a control loop that continually watch
+
+k8 operators:
+https://www.youtube.com/watch?v=LymzLHRbQdk
+Each component of Cloud Pak for Data includes an operator that is responsible for managing that component.
+
+Each component also has its own custom resource definition (CRD) that describes the service. The CRD is a resource that is identified by the kind attribute. When you create a custom resource (CR) to install a component, you must specify the kind of resource that you are creating
+
+
+OLM defines the several custom resource definitions (CRDs), including but not limited to:
+Catalog sources
+Subscriptions
+Install plans
+Cluster service versions
+Operator groups
+
+A catalog source is a way to introduce new software or new versions of software to the cluster. A catalog source is a repository of operator versions (as specified by a cluster service version), custom resource definitions (CRDs), and packages that comprise an application
+
+
+Event Driven in IBM:
+  https://www.youtube.com/watch?v=zDQpQdIX_v8
+  
+IBM Streams with Kafka:
+ https://github.com/IBM/ibm-streams-with-kafka  
+
+
+
+ API version:
+ https://cloud.ibm.com/apidocs/watson-data-api#versioning  
+ Some of the Watson Data API collections provide custom sorting support. Custom sorting is implemented using the sort query parameter. Service collections can also support single-field or multi-field sorting. The sort parameter in collections that support single-field s
+ GET /v2/accounts?sort=company_name.
+ 
+ 
+ Some of the Watson Data API collections provide filtering support.
+ 
+ The following rate limiting headers are supported by some of the Watson Data service APIs: 1. X-RateLimit-Limit: If rate limiting is active, this header indicates the number of requests permitted per hour; 2. X-RateLimit-Remaining: If rate limiting is active, this header indicates the number of requests remaining in the current rate limit window; 3. X-RateLimit-Reset: If rate limiting is active, this header indicates the time at which the current rate limit window resets, as a UNIX timestamp.
+ 
+ 
+ ================================
+ 
+ https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=resources-available-apis
+ APIS:
+ Implement data-driven processes and operations that feed your AI and ML applications.
+ 
+  1. IBM cpd PLATFORM API:
+  Description
+The IBM Cloud Pak for Data platform API is an administration API that you can use to perform these tasks:
+
+Authenticate to the platform.
+Manage the users who have access to the platform.
+Manage the roles that are defined on the platform.
+ 
+ 2. WDATA API:
+ The Watson Data API provides collect and organize capabilities. You can use the API to manage data-related assets and the people who need to use these assets. For example, you can use the API to perform these tasks:
+
+Manage analytics projects.
+Manage catalogs.
+Manage the connections that are available to analytics projects and to catalogs.
+Manage governance policies.
+Discover assets from a connection.
+View the lineage of an asset.
+
+
+
+ 
+ CPD DATAMODEL
+ 
+ 
+ 
+ 
+ 
+ Storage:
+ https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=planning-storage-considerations
+ Cloud Pak for Data supports dynamic storage provisioning
+ shipped  with:OpenShift Data Foundation
+ 
+ =================
+ SYSTEM DESIGN
+ =================
+ https://workat.tech/system-design/article/best-engineering-blogs-articles-videos-system-design-tvwa05b8bzzr
+ 
+ 
+ 
+ 
+
+=============================================
+LEETCODE:
+========
+  DisJoint Set
+  
+ ================
+ rest
+ ==============
+ https://www.freecodecamp.org/news/rest-api-tutorial-rest-client-rest-service-and-api-calls-explained-with-code-examples/
+ https://customercare.igloosoftware.com/support/developers/kb/articles/different_ways_to_pass_data_in_your_api_calls
+ 
+ 
+ 
+ 
+ ===============================
+ 
+ system design
+ =================================
+ 
+ 
+ 
+ latency
+ 1.
+ https://leetcode.com/discuss/interview-question/system-design/2111232/Amazon-SDE3-interview-Design-reviews-feature/1424651
+    Idempotency and UUID
+	Storage depends on how to retrieve
+	
+	2.
+ https://leetcode.com/discuss/interview-question/2111236/Amazon-SDE3-interview-Design-pharmacy-store/1421534
+
+3.
+ Design a log search system. Your system should support:
+Ingesting logs from AWS services
+Searching the logs by keyword.
+You should return the top 100 recent logs containing a keyword.
+Fetching logs by time range
+
+4. amazon gothttps://leetcode.com/discuss/interview-question/system-design/769578/Amazon-orSystem-Design-or-Amazon-Go-or-suggestion-on-solution-welcome!!!
+
+5.
+https://leetcode.com/discuss/interview-question/system-design/724254/System-design-Need-help-for-amazon-question
+
+6.
+https://leetcode.com/discuss/interview-question/system-design/144287/Design-Recommendation-System-for-Amazon-Videos
+
+	Behavirol:
+	Behavioral questions:
+	
+	7.
+	latency
+	https://www.youtube.com/watch?v=X9ds-EvBM2Y
+	
+
+Most challenging project
+Talk about a time when you gave feedback and helped another developer succeed
+Feedback from your managers that helped you grow
+Time when you disagreed with a colleague
+Time when you disagreed with your manager
+Examples when you had impact outside your primary areas of ownership
+Example when you proposed a feature request proactively and got your manager/stakeholders to agree
+Examples when you found creative ways to deliver a feature with fewer resources
+Example when you worked closely with a customer
+Example of a time when you missed a deadline
+How do you deal with ambiguity
+Do you have examples of features you worked on that had a long term impact on your service
+	
