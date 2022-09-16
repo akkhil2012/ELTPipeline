@@ -2,3 +2,29 @@ A/B , unit testing
 SLA time,UP Time
 Role based Authntication
 Datamodel/availibilty
+1. comparable vs comparator
+2. default in java8
+3. groupBy in stream
+4. why kafka and one time gaurantee
+5. Api by role in spring security
+6. real time data processing in videos
+7. diamond problem
+8. static vs singleton
+9. rest endpoints and design service
+10. Design API for cowin App.
+11. lru cache
+12. chess / snakeladder/parking
+13. job schedular
+14.Stock leetcode
+15. make paranthesis valid
+16. PUT vs patch
+minstack
+minimum meeting rooms
+trapping wter
+spiral matrix
+producer consumer 
+threadlocal
+volatile vs atomic
+thread communication using synchronized
+circuit breaker
+resiliency pattern
