@@ -1,0 +1,53 @@
+RDBMS:
+
+Conceptual Design
+Attributes:
+   Multi-Value Attributes
+   Derived Attributes
+Stored Vs Derived Attributes Vs Null Value
+   Derived as Current Age from dob and current date for a person
+Entity Type: Department, has multiple departments of same structure
+Entity Set: Collection of entities of particular Type
+Key Attributes: Can have any number of keys
+  A ket that is unique for each Department in an entity set
+  Composite Key: Should be minimal i.e. No Subset of a key to be key itself.eg: Dept Id + name is not minimal hence not a composite key
+EER Model?
+Some entities without any key attribute: Called weak entity
+Domain of attribute: Set of valid values the attribute can attain
+Daomain of attribuute: D1*D2*D3 for subattributes of domain D1, D2( Cartesian Product)
+
+Relation between two entity tyoes and define a relationship set
+tye of relations: Uniary, Binary, Ternary
+RelationShips in RDBMS Or Object Oriented Databases.
+
+Constraints:
+  Cardinality Ratios: N(Employee)----1(Department)
+  Participation Constraint: as equivalent to composition in Java
+  Full Participation??Budget allocated to Department and Project relationship and NOT for either Department and Project exclusively.
+Identifying relationship Type?????  
+
+Weak Entity: Entity without any key attribute eg: insurance record associated to person
+Relationship: Association between Two Entities, Defined by Cardinality Constraints
+Identifying Relationship??? Related to Weak Entity Type
+
+EER(Enhaned Entity RelationShip)
+Inheritence: IS_A relationship i.e. Class B is a Specilization of class of type A
+as Car is a Vehicle.
+Subclasses undergo type Inheritence i.e. memeber of subclass has same attributes as the SuperClass entities and participate in the same relationship type.
+means the subclass should be replcable with superclass without changing the semantics/functionlities.like earth to moon example
+Also the keys should be same in both super and subclass though subclass can have additional attributes though
+Generalization  to Specialization is SuperClass to subClass
+
+Predicate Defined SubClasses: where the subclasses can be differentiated on basis of some attribute called "defining the predicate"
+UnionType Or Categories: When the implementation of the generalization is More Abstract as Account in Bank could be in name of individual/Group/family
+
+Higher Order Relationship: The relation ship that cannot be breakDown to binary without loosing the meaning
+
+
+
+
+
+
+
+
+
