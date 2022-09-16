@@ -25,3 +25,112 @@ Gateway Routing routes requests to multiple microservices using a single endpoin
 Sidecar deploys helper components of an application as a separate container or process to provide isolation and encapsulation.
 
 Strangler Fig supports incremental refactoring of an application, by gradually replacing specific pieces of functionality with new services.
+
+  MicroservicesPatterns:
+  
+  rESILIENCY
+  =============
+  cIRCUIT BREAKER:
+  prevent a network or service failure from cascading to other services
+  
+  
+  Security:
+  =============
+  Access token:
+  The API Gateway authenticates the request and passes an access token (e.g. JSON Web Token) that securely identifies the requestor in each request to the services. A service can include the access token in requests it makes to other services.
+  
+  
+  Service Discovery:
+  ==============
+  
+   Client-side service discovery
+     How does the client of a service - the API gateway or another service - discover the location of a service instance?
+	 Each instance of a service exposes a remote API such as HTTP/REST, or Thrift etc. at a particular location (host and port)
+     The number of services instances and their locations changes dynamically.
+     Virtual machines and containers are usually assigned dynamic IP addresses.
+  ADv:
+     Fewer moving parts and network hops compared to Server-side Discovery
+  -ve:
+   You need to implement client-side service discovery logic for each programming language/framework used by your application, e.g Java/Scala, JavaScript/NodeJS.
+   
+   Server-side service discovery
+   +ve:
+    Compared to client-side discovery, the client code is simpler since it does not have to deal with discovery. Instead, a client simply makes a request to the router
+    Some cloud environments provide this functionality, e.g. AWS Elastic Load Balancer
+   -ve:
+    The router must support the necessary communication protocols (e.g HTTP, gRPC, Thrift, etc) unless it is TCP-based router
+    More network hops are required than when using Client Side Discovery
+   Service registry
+    Implement a service registry, which is a database of services, their instances and their locations. Service instances are registered with the service registry on startup and deregistered on shutdown. Client of the service and/or routers query the service registry to find the available instances of a service. A service registry might invoke a service instance’s health check API to verify that it is able to handle requests
+    You need to decide how service instances are registered with the service registry. There are two options:
+
+Self registration pattern - service instances register themselves.
+3rd party registration pattern - a 3rd party registers the service instances with the service registry.
+   
+   
+   Self Registration
+    How are service instances registered with and unregistered from the service registry?
+	Service instances must be registered with the service registry on startup and unregistered on shutdown
+Service instances that crash must be unregistered from the service registry
+Service instances that are running but incapable of handling requests must be unregistered from the service registry
+A service instance is responsible for registering itself with the service registry. On startup the service instance registers itself (host and IP address) with the service registry and makes itself available for discovery. The client must typically periodically renew its registration so that the registry knows it is still alive. On shutdown, the service instance unregisters itself from the service registry.
+
+Data management
+=================
+
+
+1. Database per Service
+  database per service has the following benefits:
+
+Helps ensure that the services are loosely coupled. Changes to one service’s database does not impact any other services.
+
+Each service can use the type of database that is best suited to its needs. For example, a service that does text searches could use ElasticSearch. A service that manipulates a social graph could use Neo4j.
+
+Using a database per service has the following drawbacks:
+
+Implementing business transactions that span multiple services is not straightforward. Distributed transactions are best avoided because of the CAP theorem. Moreover, many modern (NoSQL) databases don’t support them.
+
+Implementing queries that join data that is now in multiple databases is challenging.
+
+Complexity of managing multiple SQL and NoSQL databases
+
+There are various patterns/solutions for implementing transactions and queries that span services:
+
+Implementing transactions that span services - use the Saga pattern.
+
+Implementing queries that span services:
+
+API Composition - the application performs the join rather than the database. For example, a service (or the API gateway) could retrieve a customer and their orders by first retrieving the customer from the customer service and then querying the order service to return the customer’s most recent orders.
+
+Command Query Responsibility Segregation (CQRS) - maintain one or more materialized views that contain data from multiple services. The views are kept by services that subscribe to events that each services publishes when it updates its data. For example, the online store could implement a query that finds customers in a particular region and their recent orders by maintaining a view that joins customers and orders. The view is updated by a service that subscribes to customer and order events.
+
+2.Shared database
+  Development time coupling - a developer working on, for example, the OrderService will need to coordinate schema changes with the developers of other services that access the same tables. This coupling and additional coordination will slow down development.
+Runtime coupling - because all services access the same database they can potentially interfere with one another. For example, if long running CustomerService transaction holds a lock on the ORDER table then the OrderService will be blocked.
+
+Saga
+   implement transactions that span services?
+   cause: 2PC is not an option
+     saga is a sequence of local transactions. Each local transaction updates the database and publishes a message or event to trigger the next local transaction in the saga. If a local transaction fails because it violates a business rule then the saga executes a series of compensating transactions that undo the changes that were made by the preceding local transactions.
+   Choreography - each local transaction publishes domain events that trigger local transactions in other services
+   Orchestration - an orchestrator (object) tells the participants what local transactions to execute
+   It enables an application to maintain data consistency across multiple services without using distributed transactions
+   The programming model is more complex. For example, a developer must design compensating transactions that explicitly undo changes made earlier in a saga.
+   
+   
+		
+API Composition
+CQRS
+Domain event
+Event sourcing
+    2PC is not an option
+If the database transaction commits messages must be sent. Conversely, if the database rolls back, the messages must not be sent
+Messages must be sent to the message broker in the order they were sent by the service. This ordering must be preserved across multiple service instances that update the same aggregate.
+Solution
+A good solution to this problem is to use event sourcing. Event sourcing persists the state of a business entity such an Order or a Customer as a sequence of state-changing events. Whenever the state of a business entity changes, a new event is appended to the list of events. Since saving an event is a single operation, it is inherently atomic. The application reconstructs an entity’s current state by replaying the events.
+
+Applications persist events in an event store, which is a database of events. The store has an API for adding and retrieving an entity’s events. The event store also behaves like a message broker. It provides an API that enables services to subscribe to events. When a service saves an event in the event store, it is delivered to all interested subscribers.
+
+Some entities, such as a Customer, can have a large number of events. In order to optimize loading, an application can periodically save a snapshot of an entity’s current state. To reconstruct the current state, the application finds the most recent snapshot and the events that have occurred since that snapshot. As a result, there are fewer events to replay.
+
+   
