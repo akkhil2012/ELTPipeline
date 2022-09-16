@@ -140,3 +140,19 @@ result while waiting.
 rely on custom methods to do so.
  LROs should be persisted to storage but should generally expire after some
 standard period of time, such as 30 days
+
+UPSERT:
+  PUT Request to create/update resource and send whole resource body
+  only when server trusts put to create resource??????????????????
+  if id is sent in path; and resource doesn't exist; than gives 404 thus return in body
+  
+  REST API headers:
+     headers are sort of metadata
+	   response header
+	       content-type,srver
+	   request header
+	       host,user-agent,accept language, accept-encoding: gzip
+	   payload header
+	   respresentational header
+         content-type,content-encodng,content-length
+	  
