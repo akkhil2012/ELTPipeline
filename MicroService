@@ -1,0 +1,3629 @@
+PHASE 2:
+
+https://github.com/Chaklader/Object-Oriented-Design
+
+
+
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+User namangement MS
+
+Develop a user management micro service. The micro service should allow users to register and update the profile details.
+
+The administrator should be able to review the user profile and generate a confirmation link sent to the user's email.
+
+presented in form of a document/PPT with a working demo
+>>>>>>>>>>>>>>>>>
+
+
+find PID for port:
+netstat -aon | findstr 9260
+taskkill /F /PID pid_number
+
+aDD DB2 TO PATH:
+export PATH=$PATH:/home/db2inst1/sqllib/bin
+export DB2INSTANCE=db2inst1
+
+
+embedded DB2:
+https://howtodoinjava.com/spring-boot2/h2-database-example/
+
+defualt H2:
+http://localhost:8080/h2
+
+
+
+String tutorial:
+https://www.youtube.com/watch?v=h581CNFdjDc
+
+SWAGGER
+https://github.com/hendisantika/spring-boot-api-swagger-example
+http://progressivecoder.com/rest-api-using-spring-boot-insert-update/
+
+
+from postman:
+http://localhost:3333/managementService/v2/api-docs
+
+from swagger UI:
+http://localhost:3333/managementService/swagger-ui.html#/user-controller
+
+ref:
+
+ThymeLeaf:
+https://www.baeldung.com/spring-boot-crud-thymeleaf
+
+
+https://github.com/paulc4/microservices-demo
+https://spring.io/blog/2015/07/14/microservices-with-spring
+
+https://howtodoinjava.com/spring-boot2/rest/rest-api-example/
+
+
+three server classes in order: RegistrationService, AccountsService and WebService
+each as springBootApp with embedded tomcat???
+Netflix Eureka service registry : to revice registry and discovery
+
+Register the servies in Order
+  java -jar target/microservices-demo-2.0.0.RELEASE.jar registration
+  
+
+
+User Management:
+  JWT role-based authorization to REST APIs
+  Register and Update profile details.
+  Administrator should be able to review the User Profile
+  Generate Confirmation link to user email.
+  >>>>>>>>>>>>>>
+  microservice with SpringBoot
+  JUnit testcase: using Mockito
+  Role Based Authentication
+  Authentication Vs Authorization??
+  https://github.com/felipemmelo/spring-boot-rest-api-jwt-auth-roles
+  
+  role based Authentication:
+   https://www.devglan.com/spring-security/jwt-role-based-authorization
+   https://github.com/only2dhir/spring-security-jwt
+   
+   JWT 0.9.0
+    RFC 7519
+	JWT token consists of 3 parts separated with a dot(.) i.e. Header.payload.signature
+	
+	No Authentication needed for: 
+	   /token, /signup
+	prePostEnabled = true enables support for method level security and enables use of @PreAuthorize and similarly to enable @Secured annotation we require securedEnabled = true
+
+		
+   
+   
+   
+  
+  All as seperate microservices:
+        RegistrationService
+		ProfileService
+		AdminService
+		PasswordService/ Role based/ Version Controll(Optimistic locking)/Rate limiting in tomcat
+		
+	Base URL?
+	POST:
+	<APP>/register/
+	                              -------------------> workflowService--------------->           rOLE BASED _Schema/ DB with hibernate
+	                                <APP>/register/{ADMIN}
+	GET:
+	<APP>/user/{id}
+	<APP>/users/
+	
+	PUT:(PARAMETRS)
+	<APP>/USER/{id}/{}
+	
+	DELETE:(PARAMETRS)
+	<APP>/USER/{id}/{}
+	
+	PATCH:(COLLECTIONS)
+	<APP>/USERS/?????
+	
+	API??
+
+SpringBoot Version???
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Authentication:
+   Using JWtToken:
+     https://github.com/auth0/java-jwt
+	 
+TestCases using mockito
+   https://github.com/Java-Techie-jt/spring-boot-mockito/tree/master/src/test/java/com/javatechie/spring/mockito/api
+Using Java8
+   
+	 
+	==================================================== Project Docs=================================== 
+1. create  maven project
+
+mvn archetype:generate -DgroupId=com.user.management -DartifactId=java-project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+
+Step 1: Create these services that talks to eachOther	
+UserManagementService 
+      / or /registration ----> UserRegistrationServce ----> WorkFlowService -----> NotificationService
+	  
+	  /user/PUT/POST/update ------>WorkFlowService ----->NotificationService
+	  
+	  
+Step2:
+     Role based
+
+Step3:
+	Database	 
+	  
+
+	  
+	  
+        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		Documnets:
+		1. Api Gateway:
+		     UserManagementService
+			 ResourceConteoller: UserManagementController as API Gateway
+			 ResourceConteoller: UserManagementController
+			 
+	    2. for registration:
+               Call from RegistartionService Api / getUsers works from there only
+			   
+
+			   
+	1. uuid PRIMARY KEY: VERSION id
+    2. satte pattern
+ 3. microservices talks
+ exception
+ 4. role based 
+ 5. folder structure/package
+   SINGLETON PATTERN / concurrency
+   rest EndPoint conventions
+   swagger definations
+   microser vies starting using one script
+   check DB table definations
+   Define the Optimistic Locking using @Version of hibernate
+   
+   
+   https://github.com/akkhil2012/oracleDemo.git
+   
+   
+   Tech Stack:
+       SpringBoot
+	   Swagger
+	   Hibernate JPA implementation
+	   Embedded database
+	   embedded tomcat
+   
+   
+   
+   Start all the services in sequence so; all for services are UP and running on respective ports
+   
+   Start 4 microServices as Spring Boot Applications
+   Not all rest EndPoints are enabled; many are NOT in use; the ENDPoints being used are mentioned in details below:
+     NotificationService : port  : 5555
+	  access at; http://localhost:5555/notificationService/swagger-ui.html
+	  Controller:
+	     NotificationController.java
+		 
+		 
+	 
+	 UserRegistrationService : port : 1111
+	 http://localhost:1111/registrationService/swagger-ui.html
+	    exposes the rest EndPoint for CRUD Operations and calls the UserService (@Service) to perform CRUD on CRUDRepository on 
+		embedded h2 database
+	 Controller:
+	 UserRegistrationController.java
+     CRUD APIs:
+      ADD: /newRegistration
+      EDIT: /editUser/{id}  
+	  DELETE: /deleteUser/{id}
+	  GET: /users/{id}
+			  
+	 
+	 WorkFlowService: port : 4444
+	    access at; http://localhost:4444/workFlowService/swagger-ui.html 
+	    WorkFlowController 
+	    User to process the new registration and Notiy the NotificationService to send mail
+	 
+	 UserMgmtService : port : 3333
+	    http://localhost:3333/managementService/swagger-ui.html
+	      Used as API Gateway 
+	 UserMgmtController.java.java	  
+   
+   
+   
+   >>>>>>>>>>>>>>>>>>>> questions where I failed in interview==============
+      Data Model
+	  Schema 
+	  ROle based auth-roles
+	  OAuth
+	  ===========================================================
+   
+   
+   
+      >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  SpringSecurity:
+  https://www.youtube.com/watch?v=sm-8qfMWEV8&list=PLqq-6Pq4lTTYTEooakHchTGglSvkZAjnE
+  REST access:
+  1. open for public
+  2. for who loged in
+  3. loged in and is Admin also
+  
+  Authentication
+  Authorization?
+  principal
+  granted Authority
+  roles
+  
+  
+  two level authentication
+  AuthenticationManagerBuilder accessed from SpringSecurity
+  In-memory authentication
+  
+  TO DO: do Authentication from database
+  
+  
+  /workflowService-  by Admin
+  /userRegistration by User
+  
+  HttpSecurity: user to define the User and restrictions
+  
+  
+  For JDBC:
+     use embedded h2 db as datasource
+   
+  >>>>>>>>>>>>> JWT 
+  https://github.com/koushikkothagal/spring-security-jwt/blob/master/src/main/java/io/javabrains/springsecurityjwt/util/JwtUtil.java
+  
+  https://github.com/koushikkothagal/spring-boot-microservices-workshop/tree/master/movie-catalog-service/src
+  
+  
+  for AuthenticationManager error:
+  comment AutoWired
+  
+//@Autowired
+	private AuthenticationManager authenticationManager;
+  
+  
+  
+  
+Hibernate:
+https://github.com/RameshMF/Hibernate-ORM-Tutorials   
+   
+   
+CREATE TABLE USER (
+  id INTEGER AUTO_INCREMENT  PRIMARY KEY,
+  username VARCHAR(250) NOT NULL,
+  password VARCHAR(250) NOT NULL,
+  email VARCHAR(250) DEFAULT NULL,
+  roles VARCHAR(250) DEFAULT NULL,
+  active boolean,
+  isAdmin boolean DEFAULT false 
+);
+
+
+INSERT INTO 
+	USER (id,username, password, email,roles,active) 
+VALUES
+  	(001,'Lokesh', 'password', 'howtodoinjava@gmail.com','USER',true);
+	
+	
+	Kafka:
+	https://github.com/SimpleProgramming/springboot-kafka
+	
+	
+	db2 -tvmf filename.sql
+	
+create table customer(
+  customer_id integer NOT NULL PRIMARY KEY,
+  ticket_id integer NOT NULL,
+  is_Admin SMALLINT NOT NULL WITH DEFAULT 0,
+  FOREIGN KEY bus_ticlet_fkey (ticket_id) 
+  REFERENCES bus_ticket ON DELETE NO ACTION)
+
+
+CREATE TABLE BRS.USER (
+  user_id INTEGER NOT NULL  PRIMARY KEY,
+  username VARCHAR(25) NOT NULL,
+  password VARCHAR(25) NOT NULL,
+  email VARCHAR(25) DEFAULT NULL,
+  status  smallint  DEFAULT 0,
+  isAdmin smallint  DEFAULT 0,
+  ticket_id VARCHAR(25) default 0
+);
+
+
+
+
+  
+  DB schema:
+  create table bus_book(
+  bus_id integer NOT NULL PRIMARY KEY,
+  bus_source varchar(20) NOT NULL,
+  bus_destination varchar(20) NOT NULL,
+  bus_source_time timestamp NOT NULL,
+  bus_destination_time timestamp NOT NULL
+)
+
+
+insert into bus_book values(1,'solan','salogra',(TIMESTAMP(CAST('04.02.2005' AS VARCHAR(10)),'13:14:53')),(TIMESTAMP(CAST('05.02.2005' AS VARCHAR(10)),'13:14:53')));
+
+select * from bus_book;
+
+create table bus_category(
+  bus_id integer NOT NULL PRIMARY KEY,
+  bus_category varchar(10) DEFAULT 'NORMAL'
+)
+
+
+insert into bus_category values(1111,'DELUX');
+
+select * from bus_category;
+
+select * from bus_book a where a.bus_id=bus_category.bus_id;
+
+SELECT 
+   b.bus_id,
+   p.bus_id,
+   b.bus_source_time
+FROM 
+    bus_book b
+INNER JOIN bus_category p 
+    ON p.bus_id = b.bus_id;
+
+
+create table bus_ticket(
+  ticket_id integer NOT NULL PRIMARY KEY,
+  bus_id integer NOT NULL,
+  seat_id integer NOT NULL
+)
+
+/* Foreign key contraint as delete cascade */
+
+/* 1 is for Admin */
+create table customer(
+  customer_id integer NOT NULL PRIMARY KEY,
+  ticket_id integer NOT NULL,
+  is_Admin SMALLINT NOT NULL WITH DEFAULT 0,
+  FOREIGN KEY bus_ticlet_fkey (ticket_id) 
+  REFERENCES bus_ticket ON DELETE NO ACTION)
+  
+  
+   insert into bus_ticket values(2,3,4);
+   insert into bus_ticket values(3,3,4);
+   
+   insert into customer values(1,2,0);
+   
+   insert into customer values(4,3,0);
+    
+  
+  drop table customer;
+  
+  
+  select * from bus_ticket;
+  
+create table customer_profile(
+  cust_id integer NOT NULL PRIMARY KEY,
+  address varchar(20) NOT NULL,
+  email varchar(20) NOT NULL
+)  
+  
+/* composite primary key  */
+    create table registration_status(
+cust_id integer not null,
+status integer not null,
+PRIMARY KEY (cust_id, status));
+    
+
+
+create table booking_status(
+
+)
+
+
+
+
+  
+
+select * from customer;
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+One to one
+Seat:
+ticket:
+
+one to many
+Customer must exist for tocket
+Customer : ticket
+
+
+{
+        "cust_id": 1,
+        "firstName": "\"akkhil\"",
+        "lastName": null,
+        "email": null
+    }
+]
+
+
+
+>>>>>>>>>>>>>>. UML
+
+Booking
+
+Route
+
+Seat Layout
+
+https://github.com/Ratna04priya/Bus-Ticket-Management---Java
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>.
+
+input payload:
+Customer:
+ [
+ 	{
+      "firstName":"akhil",
+      "lastName":"premium",
+      "email":"akkhil20"
+   },
+   {
+      "firstName":"gupta",
+      "lastName":"premium",
+      "email":"akkhil20"
+   },
+    {
+      "firstName":"salogra",
+      "lastName":"premium",
+      "email":"akkhil20"
+   },
+   {
+      "firstName":"akhil1",
+      "lastName":"premium",
+      "email":"akkhil20"
+   },
+   {
+      "firstName":"gupta1",
+      "lastName":"premium",
+      "email":"akkhil20"
+   },
+    {
+      "firstName":"salogra1",
+      "lastName":"premium",
+      "email":"akkhil20"
+   },
+   {
+      "firstName":"akhil2",
+      "lastName":"premium",
+      "email":"akkhil20"
+   },
+   {
+      "firstName":"gupta2",
+      "lastName":"premium",
+      "email":"akkhil20"
+   },
+    {
+      "firstName":"salogra2",
+      "lastName":"premium",
+      "email":"akkhil20"
+   }
+   ]
+
+
+
+
+>>>>>>>>>>>>>>>>>>>
+Bus:
+[
+    {
+        "bus_no": 1,
+        "bus_type": "premium"
+    },
+    {
+        "bus_no": 2,
+        "bus_type": "regular"
+    },
+    {
+        "bus_no": 3,
+        "bus_type": "Volvo"
+    }
+]
+
+
+http://localhost:8080/dbservice/customers/{id}/tickets/{ticket_id}
+
+
+
+============================================
+
+  ANGULAR JS
+
+==============================================
+
+
+https://www.youtube.com/watch?v=5x5KOU_cOtM&list=PLqq-6Pq4lTTb7JGBTogaJ8bm7f8VCvFkj&index=3
+
+one way data binding: from typescript to view
+
+call REST from http:
+https://www.javainuse.com/spring/ang7-crud
+
+C:\Users\AkhilGupta\inteview\Angular
+
+
+===============================================
+
+MICROSERVICES
+===============================================
+All MS calls asyncronously??
+
+
+MS Registry DB:
+Service Registry Database
+
+Registration options
+Discovery Options
+
+
+Oberevable MS
+Logging Tech:
+   Centralized logging
+   as ; eleastic log/kibana: using lib as serilog
+   
+Load Balancer as API Gateway
+
+caching at:
+  API gateway level Or proxy level
+  Caching at client level OR service level???
+  
+How API gateway hides the host details of MS from clients??
+
+GreenField MS:  TO DO(2nd part)
+
+MS Architecture:
+// Design REST MS APIs
+https://app.pluralsight.com/player?course=microservices-architectural-design-patterns-playbook&author=rag-dhiman&name=249af7c5-96a5-44e8-ac47-81b56aeff8e5&clip=0&mode=live
+  
+  
+1. compression in REST 
+
+2.uniform interface in REST
+
+vernb instead of noun: not oly CRUD but Task
+
+Design Pattern:
+   Facade Or Proxy or Stateless Service pattern
+stateless service pattern increases the data in network??? how? because it contains more data due to no state maintained?
+
+segregate as API, Business and Data as BG in office
+   Business logic behind the facade, as Interface??
+   Helps in single Cohesion
+How does security is added by proxy in Microservcies architecture??
+
+>>>>>>>>>>>>>
+How to compose MicroServices
+>>>>>>>>>>>>>
+how comm. hapens
+  Compostion Pattern:
+     1. broker
+	 2. Agreggate
+	 3. Chained
+	 4. Branch
+	 5. proxy
+	 
+	 1. broker===> kafka queue
+	 2. Aggregate ===> WebApp as aggragator to all MS responses
+	 
+	 Must use both aggregator and broker pattern
+	 3. currently using Chained Composition(Disadvantages : Syncronously?)
+	  why to use Chained Pattern at all??
+	  
+APi Gateway???  is a REST API .... how to design gateway API... KONG API gateway
+                configured for security and authentication
+                traffic control; rate limiting
+                load balancing
+                logging to centralized location
+				Circuit breaking: If upstream API fails
+				Caching the result sets
+				
+				ReTry Vs Circuit Breaker????
+				
+				
+				
+     Distributed data
+     Distributed Security
+From client prospects:
+   Consolidated API need not rememver all rest API but One 
+      But the round trips for authentication increases
+	  which option to choose if API is exposed a product????? distributed?
+	  
+	  consildating the data/ remember security credentials at client end for the distributed app
+	  will be problem to remember at client end
+	  
+	Data Consistency:
+   Save and Role Back data in a single Transaction???????????	
+   Microservices transactions????
+      Distribued Transaction???
+   Data Consistency PATTERN across microServices:	  
+    1.Two phase commit??	
+             Using Transaction Manager
+                  Prepare Phase ---> Voting Phase --->
+                                                  ---> Issue commit if all says yes
+                                                  ---> Issues NO if any one says NO												  
+	2. Saga patern
+    3. eventual	 consistency
+	  
+   
+	 
+	 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	 https://app.pluralsight.com/course-player?clipId=7b7b94e1-8efc-4a0c-8dce-0841ab22d948
+	 Authentication
+     
+     Multitenancy??????????	 
+
+     Don't we need to share the DB between MServices?
+      
+	JWT Token must have the Public Key Signature  
+   
+   Mock API as facade????
+   
+   // MS Kafka:
+     Kafka producer:
+   https://github.com/b0gg4rd/spring-kafka-example
+   Download kafka:
+   http://kafka.apache.org/downloads.html
+   
+   
+   
+   OAuth 2.0
+   ==========
+   
+   
+   
+   
+   to start kakfa:
+   Please ensure that your ZooKeeper instance is up and running before starting a Kafka server
+   https://dzone.com/articles/running-apache-kafka-on-windows-os
+   
+   
+   >>>>>>>>>>>>>>>>>>>>>>>
+   Authenticate using : JWT
+   https://www.javainuse.com/spring/boot-jwt-mysql
+   
+   
+   Role based:
+   https://www.youtube.com/watch?v=tYpS8BmrEyo
+   https://mkyong.com/spring-boot/spring-rest-spring-security-example/
+
+     
+   
+   
+   
+   SpringBoot error:
+   mvn dependency:purge-local-repository -DreResolve=true
+   
+   
+ 
+   
+   
+   
+  
+  ================
+  JVM
+  ================
+  https://app.pluralsight.com/player?course=understanding-java-vm-memory-management&name=understanding-java-vm-memory-management-m1&clip=0
+  
+  TechPrimers:
+  https://www.youtube.com/watch?v=NjHYWEV_E_o&t=428s
+  
+  bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic example
+  
+  1. start zookeeper
+  2. start kakf topic
+  3. start kafka
+  
+  To publish:
+  http://localhost:8080/kafka/publish/chalJaa
+  
+  http://localhost:8080/kafka/publish/Akhil
+  
+  
+  >>>>>>>>>>>>>>>>
+  
+  Draft Creation flow
+TermsResource.createTerms() -> WorkflowController.createArtifact() -> WorkflowServiceSingleton.createWorkflow() -> WorkflowableSerivceImpl.createArtifact() -> StorageWrapper.create() -> GlossaryStorage microservice
+ WorkflowServiceSingleton.createWorkflow()  --> REST API call to the workflow service microservice
+GlossaryStorage microservice --> Invoking the api's exposed by the glossary storage microservice
+
+OMRS:
+
+  
+
+ To retrieve Kafka Message:
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic approval --from-beginning
+
+
+ mockito basics:
+ https://github.com/in28minutes/MockitoTutorialForBeginners
+
+ MOCKITO EXAMPLE: for spring boot iplementation
+ https://www.youtube.com/watch?v=ackhP0ubtd4&list=PLFhXWrX-OniLuz7yDFcTb6MyZOROQxKOT
+ 
+  Candidates for mocking:
+  Database connections,
+Web services,
+Classes that are slow,
+Classes with side effects, and
+Classes with non-deterministic behavior.
+
+Mock webservices using Mockito:
+https://www.youtube.com/watch?v=3UpK2m94nHk
+
+
+
+
+    
+ Mockito methods:
+ 
+
+TO OD training:
+  IBM BlueMix
+  
+  questions:
+  HttpSession as interface?
+  
+  Using ISessionInfo interface as ThreadLocal to create session
+  
+  AbstractDb2??? How the services are defined in Map with services initilaized to (this)
+  
+  Does all work of initialization in a class:::
+  BusinessGlossaryConfiguration
+  
+  use org.apache.commons.configuration2.MapConfiguration
+   to load all configurations
+   
+   
+  createArtifact in WorkFlowController convests to another representation and pass to WF services.
+
+  StartWorkflowPayload workflowPayload = createStartWorkflowPayload(artifacts, versionIdsMap, draftMode, status, null);
+
+
+  WorkFlowServiceProxy.java :
+   createStartWorkflowPayload
+creates the payload
+used as WorkflowServiceStub STUB   
+   
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+JWT Token:
+"userName":"akhil",
+		"password":"akhil"
+
+http://localhost:8080/IdentityService/authenticate
+
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU4ODI0MjE0OCwiaWF0IjoxNTg3ODgyMTQ4fQ.4VKZ5kAuPZsxNkZCFH6_tKdauTv1sdiU7umjgtB6u_I
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU4ODI0MjIzNywiaWF0IjoxNTg3ODgyMjM3fQ.hycTc22tXWZWnYa-yp9RqDINGmyx7A2ZLdTCb1Erpjg		
+  
+  
+  
+  
+  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU4ODI0Mjg4NSwiaWF0IjoxNTg3ODgyODg1fQ.W2ATgFGBc6FbG1z576l7qhO4MeUPOnSDLzJUrmInmg4
+  
+  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU4ODI0MjkxMiwiaWF0IjoxNTg3ODgyOTEyfQ.fCmBLfoV7km8jDdGiNvgo80omDHpkb5bANOOvuORWP8
+  
+  
+  ============================================================================================================================================================
+  
+db2 create database one  
+db2 list db directory
+
+   
+   
+db2 create database bts;   
+db2 connect to bts useing db2inst1 
+db2 create schema BRS authorization db2inst1;
+ 
+ database name: bts
+ schema name: brs
+ 
+ >>>>>>>>>>>>>>>>>>
+ tables:
+CREATE TABLE BRS.USER (
+  id INTEGER NOT NULL  PRIMARY KEY,
+  username VARCHAR(250) NOT NULL,
+  password VARCHAR(250) NOT NULL,
+  email VARCHAR(250) DEFAULT NULL,
+  active smallint  DEFAULT 0,
+  isAdmin smallint  DEFAULT 0 
+);
+
+
+create table BRS.bus_ticket(
+  ticket_id integer NOT NULL PRIMARY KEY,
+  bus_id integer NOT NULL,
+  seat_id integer NOT NULL
+)
+
+create table BRS.bus_book(
+  bus_id integer NOT NULL PRIMARY KEY,
+  bus_source varchar(20) NOT NULL,
+  bus_destination varchar(20) NOT NULL,
+  bus_source_time timestamp NOT NULL,
+  bus_destination_time timestamp NOT NULL
+)
+
+
+create table BRS.bus_category(
+  bus_id integer NOT NULL PRIMARY KEY,
+  bus_category varchar(10) DEFAULT 'NORMAL'
+)
+
+
+create table BRS.BUS_ROUTE(
+  bus_route integer NOT NULL PRIMARY KEY,
+  origin varchar(20) NOT NULL,
+  destination varchar(20) NOT NULL
+);
+
+
+create table BRS.Payment(
+  booking_id integer NOT NULL PRIMARY KEY,
+  paymnent_mode varchar(20) NOT NULL,
+  paymnent_status varchar(20) NOT NULL
+)
+
+
+===============
+
+git loation:
+C:\Users\AkhilGupta\inteview\microservices_exmple_git_repo\MicroServicesExample
+
+
+>>>>
+to test storage layer:
+http://localhost:4444/storageService/customer/add?name="akkhil"
+
+username and password
+	{
+		"userName":"akhil",
+		"password":"akhil"
+	}
+	one to many
+	Customer and tickets
+	Customer to booking
+	
+	Many to manny relation : Bus and Customer
+	Must have an intermediate table; having a column in either table will NOT help
+
+    Inheritence Mapping:
+	
+	
+	
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	
+	JAX RS:
+	https://github.com/jersey/jersey/tree/master/examples/helloworld-pure-jax-rs
+	
+	>>>> containerrequest filter example:
+	https://github.com/ConSol/springboot-monitoring-example
+	
+	
+	
+	>>>>>>>>>>>>
+	filter in SpringBoot
+	https://howtodoinjava.com/spring5/security5/security-java-config-enablewebsecurity-example/
+	
+	
+	?????
+	https://github.com/cassiomolin/jersey-springboot
+	
+	
+	
+	<!-- Spring Security Core -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-core</artifactId>
+     <version>5.0.7.RELEASE</version>
+</dependency>
+ 
+<!-- Spring Security Config -->
+<dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>5.0.7.RELEASE</version>
+        </dependency>
+
+<!-- Spring Security Web -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    <version>5.0.7.RELEASE</version>
+</dependency>
+
+
+
+https://howtodoinjava.com/spring-restful/custom-token-auth-example/
+
+
+
+https://www.logicbig.com/how-to/jax-rs/jax-rs-multi-header-example.html
+
+
+https://stackoverflow.com/questions/28640331/migrating-from-jersey-to-spring-mvc-rest-containerrequestfilter-containerrespo
+
+
+
+https://github.com/devAsterisk/spring-boot-rest-api-example/blob/master/sample-05/src/main/java/io/github/devasterisk/springboot/api/interceptor/AuthenticationInterceptor.java
+
+
+https://github.com/devAsterisk/spring-boot-rest-api-example
+
+REFRENCE:
+https://github.com/devAsterisk/spring-boot-rest-api-example
+
+
+
+
+https://dzone.com/articles/distributed-logging-architecture-for-microservices
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+GENERICS
+
+REFLECTION
+
+TENANT based Glossary Seervice
+
+Collections.synchronizedMap????
+
+Loading Config properties
+
+
+session.getTenantId() implementation in diff classes; how class communicate with session???
+
+how do per tenant spwns multiple threads in one request????
+whats the creteria to create services????
+
+
+volatile example in GlossaryServicesFactoryFactory;
+
+
+Generics ? example from GlossaryServicesFactoryFactory class???
+
+
+createGlossaryServicesFactory in GlobalServicesfactoryFactory???
+
+generics in getWithDefault() in ConfigurationUtils
+/// is called from many places??
+private static final String DEFAULT_GLOSSARY_SERVICES_FACTORY_IMPL = "com.ibm.wdp.bg.api.impl.db2.Db2GlossaryServicesFactory";
+in GlobalConfigurations
+
+volatile with user session per thread???
+
+
+getAsClass() in BusinessGlossaryConfiguration.java to load interface as java class
+
+example of org.apache.commons.configuration2.Configuration from 
+BusinessGlossaryConfiguration??
+
+
+example of ClassLoader cl = Thread.currentThread().getContextClassLoader()
+from  BusinessGlossaryConfiguration??
+
+example of isAssignableFrom in Class.java??
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>
+LoadConfiguration from multiple location if miussing from one location??
+FileBasedConfigurationBuilder in BusinessGlossaryCnfiguration
+org.apache.commons.configuration2.io.FileLocationStrategy????????????? to load config
+
+1.
+Alternative to the Session as ThreadLocal Vs is Thread means tenant???
+2.
+cache???
+3. Kafka CountDown Latch	
+4. CustomAnnotations
+https://www.baeldung.com/java-custom-annotation
+  How in plain Java and How in Spring Boot
+5. Proxy to call MicroServices???
+
+6. SyncronizationProvider??
+ does per user login raises new Thread: check with multiple threads???????????
+
+7.
+   Example of Nested Calls in the SyncronizationProvider using reentrant call 
+   Collections.synchronizedMap example
+ActivityTracker
+
+OpenMetadata
+
+OpenMetadata RepoConnector
+ 
+  
+ =========================== SYNCRONIZATION CLASS==============================
+ java.lang.Void example?
+
+
+
+  How do stub works in microservices as WorkflowServiceStub.java 
+  
+  WorkflowServiceStub
+  WorkflowServiceStub
+  WorkflowServiceProxy
+  
+  
+  worklfowconrolller creates WorkflowServiceStub as consytruvtor
+  
+  
+  example of javax.ws.rs.client.Client to call another microservice
+  
+  =============================================
+    PERORM REST CALL TO ANOTHER SERVICE USIMG JAXRS
+	
+	performRestCall() IN WorkFlowProxy.java
+	
+	JAXRS:
+	https://www.youtube.com/watch?v=SyxiSw2S3wE
+	
+	
+MONGO DB:
+https://www.youtube.com/watch?v=__5Iu0QZKNU&t=1285s
+
+GridFS: FOR VIDEO files
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> mongo db>>>>>>>>>>>>>>>>
+MongoDB provides two types of data models: — 
+   Embedded data model and Normalized data model
+   
+   
+to find all collections:
+db.inventory.find( {} )
+
+
+https://bhupeshpadiyar.com/2019/08/crud-rest-api-using-spring-boot-spring-data-and-mongodb/
+https://github.com/bhupeshpadiyar/spring-boot-rest-mongodb
+
+db.users.insert(
+{
+... _id : ObjectId("507f191e810c19729de860ea"),
+... title: "MongoDB Overview",
+... description: "MongoDB is no sql database",
+... by: "tutorials point",
+... url: "http://www.tutorialspoint.com",
+... tags: ['mongodb', 'database', 'NoSQL'],
+... likes: 100
+... }
+
+)
+
+akhil Gupta:
+id:  5eb0202099c82d237c305267
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+   FINAL Architecture
+  >>>>>>>>>>>>>>>>>>>>>>>
+
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+in SpringConfiguration class level Annotation causes failure in autehntication
+
+
+IdentityService:
+ Creates JWT Token
+ 
+ApprovalService:
+ As Kafka producer
+TO DO: 
+  Calling the Kakfa Producer using multithreading 
+  Send as Async using executor service 
+ 
+
+
+
+
+eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFU19LRVkiOiJST0xFX1VTRVIiLCJzdWIiOiJha2hpbCIsImV4cCI6MTU4OTAwNjIzNywiaWF0IjoxNTg4NjQ2MjM3fQ.73lfp8VBMa9LuTxN53TUMAcEa7Yjq-LgWRbdLS7TZKo
+{
+  "AUTHORITIES_KEY": "ROLE_USER",
+  "sub": "akhil",
+  "exp": 1589006237,
+  "iat": 1588646237
+}
+
+
+
+
+
+
+
+eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFU19LRVkiOiJST0xFX1VTRVIiLCJzdWIiOiJha2hpbCIsImV4cCI6MTU4OTAwNjY5NSwiaWF0IjoxNTg4NjQ2Njk1fQ.KVgl4IeMAy-xJe5unvvY_r_YzNxBd918gRUHC_wAi0c
+
+
+
+
+
+
+
+
+
+  
+
+1000 threads without syncronization:
+
+100: 197
+
+
+
+	
+	/////// AbstractDb2GlossaryServices.java main class that initializes the services.
+	
+	
+	/// REQUEST CALL ENDS AT: WorkflowableServiceImpl.JAVA RETRUNING STOREGATECLASS
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	1. thread within main with start()
+	
+	2. deadlock
+	
+	3. comparator
+	
+	4. irearable and listiterator
+	
+	4. finalize
+	
+	5. consurrnethashmap
+	
+	1. DOUBLE NULL CHECK IN SINGLETON???
+	    Does it only narrows down the area to syncronize ????
+		
+    2. calling the rest API in sync in GlossaryService NOT making difference 		
+	
+	3. volatile vs Atomicreference??
+	   when to use volatile ? i it alternative to synchronization???
+	   volatile will not work for non-atomic operation as int i; i++;
+	   volatile are used for flags??? example????
+	   
+	   example of volatile:
+	   https://stackoverflow.com/questions/17748078/simplest-and-understandable-example-of-volatile-keyword-in-java
+	   
+	   How is AtomicInteger threadSafe; its not making oreder to maintain???
+	   
+	   How to gaurantee or of threads ??
+	   
+	   what is mutex in java???
+	   
+	   notifyAll doesn't make all threads to wakeup
+	   how to specify that thread that should be notified
+	   
+	   
+	   Notify And NotifyAll exampleeee???
+	   
+	   SyncronizationProvider in glossaryProject
+
+       How to maintain thread order along with syncronization for instance in;
+                  CountdownLatch
+       CopyOnWriteArrayList vs ConcurrentHashMap????
+	   
+	   ReEntrant Lock?????????
+	   
+	   How do concurrent hahsMap works internally??????????????
+	   
+				  
+	   When to make a class final??
+	   
+	   example to create final class.????
+	   
+	   finalize??? when can I call that explicitly??
+	   
+	   generics
+	   
+	   ThreadGroups???
+	   
+	   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	   
+	    CORE JAVA
+		
+		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		
+		1. REFLECTION
+		
+		2. CLASSLOADING
+		
+		3. overridden and overriding
+		
+		4. pass by value
+		
+		5. any harm if we call the static method by instance rather than class name?????????
+		
+		6. what if hashCode and equals are NOT overridden?
+		
+		
+		7. why default super() in java constructor
+		
+		8. runtime using reflection
+		
+		constructor chain to super class
+		
+		
+		what happened if serialVersonID nort specified
+		
+		Order of Dynamic Block vs static block
+		
+		Searilizable interface
+		  exampleof NotSerializableException???
+		  
+		
+		Throws vs try catch ??
+		
+		classLoaders":
+		  https://www.geeksforgeeks.org/classloader-in-java/
+		  
+		  
+		ClassLoader.getSystemClassLoader() example?
+		
+		Inner classes and Inner Interface usecase???
+		  Nested interface to resolve namespace.
+		
+Cloneable interface
+Remote interface
+ThreadSafe interface
+
+
+Read more: http://mrbool.com/what-is-marker-interface-in-java/28557#ixzz6M2wdXTcP
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>
+Cor java questions:
+
+
+1. strictfop in main
+2. any other name than main???
+       1. main can be overloaded; can be syncronized and can be called from child class
+  JVM checks for the static block and static assignments before calling main()
+  
+
+
+3. Downcasting to byte or int
+4. instanceOf example???
+
+5. why we actually want to catch exception???
+
+6. try catch finally finalize
+  Isn't exception handling is a hack in java?
+  exception handling using filenot found exception; so to use local file as alternative.
+  
+  empty stack in the rntime stack in destoyed by JVM just befpre terminating the thread.
+  
+  TO DO:
+  OutOfMemoryException and StackOverflow are error
+  
+  https://www.geeksforgeeks.org/understanding-outofmemoryerror-exception-java/
+  exception heirarchy??
+
+  All errors are Unchecked
+  
+  Throwable in ath block ve Exeption vs Error
+  
+  Is it better to use throw new from actual method causing exception OR throws FROM CALLING METHOD????
+  
+  native keyword in java??
+  
+  
+ throws keyword causes abnormale termination  
+ throws is used for Checked exception and 
+ 
+ why do interupptedexception is called explicitly on Thread.sleeep()
+ 
+ should we throws exception from main method header???
+ 
+ 
+ 
+ throws exception vs throws Throwable??
+ 
+ run() vs Start()
+ 
+ join() vs syncronized??
+ Thread.join() waits for the thread to completely finish, whereas a synchronized block can be used to prevent
+ two threads from executing the same piece of code at the same time.
+ 
+ ThreadScheduler???
+  the algo used vary fom JVM to JVM ; than why the scheduler is relevant to programmer??
+  
+ final static lock is equavalent to class level lock 
+  
+  ThreadGroup???
+ 
+ main thread vs main  method???
+ 
+ main thread vs background thread java??
+ 
+ usecase for Daemon Thread?
+ 
+ Thread proiority generated by JVM??
+ 
+ Thread prority vs Thread Syncronization?
+ 
+ yield Vs Join Vs interrupts?
+ 
+ Does yield gurentees order for other???
+ 
+ to do: generics and DataType and wrapper classes serialization
+ 
+ 
+ sleep vs waits
+ 
+ when do we explicitly call Thread.interuppt()???
+ 
+ 
+ example of interrupts in glossary:
+   Thread.currentThread().interrupt()
+   usecase to call thread interuppt explicitly???
+   
+   
+ sleep native vs sleep native
+ why is join method final
+
+ yield  vs join Vs sleep Vs 
+
+How do two threads talk to each other?? 
+ 
+ Lock of current objet vs Lock of particular object
+ 
+ 
+ 
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+interthread communication
+
+in case of wait and notify can the thread itself call thread.interuppt()?
+
+Starvation Vs Deadlock??
+
+wait vs wait with time
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+serialization
+
+  static variable in serialization????
+  order of the objects being serialized should be same when deserializing also
+  
+  What if the order of serialization NOT sure; than how to De-Serialize??
+  
+  In serializaton Graph thecomposed objets also need to implement serializable.
+  
+  how to retreive data info lost as variable was transient??? when deserialized??
+   defaultWriteObject and defaultReadObject  for customazied serialization
+   
+  Inheritence in Serialization
+  Child class can get serialized if only pasrent is serialized different from how the serialization workds for 
+  composed objects
+  
+  why is serialVersion ID needed??
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Collection frmework
+  Usecase for navigbleHashSet???????????????
+  
+  
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+concurrnet collections
+
+  SingleThread model for concureent:
+     vector, hashtable, SyncrnonizedList()
+	 
+  SynchronizedList() example??????????
+
+concurrent collections never throw ConcurrentModificationException
+
+BlockingQueue, ConcurrentMap, 
+   Oder between producer and Consumer NOT maintained in Bloackingqueue?
+
+1. cONCURRENThAHSmAP
+      Bucket level locking is used instead of total map object lock BUT whats the limit of segement locking ?
+	  n concurrent hashMap; a thread can mpdify the collection whil other thread is iterating But visibility not gaurantee.
+	  
+	  Another point of difference to note is that HashTable does not allow null keys or values whereas 
+	  HashMap allows one null key and any number of null values. Since synchronizedMap is wrapper over HashMap, its behavior with respect to null keys and values is same as HashMap
+	  ConcurrentHashMap is a segmented map, number of segments are based on concurrency level
+	  
+	  CopyOnWriteArrayList: clone of Map is made for every update operation and is sync later by JVM.
+	  
+	  CopyOnWriteArraySet vs synchronizedSet()???
+	  
+	  When to use CopyOnWriteArraySet???usecase?
+ 
+   putIfAbsenbt,remove, replace
+2. CopyOnWriteArrayList
+3. CopyOnWriteArraySet
+
+Enumeration vs Iterator vs ListIterator?
+
+Only treeSet and treeMap will NOT allow heterogeneous Objects to be stored?
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Generics
+Bounded Types and WildCard Characters?
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Garbage Collector:
+
+1. way to make object eleigible for GC
+   Nullification/Nullifying the reference variable
+   reAssigning ref varianleto another object
+   Objects created inside a method are eligible for GC by default once method completes
+   If method is returing and the retrurned value is assigned to another reference variable than that object not eligible
+   for GC otherwise it is.
+   How to check if object is eligible for GC??
+   
+
+2. methodsto request JVMto run GC
+
+
+3. Finalization
+  
+	 
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+JVM Architecture:
+
+  
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+I/O 
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Regular Expression
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+JAVA 8 :
+ LAMDA
+ FUNCTIONAL programming
+ Lambda as interface type
+ pass function as value in lambda
+
+ to practice:
+  https://www.youtube.com/watch?v=MqsCdbMQjWc&list=PLqq-6Pq4lTTa9YGfyhyW2CqdtW9RtY-I3&index=14
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+https://www.covidhotspots.in/
+  
+  
+Functional Interface:
+  Only 1 abstarct method and is eligible for being lambda interface
+
+
+BlockingQueue
+
+>>>>>>>>>>>>>>>>>>>> core java question>>>>>>>>>>>>>>>>>>>>>>
+
+https://github.com/in28minutes/JavaInterviewQuestionsAndAnswers
+
+=========================================================================
+
+XMETA ANALYSIS
+
+===================================
+
+ISandboxClient: interface
+DefaultSandboxClient.java
+AbstractSandboxClient.java initializes the DefaultSandboxClient.java
+testcase:
+AssetExportClientTest.java----------------> debug from here
+  GlobalDefaultClosureRule--> 2
+  defaultClosureRule.setContainedObjectDefault(ClosureAction.LINKPOINT);
+  
+
+   using ISandboxClient ref.
+   
+   
+   next: EnhancedAssetExportServiceImpl------------>
+   
+   
+   STS Suite example:
+   http://learnfromexamples.com/spring/how-to-create-spring-mvc-application-using-spring-tool-suite-within-a-minute/
+   
+   Java brains example:
+   https://www.youtube.com/watch?v=ZxLaEovze3M&list=PLGibysfsUS7NAbefiaj1V4LbX0glTftDI&index=5
+   
+   
+   Collections:
+   ArrayList:
+     Implements RandomAccess and Linkedlist NOT
+    All collections have: serializable and Clonable	 
+	
+	Code practice:
+	Order member by scope
+	>>>>>>>>>>>>>>>>>>>
+	
+	repo:
+	https://github.com/bootique/bootique
+	
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	
+	System design ref blog:
+	https://github.com/checkcheckzz/system-design-interview
+	
+	Object oriented Design:
+	https://github.com/sid24rane/System-Design-Interview-Questions
+	
+	
+	
+	
+	https://leetcode.com/discuss/interview-question/object-oriented-design/124744/Design-an-online-hotel-booking-system
+	
+	GC
+	https://leetcode.com/discuss/interview-question/object-oriented-design/124648/Design-and-Implement-a-Simple-Java-GC-(Java-7%2B)
+	
+	
+	
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	Apache Nifi
+	
+	processor to work with
+	Processor:
+	AbstractDatabaseFetchProcessor
+	
+	ServiceController:
+	AbstractDatabaseLookupService
+	
+	
+	>>>>>>>>>>>>>>>>
+	https://nifi.apache.org/docs/nifi-docs/html/nifi-in-depth.html#:~:text=All%20three%20repositories%20are%20directories,for%20current%20and%20past%20FlowFiles.
+	ContentRepository:
+	 this repository utilizes the immutability and copy-on-write paradigms to maximize speed and thread-safety
+	 conditions for archiving and/or deleting are configured in the 'nifi.properties' file
+	 
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+	1. ContentRepository
+	    FileSystemRepository
+		"Resource Claims" 
+		      These are Java objects that point to specific files on disk (this is done by keeping track of the file ID, the section the file is in, and the container the section is a part of
+	 Repository Directoroies defined in  NifiProperties.java as; REPOSITORY_CONTENT_PREFIX
+	 Content Claim:
+	 To keep track of the FlowFile’s contents, the FlowFile has a "Content Claim" object.
+	 concept of immutability is key to this being possible. Since the content is never changed once it is written ("copy on write" is used to make changes), there is no fragmentation of memory or moving data if the content of a FlowFile changes
+	 
+	 
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+   2. FlowFile Repository:
+   FlowFiles that are actively being processed by the system are held in a hash map in the JVM memory.
+   This FlowFile metadata includes all the attributes associated with the FlowFile, a pointer to the actual content of the FlowFile (which exists in the Content Repo) and the state of the FlowFile, such as which Connection/Queue the FlowFile belongs in. This Write-Ahead Log provides NiFi the resiliency it needs to handle restarts and unexpected system failures
+
+   NiFi recovers a FlowFile by restoring a “snapshot” of the FlowFile (created when the Repository is check-pointed) and then replaying each of these deltas
+   How do this checkpoint works???
+   A snapshot is automatically taken periodically by the system, which creates a new snapshot for each FlowFile. The system computes a new base checkpoint by serializing each FlowFile in the hash map and writing it to disk with the filename ".partial"
+   
+    When NiFi goes down, the write claim for the change is orphaned and then cleaned up by the background garbage collection. This provides a “rollback” to the last known stable state.
+	How GC works here????
+	
+	Write-Ahead Log means?????????????????????????? Which algo does NiFi uses??
+	
+   3. FlowFile:
+   Its in 2 locations:
+            First, in write ahead log and in-memory HashMap
+	This hash map has a reference to all of the FlowFiles actively being used in the Flow. The object referenced by this map is the same one that is used by processors and held in connections queues. Since the FlowFile object is held in memory, all which has to be done for the Processor to get the FlowFile is to ask the ProcessSession to grab it from the queue.
+         Is this same instance of FlowFile always???
+   These FlowFiles are then removed from the hash map mentioned above and the connection queue is in charge of determining when to swap the files back into memory. When the FlowFiles are swapped out, the FlowFile repo is notified and it keeps a list of the swap files. When the system is checkpointed the snapshot includes a section for swapped out files. When swap files are swapped back in, the FlowFiles are added back into the hash map. This swapping technique, much like the swapping performed by most Operating Systems, allows NiFi to provide very fast access to FlowFiles that are actively 
+   being processed while still allowing many millions of FlowFiles to exist in the Flow without depleting the system’s memory.	?????????	 
+			
+	
+   >>>>>>>>>>> Flow start:
+   FileSystemRepository
+   FileSystemRepository(nifiProperties) Constructor
+   initializeRepository()
+   
+   
+   TestClass used to analyze:
+   TestFileSystemRepository.java
+   
+   C:\Users\AkhilGupta\inteview\apacheNifi\nifi\nifi-assembly\target\nifi-1.12.0-SNAPSHOT-bin\nifi-1.12.0-SNAPSHOT\bin
+   
+   http://127.0.0.1:8080/nifi
+   
+   
+   
+   
+   ApplicationStartupContextListener.java
+   StandardFlowService.flow()
+   
+   
+   starting point
+   NiFiWebApiConfiguration.java
+   
+   
+   FlowControllerFactoryBean.java created from spring
+   
+   
+   >>>>>>>>>>>>>>>>>>>>>>>
+   
+   doc:
+   https://docs.cloudera.com/HDPDocuments/HDF3/HDF-3.1.1/bk_user-guide/content/terminology.html
+   
+   
+   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+   
+   week to fo list: 22/06-  29/06
+   next: Load from prom properties in file repository
+   1. classLoader with eventListener
+    2. initialization block and constructors
+	
+	
+	>>>>>>>>>>>>>>>>>>>>>>>>>
+	JAVA 8 MAIN FEATURES
+	1. STREAM
+	
+	MUST TO DO:
+	
+	1. try catch vs throws
+	2. static class
+	
+	
+	1. Dynamic Programming : 3days
+	
+	2. bitwise
+	
+	3.two pointers
+	
+	4. backtracking
+	
+	5. heap
+	
+	6. sliding window
+	
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	
+	04/07 - 04/08
+	
+	1st week: >>>>>>. weak
+	
+
+https://leetcode.com/discuss/interview-question/352460/Google-Online-Assessment-Questions
+
+1.
+https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/
+
+2.
+https://leetcode.com/discuss/interview-question/352458/
+
+3.
+
+
+
+https://leetcode.com/problems/fruit-into-baskets/
+	
+	
+4.
+https://www.geeksforgeeks.org/sum-of-bit-differences-among-all-pairs/
+https://www.geeksforgeeks.org/inplace-rotate-square-matrix-by-90-degrees/
+
+5.
+https://www.geeksforgeeks.org/count-strings-can-formed-using-b-c-given-constraints/
+
+6.
+https://www.geeksforgeeks.org/sum-numbers-formed-root-leaf-paths/
+
+
+7.
+https://www.geeksforgeeks.org/find-triplets-array-whose-sum-equal-zero/
+	
+	
+8.
+https://www.geeksforgeeks.org/given-an-array-arr-find-the-maximum-j-i-such-that-arrj-arri/
+
+9.
+https://leetcode.com/problems/longest-univalue-path/(RECURSION)
+
+RECURSION:
+https://www.geeksforgeeks.org/recursion-practice-problems-solutions/
+
+
+10.
+https://leetcode.com/problems/palindromic-substrings/discuss/105688/Very-Simple-Java-Solution-with-Detail-Explanation(MUST Do)
+
+https://leetcode.com/problems/binary-tree-level-order-traversal/discuss/33450/Java-solution-with-a-queue-used
+
+11.
+https://leetcode.com/problems/house-robber-iii/discuss/79359/My-simple-Java-recursive-solution
+
+
+	
+12.
+https://leetcode.com/problems/decode-string/discuss/87534/Simple-Java-Solution-using-Stack
+
+	
+13.
+https://leetcode.com/problems/house-robber-iii/
+	
+	14.(HARD Dp)
+	https://leetcode.com/problems/longest-valid-parentheses/discuss/14133/My-DP-O(n)-solution-without-using-stack
+	
+	15.
+	https://leetcode.com/problems/minimum-window-substring/discuss/26808/Here-is-a-10-line-template-that-can-solve-most-'substring'-problems
+	
+	16.
+	https://leetcode.com/problems/longest-substring-without-repeating-characters/submissions/
+	
+	17.
+	https://leetcode.com/problems/longest-substring-without-repeating-characters/submissions/
+	
+	18.
+	https://leetcode.com/problems/partition-equal-subset-sum/submissions/
+	
+	
+	19.
+	https://leetcode.com/problems/rotate-list/submissions/
+	
+	
+	
+	
+	
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	Amazon: Systemn Design:
+	https://creately.com/diagram/example/issjegxx1/AMAZON
+	
+	https://www.uml-diagrams.org/examples/online-shopping-domain-uml-diagram-example.html
+	
+	https://leetcode.com/problems/wildcard-matching/discuss/17828/Java-DP-Accepted
+	
+	
+	https://leetcode.com/problems/decode-ways/discuss/30358/Java-clean-DP-solution-with-explanation
+	
+	to do:
+	https://leetcode.com/problems/create-maximum-number/
+	
+	
+	
+	>>>>>>>>>>>>>>>>>>>
+	Sql Wrapper:
+	https://github.com/mjdbc/mjdbc
+	
+	https://mjdbc.github.io/
+	
+	
+	>>>>>>>>>>>
+	https://www.tutorialspoint.com/javareflect/javareflect_proxy_newproxyinstance.htm
+	
+	https://leetcode.com/problems/interleaving-string/discuss/32078/DP-Solution-in-Java
+	
+	https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/discuss/54117/Clean-Java-DP-solution-with-comment
+	
+	https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/submissions/
+	
+	https://leetcode.com/problems/minimum-falling-path-sum/discuss/186689/Java-DP-solution-with-graph-illustrated-explanations
+	
+	https://leetcode.com/problems/count-submatrices-with-all-ones/discuss/720265/Java-Detailed-Explanation-From-O(MNM)-to-O(MN)-by-using-Stack
+	
+	>>>>>>>>>>>>>>>
+	https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
+	
+	https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/discuss/163101/Java-Intuitive-Solutions
+	
+	
+	https://www.geeksforgeeks.org/count-subtress-sum-given-value-x/
+	
+	
+	
+	
+	BaseSqlTest.java calling the java class to query
+	
+	>>>>>>>>>>>>>>>>
+	xmeta:
+	Proxy
+	BatchConnection.java
+	PreparedStatementInvocationHandler
+	JdbcAccessImpl.java
+	
+	
+	>>>>>>>>>>>>>>>
+	 File mEtadata:
+	 
+	
+	
+	>>>>>>>>>>>>>>>>>>>>>>
+	Multtennat Application:
+	https://github.com/sumanentc/multitenant
+	
+	
+	
+	==========================================================
+	THING STO CONSIDER IN MICROSOFT:
+	
+	1. EDGE CASES/CORNER CASES/CORNER
+	
+	
+	>>>>>>>>>>>>>>>>>>
+	Object oriuented design:
+	https://github.com/JirayuL/SnakeAndLadder/blob/master/diagram/UML.png
+	
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	
+	CRICKINFO:
+	
+	
+	>>>>>>>>>>>>>>>>>>>>>>
+	
+	youtube design:
+	https://www.geeksforgeeks.org/design-video-sharing-system-like-youtube/
+	
+	https://leetcode.com/discuss/interview-question/system-design/496042/Design-video-sharing-platform-like-Youtube
+	https://leetcode.com/discuss/general-discussion/670355/Experienced-Interview-Preparation-Guide-All-Resources
+	
+	
+	UML diagram>>>>>>>>
+	
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	
+	
+	
+	 search for a ride, 
+ *  different category of rides, 
+ *  select a ride,
+ *  registration for a user and driver, 
+ *  paying for ride etc.
+ * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ * 
+ *  Singleton Pattern:
+ *   ----> To create the Applcaton Interfae
+ * 
+ *  Search for Ride:
+ *    search (User,location)
+ *    ---> All below serches as template pattern
+ *        search based on distance from location
+ *        shows list with car category
+ *        DrillDown search 
+ *         ----> Search(src/des)
+ *        and Book: Change Car status and use factory pattern to get the car instance
+ *        change to search based on Car category
+ * 
+ *  User
+ *    ----> Category(enum)
+ * 
+ *  Ride 
+ *     ---> Car
+ *          ---> Driver(composed)
+ *          ---> Passanger(Car status changed)
+ *         
+ *          ---> Ride details using the Builder Pattern when ride is confirmed
+ *         
+ *         
+ *  Registration  
+ *     ---> Generics for Passanger and Driver /Admin in future
+ *     ---< Notificaion: when added/registered
+ *     
+ *  Payment Options        
+ *      ---> Staretegy  --> Notification Pattern
+
+
+
+=========================
+2. creation/set in using template pattern/factory pattern
+
+
+should we pass object of its member variable as method argument in java
+should I return boolean or only void?? say 
+ex:
+TransactionRequest.initiateTransaction(userId,merchantId,true)
+Long or long???
+
+Anonymous inner classes???
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+behaviorial:
+https://interviewgenie.com/blog-1/interviewing-at-amazon-behavioral-interview-questions
+
+Answer1:
+S-> situation (CustomAttribute null for the target Class Descriptor)
+T-> to fix as the target values coming nullso data corrupted
+A-> (longest)replicate  ---> UML diagram --> Warpper XMQL --> applied to different datatypes
+    Working for the Attributes created n house BUT not from created using REST API
+R--> fix that for the resource bundles as were defined by default
+    XMQL Query change
+
+Answer2:
+
+>>>>
+Tell me a challenge you had where the best way forward was not clear cut. How did you decide what to do?
+-----------> dataType change for models : StateStreet Issue
+
+
+Give me an example of something you tried to accomplish but failed.
+-----------> 
+Customer issue.
+
+
+Give me an example of a time when you showed initiative.
+Iniitative for machine learning model using scikit learn for anamoly detection and got publication
+
+Give me an example of a time when you motivated others.
+---------< QA lady; to learn javascript and ; recursive
+
+Tell me about a time when you delegated a project effectively.
+-------->???????????????
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Develop above examples with Angular JS:
+https://dzone.com/articles/java-8-springboot-angularjs-bootstrap-springdata-j
+
+https://www.w3schools.com/angular/angular_modules.asp
+
+
+scope Vs rootScope???
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+AngulaJS 7:
+https://www.youtube.com/watch?v=FV2MXOygDTM
+
+
+
+UML Diagram:
+https://github.com/swetababu/HOTEL-MANAGEMENT-SYSTEM-DATABASE-PROJECT/blob/master/SQL%20Queries%20%26%20Triggers%20%26%20Views/BookingAudit_Trigger.sql
+
+
+DB2 tutorial:
+https://www.tutorialspoint.com/db2/index.htm
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+real time impleme for DS:
+https://www.quora.com/What-are-the-real-time-applications-of-data-structures
+
+1.
+Queues : Waiting List in Applications , Task Scheduling ,etc
+========================================================================================================================
+
+
+CMS CODE:
+
+CustomAttributeServiceImpl.java
+to do: 
+1. to load locale sepcific messages
+java.util.ResourceBundle
+
+
+2. InvalidParameterException
+to use generic exception
+
+3. Template Pattern for CustomAttributeTemplate
+
+
+
+4. testcase: AbstractCommonMetadataTest---------- starting point
+    TestSuite is junit API ; its usecase as Test
+	
+5. Factory Pattern: SandboxClientFactory
+
+6. transactional context for ISandboxClient.java???
+What does this commen means:
+This option can be set in the 'options' instance that is passed as an
+ * argument to the various read methods. It should be noted that the use of
+ * this option could increase the likelihood of contention between separate
+ * transactions. Hence, this option should only be used when needed. Further,
+ * this FOR UPDATE flag is 'sticky' in the context of EObject proxies that are
+ * returned from the various read methods. That is, any proxy EObject returned
+ * from a read method will use the FOR UPDATE flag value, that was specified when
+ * the initial read occurred, when the proxy is subsequently inflated.
+ 
+ 7. ISandboxClient Hierarchy for: Value and ReadOnly operations
+ 
+ 8. Singleton Pattern: CommonMetadataServiceFactory.getInstance()
+ 
+ 
+ 9. cms.bootstrap.properties to load the porperies after initializing the services 
+  to define the roles : com.ibm.iis.xmeta.cm.importRoles=CMAdmin
+  
+  =========================>>>>
+  
+  TASK 1:
+     START FROM TESTCASE MTHOD: testCreateGraph() IN CommonMetaDataIdentityTest.java
+
+9.1 ServiceException is the wrapper exception to cover the nested numerous exceptions for fatal irrecovable exception
+
+ 
+ 10. com.ibm.xmeta.client.tracker.XMetaChangeTracker( Adapter Pattern )
+       that deals with maninting the changeSet for markForSave and markForDelete 
+	
+
+ 11. Cache helper: ClientCacheHelper to deal with caching and phantomObjects??
+
+
+   12. FullObject to update partiually or fully :
+    updateChangeSet() in xmetaChangeTracker: uses check as instanceof
+
+
+13. handleDiagnostic() method in XMetaEObjectValidator
+     Uses Recursion
+
+
+14. proxy pattern to inflate if Object is proxy: isProxy
+getEObjectId() in EObjectUtils.java
+
+
+15. SandBox client do:
+  markForSave()
+  
+ 16. UninitializedSandboxBinding.getInstance() : Used to check that the insteance pof sandbox is not usable
+  Example of Singleton Pattern for thowing exception.
+  The exception thrown explicitly.
+  
+
+ 17. DefaultSandBoxClient for Cache usecase: Intercation of java backend with client cache
+getClientCacheHelper() 
+ implements IEObjectLookup that defines search using RID
+ DefaultSandBoxClient is the implementation that has tracker; clientCache, and IDeleteRuleProvider
+ // AbstractDeleteRuleProvider: implementation of IDeleteRuleProvider
+ DeleteRule used as the Enum: Casecade, Restricted, NULL
+ 
+ RepositoryClientConfiguration to load deleteRuleProvider
+ AbstractChange is the changeSet; or the change made to eObject
+ implementation is: ObjectTouched
+ fetch the instance using SingletonPattern in java and add that as change in eObject
+
+  changedObjects_ is Map of: <EObject, IChangedObject>
+   Full Object change / partial object change based on instaceOf operator
+   First check in cache list and than in PhantomCache
+  
+  
+  18. checkPhantom() in IClientCache.java  ClientCache is the implementation
+  IClientCache : is the cache in Client JVM???
+   to sync client cache with object that is to be created; 
+  
+18.1
+   Check for proxy : isProxy() an be done based on proxy state: be it PROXY or INFLATING
+   XMetaEStoreState ENUM FOR STATE
+   INFLATED IS DEFALUT STATE
+   How is the eObject defined as Proxy or Non -Proxy???
+   What do phatom Check : cacheHelper.checkPhantom(eobject); do????
+   
+   
+   
+   Adapter used notificatio Pattern:
+   isObjectTracked in ClientCacheHelper check for lits of Adpter???
+    List<Adapter> adapters = objectToCheck.eAdapters();// What are these adapters???
+	Checks to see if the given object contains the change tracker 
+	
+
+   
+   EObjectUtils.java:
+   getEObjectId()
+
+//RIDUtils.assignRidToEObject(null,eobject)
+This part sets the RID to eObject. But why null???
+
+trackChanges in ClinetCacheHelper allows to add changeTracker to list of Adapters
+
+  
+   19. ICache.java : Map?????
+     SimpleCache.java is the implementtaion
+	 Map of key and the EObject
+	 
+20. synchronized(map_) is used in 	  SimpleCache.java
+
+21. Default SandBoxClinet.java save()
+   Saves the collection of eobjects in the change set and deletes any objects in the delete set
+
+
+
+22. try this case:
+ If any EObject in the change set already exists in the repository it will be updated. It 
+ 
+ sandboxClinet_markForSave works from bootom to up
+ 
+ >>>>>>>>>>>>>>>>
+ Part 2:
+ Save()
+ 
+ 
+ 
+ save
+ 
+ // check for changeSet and deleteSet:
+ changeTracker_.getDeleteSet()
+ changeTracker_.getChangeSet();
+ 
+ FeatureToggleContext: example of ThreadLocal
+ 
+ InternalSaveOptions
+ InternalRemoveOptions
+   SingletonClasses to convert user sent object to the Object to be saved to Repo.
+ Why two sperate Objects??
+ Convert SaveOptions() to InternalSaveOptions()  both extends BaseOptions
+ 
+ FeatureToggleConstants an importat enum class
+ 
+ isFlushCacheAfterSave()??????
+ 
+ repositoryBinding_.saveAndDelete: to save
+ 
+ for now: saveAndDeleteEObjects only
+ 
+ TransactionHelper.java used to maintain transaction to DB by SandBoxClinet
+ 
+ InternalSaveAndDeleteEObjectsRequest.java
+   Convert the reuest parametrs to the Internalrequest??? Why??
+   
+  use repositoryServiceSupport and SandboxOperations Constant to call execute method 
+ 
+ RepositoryMethodDispatcher to dispatch all operations
+ 
+ IAction are repository Action based on the parameters passed as operationType 
+ 
+ TO DO: DispatcherInitializer??????
+ 
+ DispatcherUtil.extractParameter to extract Paramter from Map
+ 
+ AbstractSandBoxClinet.java:
+ save
+ 
+ IPersistence: CRUD Interface
+ 
+ 
+ DeleteByRidController.java?
+ 
+ 
+ passed as list of Actions; where order in mandatory to delete before update; thus no dangling reference occcurs
+ 
+ has series of constructors that identifies the deleteClosure, than the intermedate tables,(all are constructurs)
+ 
+ DeleteByRidContext is passed as context to all imple,entations execute() method
+ 
+ 
+ prepareAndExecuteParametrizedUpdate() in SqlExecutor runs against the DB.. line 329
+ 
+ BatchItemHandler is used to set parametrs to the placeholders
+ 
+ >>>>>>>>>>>>>>>>>>> Core SQl is pending.......
+ 
+ 
+  Check for the Objects to be deleted:
+  Map<EObject, DeletedObject> deletedObjects_ 
+     * should be noted that only the EObjects in the change set are saved. EObjects that are 
+	 
+	 IDeleteAction is something that is implemented by all deletre actions
+     * contained by EObjects in the change set are NOT saved (unless the contained EObjects are 
+     * also in the change set).
+	 
+23. OptimisticLockException , SessionLockException etc are thrown at time of save()
+
+24. XmetaTracker.java;  
+public Set<EObject> getDeleteSet() {
+        return Collections.unmodifiableSet(deletedObjects_.keySet());
+    }
+	
+	 
+25. XMetaChangeTracker.java:
+changedObjects_.clear();
+        deletedObjects_.clear();
+        immutableSet_.clear();
+
+call save only when the deleteSet and changeSet both are NOT empty
+
+26. FeatureToggleContext :to set fro individual Thread; example of using ThreadLocal
+    RepositoryClientConfiguration : example of syncronized SingletonClass; loading the client specific properties as ;
+	Delete rules...
+	
+	
+		
+27. saveAndDelete() on ISandboxBinding passing the changeSet,deleteSet as parameters
+
+28. InternalSaveAndDeleteResult is valueObject that returns the resultSet of saveandDelete
+
+29.saveAndDeleteSerializedEObjects() 
+Convert EObject to SerializedObjects
+Convert the set of EObjects to serialized form
+
+EObjectSerialization: the SerializedObject
+
+Custom implementation to serialize a collection of {@link EObject}s into an
+ * {@link EObjectSerialization} representation
+30. EObjectSerializer
+
+31. InternalSaveAndDeleteRequest is class that takes serializedObjects and pass it to DB
+
+32. pass the parameters as Map of (SandboxOperations,request)
+
+33. SandboxServiceSupport is support class to access repository
+
+34. flushCache() ---> PersistenceBroker
+
+35. RepositoryMethodDispatcher that executes against repository
+
+3. IAction : interface used to make action against repository based on dispatcher
+
+37.
+result = action.doAction(context, parameters, repository_, modelRegistry_);
+
+38. MethodDispatcherContext
+  contextual state for repository operations based on the delgater / operation type
+  
+  >>> SaveAndDeleteEObjectsAction : implementation of the IAction
+  the isolation of objects on client side and server side is isolated by client flusing the cache
+  
+39. IModelRegistry: to access the info from registry model at runtime???? use??
+
+40. DispatcherUtil.extractParameter : to get parametrs from Map  
+
+41. call sandBoxClinet save against public CRUD repository interface: IPersistence
+
+42. DeleteByRidController.execute(context, conn, dbType); this do exact operation
+
+43. ConnectionManagerIF to getConnection
+============================================================================================================================================================================
+                          CREATE DATABASE AND HOSTNAME Flow
+==============================================================
+
+CommonMetaDataIdentityTest  ----> 						  
+
+PersistentEObject is superclass for all assets that are saved be it dataBase, Schema 
+
+AbstractChange
+ has implementations as:
+		ObjectChanged ==> when whole object to change
+        else
+		parital
+		
+		in XMetaChangeTracker.java
+/*
+IChangedObject changedObject;
+        if (change instanceof ObjectChanged) {
+            changedObject = getAsFullObject(object);
+        } else {
+            changedObject = findOrCreateChangedObject(object);
+        }*/
+		
+		IChangedObject : the Objects that are changed
+		
+		FullObject.java
+		
+		
+
+
+Actual save in repository
+  =============================================
+   In Progress..........
+  TestCase 2:
+  testCMIndentity01() in CommonMetaDataIdentityTest
+  
+  CommonMetadataIdentity.java --->
+  stores the identity components of the following CommonMetadata
+   objects
+   
+   enum for ComonMetadat:
+   CommonMetadataType
+   
+1. InternalQueryCompileOptions
+
+2. InternalQueryOptions
+
+DefaultSandBoxClient is used
+
+how XMQL works:
+searching for instances of classes residing
+     * within currently registered packages
+
+ClientUtils.checkQueryString	 
+ basic xmql query validation
+ 
+ Query is being run against QueryHelper.
+ javaexecuteQuery() method in EObjectSandBoxBinding
+ 
+ QueryHelper has static class: ConnectionQueryExecuter()
+ execute()
+ 
+ 
+ IRetrievalQueryPlan plan retreived by SqlkQuery.java class
+ 
+ SqlPaginatedSelect.java???
+ 
+ executeQuery() in BasicSqlExecutor.java uses bare sql query : pasing parametrs as: 
+ 
+ nested interface example: ==> encapsulates the sql query
+   ISqlParameterValue.java
+ javaexecuteQuery() method in EObjectSandBoxBinding
+ 
+ 
+ checkPhantom?????use case of PhantomObjects
+ 
+ 
+>>>>>>>>>>>>>>>>>>>>>>>>>>
+debug:
+/opt/IBM/InformationServer/wlp/usr/servers/iis/lib/iis/50xmeta/
+
+when to set this: isAllObjectsAreNew as true??
+
+BaseAttributes???
+
+ReferenceTraversalStrategies:: to prune the Object Graph??
+
+How do an object is checked oto be proxy???
+
+
+nullOutReferencesToDeleteSet() to remove the unwanted references from deleteSet
+
+InternalRemoveResults?????????????????
+
+FeatureToggles used  as ThreadLocal to read FeatureToggle Values
+
+
+====================================
+queries
+====================================
+1.
+UninitializedSandboxBinding.java
+InvocationHandler??? How proxy is used and instance for client not initlialized??
+
+2.
+ISandboxBinding is used to bind SandBox CLient to SandBox service.
+
+3.
+repositoryBinding_ are two types:
+      1. ERemoteBnding
+	  2. UninitializedSandboxBinding
+	  
+4. PhantomObjectException is handled in IClientCache
+Cache is created per session.
+createPerSessionCache()
+  -- SimpleCache is default implemenytation
+  -- otherwse loaed from RepositoryClientConfiguration.getPerSessionCacheImpl
+  
+ 5. RepositoryClientConfiguration used to load the cache config using reflection
+
+6.INotificationHandler.java 
+	  
+
+7. XMetaChangeTracker constructor had Map<Integer, INotificationHandler>
+  IDeleteRuleProvider: to get the delete rule artifact for model.. how???
+
+8. throw exception instead of return statement;??? are bot equivalent
+If the eObject is a proxy, it will not be inflated???
+
+XMetaEStoreEObjectImpl represents the proxy: 
+How is a proxy defined in xmeta??
+
+
+
+String rid = ClientUtils.getRidForObject(eobject);// rid is feteched from where???
+Cache the eObject and its reachability graph
+cacheEObject() client CacheHelper??
+This caches the whole eObject reachability graph(IMPORTANT)
+
+
+9. Save API:
+ SaveOptions: A Class with static final Constructors
+
+10. to begin the transactionConytext:
+ txHelper_.beginAutoCommitTransactionIfNeeded();
+ 
+ 
+11. InternalSaveAndDeleteEObjectsRequest.java
+Structure used to pass data to repository when saving and deleting data
+ * passed as EObjects
+
+12. How do CLIENT_VERSION is used to identify the SandBoxClient.
+
+13. dispatcher calls ISandbox.java extends ITransactionControl (Interface for repository transaction-related functionality. This includes the ability to begin,commit and abort transactions, as well as the ability to test if a transaction is currentlyactive)
+ based on the operationParameter 
+ 
+ JAAS???
+ 
+ 14. MethodDispatcherContext???
+ 
+ 
+ 15. IModelRegistry: methods to access information from the repository's model registry at runtime
+ 
+ 
+ 16.
+  SandboxServiceSupport.java 
+ Support class used by business objects for access to the repository. 
+
+
+17.
+getDeleteClosure() to find the closure to delete in class: BasicPersistence.java
+
+========================================================================================================
+
+CMS; 
+CMS calls ---> IAssetImportClient.java
+
+with importexport functionality:
+XMetaImportExportFactoryImpl.java defines rules as ForwardReferenceRule.java
+(In paper)
+
+=========================================================================================================
+CMS : query by Identity:
+/class_model_name/class_name/virtual_class_name.cd" Custom Attribute
+ * definition -
+ * "/class_model_name/class_name/virtual_class_name/attribute_name.ca
+ 
+ IdentityHelperHybrid.java:
+ // The RID matched a real object. No need to do identity match. ???
+
+=========================================================================================================
+Match and Merge usecase???
+ 
+ 
+ where the Identity is composed:
+ composeIdentity()
+ 
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ EMF: Vogella
+ https://www.vogella.com/tutorials/EclipseEMF/article.html
+ 
+ >>>>
+ 
+ https://www.eclipse.org/forums/index.php/t/1089172/
+ 
+ INSTALL emf:
+ http://dev.antoinesolutions.com/eclipse-modeling-framework-emf
+ 
+ download emf link:
+ https://download.eclipse.org/modeling/emf/emf/builds/release
+ 
+ 
+ 
+======================================================
+AssetImportClinet.java
+
+LinkPointHelper.java has makeStubObject() : that creates stub
+creates stubs for the linkpoints
+
+mereg Operation in:
+doMerge() in AssetImportMergeImpl.java
+  
+  
+  makeResult() returns to user
+
+ 
+=================================================>>>>>>>>>>
+1. To set up the DB Connection
+initializeDefault()
+ initializeDefaultISManagedPojo() in ConnectionInitilaizer.java.
+ 
+from
+
+checkRepositoryInitialized in ClientFactory()
+
+
+>>>>>>>>>>>>>>>>>>>
+Xmeta Save flow:
+PhantomObjectException/????
+
+
+
+
+EObjectSerializer.java
+convertEObjects() converts the binaries to encapsulated as 
+ReferenceTraverser.java
+
+SerializationContext.java as COntextDesignPattern
+
+invoke() in RemoteSandBoxBinding.java passes the Objects to delete and save as map of Objects
+
+SandboxRepositoryImpl.java does remote call for save and delete
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>
+Arcesium:
+https://leetcode.com/discuss/interview-experience/594773/arcesium-sr-soft-engineer-hyderabad-mar-2020-offer
+
+Design a torrent service, end to end.
+
+>>>>>>>>>>>>>>>>>>>>>>
+design leetcode:
+https://leetcode.com/tag/design/
+
+
+
+
+SYSTEM Design
+https://www.youtube.com/playlist?list=PLhgw50vUymycJPN6ZbGTpVKAJ0cL4OEH3
+https://github.com/donnemartin/system-design-primer
+https://tianpan.co/notes/161-designing-stock-exchange
+
+System design notes:
+
+
+
+
+>>>>>>>>>>>>>>>>>>>
+NAVIGATION AS: GOOGLE Map
+
+
+
+
+Arcesium interview
+https://www.geeksforgeeks.org/arcesium-senior-se-interview-experience/
+
+
+
+=========== tHINGS TO DO=============
+
+
+//Load Configuations: using classPath
+       // SingletonDesignPattern
+	   
+	   
+// ThreadLocal	   
+	   
+public class LoadConfiguration{
+
+  private final String userName = "akkhil";
+
+
+  
+
+}	
+
+//Load dependent classes Dynamically using reflection
+
+// Use Annotation
+
+
+// Inner Classes as Threads
+
+// inner Interface
+
+// read files in Chunky; implement chunkify
+
+// ways to read file. using FileReader, ReaderStream
+
+// Apply streaming in MatchAsset call() method
+
+
+
+
+
+>>>>>>>>>>>>>
+PROXY OBJECT
+http://www.java2s.com/Tutorial/Java/0125__Reflection/CreatingaProxyObject.htm
+
+EObjectUtils.isProxy
+
+Virtual  Proxy
+https://www.educative.io/edpresso/what-is-the-virtual-proxy-design-pattern
+
+
+
+
+
+>>>>>>>>>>>>>>>>
+headphone:
+Sony WH-CH510
+
+
+
+
+10 blocks: 15 floor each : 12 flats == 1800
+
+3 blocks ; 15 ; 12 flat == 540 
+
+// 2340 == 20 
+
+
+
+///Avatar:
+10 blocks:
+10 flat a floor
+
+
+22 acre
+
+31 floor
+
+//
+3100
+
+
+
+function meetingPlanner(slotsA, slotsB, dur):
+    ia = 0
+    ib = 0
+
+    while (ia < slotsA.length AND ib < slotsB.length):
+        start = max(slotsA[ia][0], slotsB[ib][0])
+        end = min(slotsA[ia][1], slotsB[ib][1])
+
+        if (start + dur <= end):
+            return [start, start + dur]
+
+        if (slotsA[ia][1] < slotsB[ib][1]):
+            ia++
+        else:
+            ib++
+
+    return []
+	
+	
+
+
+
+ZW5jcnlwdGVkUXVhbGlmaWVyPUFUWlBUNFJDTkEyOTQmZW5jcnlwdGVkSWQ9QTA3MzY2NTkyMUVGS0laWUlPSkEmZW5jcnlwdGVkQWRJZD1BMDM2MDA1M0RaTzRYQUZVVk1XWSZ3aWRnZXROYW1lPXNwX2hxcF9zaGFyZWQmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl
+
+
+Fire-Boltt Blast 1400 Over -Ear Bluetooth Wireless
+
+>>>>>>
+
+meeting/ contact ID??
+USD? realistic timeline??
+timeline?
+layout???
+100 ft road? time
+//
+===>
+
+
+//
+18%(PSD)
+//==> 
+
+
+
+wed master plan:
+UDS 
+ --> COMPENSATION
+ 
+ 
+9550948877
+//SERVICE SHAFT
+
+ 
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ 
+ 
+ FaceBook design:
+ 
+ 
+ jIGsAW:
+ https://dev.to/techdebtor/get-hired-handling-object-oriented-design-questions-4i70
+ 
+ 
+ 
+ 
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ Final Revision:
+ https://leetcode.com/problemset/top-interview-questions/
+ 
+ HArd onwards
+ >>>>>>>>>>>>>>>
+ 
+ https://www.amazon.in/Redmi-8A-Dual-Midnight-Storage/dp/B07X1KSLC3?tag=googinprimeexpt3-21&ascsubtag=_k_Cj0KCQjw5eX7BRDQARIsAMhYLP9nqreUjJn9X_ixAy6XIH3pl0-DnQa-yAo1A2fGb-u91gTnUEYJhWMaAncREALw_wcB_k_&gclid=Cj0KCQjw5eX7BRDQARIsAMhYLP9nqreUjJn9X_ixAy6XIH3pl0-DnQa-yAo1A2fGb-u91gTnUEYJhWMaAncREALw_wcB
+ 
+ 
+ 
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ 
+ SNAKE AND LADDER:
+ https://medium.com/@abhigulve06/lld-of-the-snake-and-ladder-game-3fd9f47cdd3a
+ 
+ Logger:
+ https://github.com/coding-parrot/projects/blob/7bddac254cbe5078be4e95f5221131c643e17bd6/java-projects/src/main/java/logger/LogClient.java#L34
+ 
+ 
+ https://leetcode.com/discuss/interview-question/system-design/225331/design-authentication-system-to-multi-tenant-environment
+ 
+ https://leetcode.com/discuss/interview-question/770704/amazon-tech-interview-question-coding-problem
+ 
+ Video coding:
+ https://www.youtube.com/c/CodingSimplified/playlists
+ 
+ https://leetcode.com/discuss/career/456930/must-do-arrays-questions-for-tech-interviews
+ 
+ DP:
+ https://leetcode.com/discuss/general-discussion/491522/dynamic-programming-questions-thread
+ 
+ 
+ 
+ Interview questions:
+ https://leetcode.com/discuss/interview-experience/455354/give-away-mistakes-i-did-in-interview-and-which-should-be-avoided
+ 
+ Must Do
+ https://medium.com/@koheiarai94/60-leetcode-questions-to-prepare-for-coding-interview-8abbb6af589e
+ 
+ 
+ 
+ >>>>>>>>>>>>>>>>>>>>>>>>
+ Low Level Design:
+ https://www.youtube.com/c/UditAgarwal21/about
+ 
+ 
+ g4G recursion:
+ https://www.geeksforgeeks.org/recursion-practice-problems-solutions/
+ 
+ 
+ https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
+ 
+ 
+ 
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ leetcode interview queations:
+ https://leetcode.com/discuss/interview-experience/904804/salesforce-mts-hyderabad-oct-2020-offer
+ 
+ LLD:
+ lld BASICS:
+ https://www.youtube.com/watch?v=GCTEVZjxznc&list=PLAC2AM9O1C5KioUMeH9qIjbAV_RMmX8rd
+ 
+ https://www.youtube.com/watch?v=VDqwCo6lhkY
+ https://github.com/prasadgujar/low-level-design-primer/blob/master/solutions.md
+ 
+ 
+ 
+ System design:
+ sYSTEM DESIGN:
+ https://www.youtube.com/watch?v=ZTZaUYFqLNw
+ 
+ 
+ https://github.com/donnemartin/system-design-primer
+ 
+ https://www.youtube.com/watch?v=k-E4YdEs8qM
+ 
+ 
+ 
+ >>>>>>>>>>>>
+ BVB:
+ https://www.bsrkv.edu.in/onlineenquiry/
+ 
+ 
+ 
+ >>>>>>>>>>>>>>
+ bank Application:
+ https://leetcode.com/discuss/interview-question/object-oriented-design/660849/OOD-or-Bank-Application-or-Coding-Assignment
+ 
+ 
+ Low level design:
+ https://www.careercup.com/page?pid=amazon-interview-questions&topic=system-design-interview-questions
+ 
+ 
+ Design debugger: LLD
+ 
+ Design Debugger then in between he moved to design Meeting scheduler
+In last 10 minute he asked me to give HLD of Clock Room
+
+
+
+>>>>>>>>>>>>>>>>>
+Amazon interview questions:
+https://leetcode.com/discuss/interview-experience/825285/amazon-sde-3-reject
+
+System design questions:
+Design monitoring & notification system. Assume you have a stream for a small to mid sized company.
+
+https://leetcode.com/problems/reorganize-string/
+https://leetcode.com/problems/course-schedule-ii/
+
+
+
+Low Level Design:
+Design a web service which takes input a string and target language. It should return the translated word into the target language. Assume you have a external vendor service which does the translation.
+
+The expectation from this question was to see how good is your object oriented design skills. You should always ask clarifying questions and do not make any assumption on your own. For this question, i wrote the code using OOP principles and a couple of design patterns
+
+ LRU Cache
+ 
+ System Design:
+ design an ATM machine
+ 
+ Given and array of seat allocations consisting of 1's and 0's (1 being occupied seats and 0 being empty), you need to put the next person in the best available seat. Best available seat is defined as a seat, which is at the maximum distance from its neighbours. Input will be an int, consisting of number of people to be seated, and int[] available and occupied seats array
+ 
+ Design LRU Cache (modified version of this)
+Design TicTacToe game (slightly modified version)
+
+back-of-the-envelope
+
+
+
+online book store system
+
+
+
+https://www.youtube.com/playlist?list=PLhgw50vUymycJPN6ZbGTpVKAJ0cL4OEH3
+
+
+
+
+>>>>>>>>>>>>>>
+Design File System:
+Create a file system which has the following functions:
+Add a file(whose full path is given) along with the directories inside which it is present.
+Append a file (Append the data of a file)
+Create a linked file(hard link)
+Append linked file
+Delete link
+Move the file from one directory to another
+
+Adding and Appending is fine but how to link files Could some one please suggest
+
+https://www.geeksforgeeks.org/design-data-structures-algorithms-memory-file-system/
+
+
+https://www.youtube.com/watch?v=3IVszG5Pn1c&t=33s
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+OOD Design:
+https://github.com/careercup/CtCI-6th-Edition/tree/master/Java/Ch%2007.%20Object-Oriented%20Design
+
+MUST Do:
+
+
+
+>>>>>>>>>>>>>>>
+RECURSION:
+https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
+
+https://leetcode.com/problems/target-sum/
+
+
+https://leetcode.com/discuss/interview-question/609070/Amazon-OOD-Design-Unix-File-Search-API/528864
+
+
+https://www.youtube.com/watch?v=HRHMkQ9fWsM
+
+
+
+Job Scheduler:
+https://leetcode.com/discuss/interview-question/system-design/344524/Amazon-or-Design-a-JobTask-Scheduler
+
+>>>>>>>
+
+questions for java:
+
+when to use constructor in java abstrcat class
+
+
+>>>>>>>>>>>
+Sys
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+MUST DO :
+https://www.youtube.com/watch?v=zM9N_x_v_24
+fIND DIA OF TREE: USING Stack
+
+Maximum sum path:
+https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/175405/JAVA-Dynamic-Programming
+
+
+microsoft: leetcode:
+
+https://leetcode.com/discuss/interview-experience/663477/microsoft-software-engineer-hyderabad-march-2020-offered
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>
+MUST DO INTERVIEW QUESTIONS:
+https://leetcode.com/discuss/career/452354/compilation-of-questions-covering-each-interview-question-pattern
+
+
+
+bhavans:
+http://bvbpsjh.com/admissions/
+
+
+?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+MICROSOFT INTERVIEW:
+https://leetcode.com/discuss/interview-question/477195/Microsoft-Azure-Interview-loop-Concurrency
+
+concurrency:
+https://leetcode.com/problemset/concurrency/
+
+OTA:
+https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/358875
+
+String questions:
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+DYNAMIC : LEETCODE:
+https://leetcode.com/problemset/all/?topicSlugs=dynamic-programming
+
+
+from iDeserver:
+https://www.youtube.com/watch?v=WPr1jDh3bUQ
+
+https://www.youtube.com/watch?v=nqowUJzG-iM&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go
+
+minimum difference:
+https://www.geeksforgeeks.org/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum/
+
+
+https://blog.usejournal.com/top-50-dynamic-programming-practice-problems-4208fed71aa3
+
+
+
+
+
+
+
+
+
+
+
+SYSTEM DESIGN:
+https://github.com/donnemartin/system-design-primer
+https://leetcode.com/discuss/career/229177/My-System-Design-Template
+
+
+
+https://www.careercup.com/
+
+
+slidj=ing window:
+https://leetcode.com/discuss/general-discussion/657507/Sliding-Window-for-Beginners-Problems-or-Template-or-Sample-Solutions
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>
+https://www.interviewbit.com/search/?q=Microsoft
+
+>>>>>>>>>>>>
+
+DP:
+https://blog.usejournal.com/top-50-dynamic-programming-practice-problems-4208fed71aa3
+
+
+MUST
+https://learnsystemdesign.blogspot.com/p/design-type-ahead-suggestion.html
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MICROSOFT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+BEHAVIROAL:
+1. EXAMPLE WHEN DEALT WITH CONFLICT?
+https://www.mockquestions.com/interview/Behavioral/
+
+
+
+
+
+I have been working for a data integration platform with offerings that helps to understand, cleanse, monitor and transform data.
+Standardize approach to discover IT assets and define common business language for data across verticals and can define document and enact policies and rules and track data lineage
+Build on unified metadata infrastructure that enables shared understanding between business and technical domains
+A Common metadata Repository provides persistent storage for all IIS Suite components. All products depends on this repository to navigate .
+uses the Eclipse Modeling Framework (EMF) as the basis for it’s meta-model. This means that EMF is the modeling language that XMeta uses to implement the repository.
+query and update metadata:
+two kind of metadata:
+    Dynamic: Includes design time information
+    Operational: Audit; log data .
+	
+	You can create, manage and share a common business language, document and enact policies and rules and track data lineage. 
+	Combine with Watson Knowledge Catalog (WKC) to leverage existing curated data sets and extend your on-premises IGC investment to the cloud
+	
+
+common metadata: 
+   refers to data that can be produced and consumed by more than one application in the IS suite
+   provide the basic data management operations needed by all applications (import, export, que-ryByIdentity, delete, etc ) in a consistent way
+   exa:
+	 •	Physical Data Resource (PDR) 
+	 •	Business Intelligence (BI)
+	 
+	 An asset is represented as an object graph whose root is an instance of a class marked as an asset root in the model. 
+	 An asset graph is inferred from a root object by applying the default asset closure rules associated with the model in the model registry
+	 An asset can be referred to via its identity, which is analogous to the concept of a primary key for a relational table.
+	 The identity of an asset is composed of the value of one or more attribute values from the asset root object and can also include the value of attributes 
+	 from other objects that can be reached by following a reference from the root, 
+	 as speci-fied by the identity definition associated to the asset root class
+	 Common metadata services will be made available via POJO API and ISF role based se-curity constraints will be checked programmatically 
+	 . Tools are expected to access common metadata directly using the XMeta sandbox only for read-only (XMQL) operations.
+	 Identified by identity and closure rules.
+	 
+	 
+	XMeta: A metadata Server eliminating the need for metadata import and export between tools
+    Repository access via POJO
+	Xmeta uses the Eclipse Modeling Framework (EMF) as the basis for it’s meta-model. This means that EMF is the modeling language that XMeta uses to implement the
+	repository.
+	New models can be developed in tools like IBM Rational Software Architest (RSA) and processed/converted by XMeta Model Central
+	XMeta provides a query interface which allows the retrieval of stored instance data based on criteria expressed in the XMeta Query Language (XMQL).
+	
+	EMF is an open source framework for defining models as sets of related packages, generating Java implementations of those packages, and 
+	creating class instances within Java applications..
+	A model is essential a UML class Diagram. 
+	XMeta repositories provide a storage mechanism for models and EObjects. Once a given model is deployed to an XMeta repository, 
+	EObjects which are instances of classes within this model  can be stored in the repository.
+	XMeta leverages IBM Rational Software Architect as an UML editing environment and provides the Model Central tool to convert RSA models into EMF models.
+	
+	Has a proxy support:
+	Specifying a proxy strategy can improve performance significantly, as only a subset of objects that are reachable from query result objects are actually 
+	retrieved from the repository. All other objects in the returned object graph are proxies, which are lightweight representations of the underlying repository objects
+	
+	>>>>>>>>>>>>>>>>>>>>>
+	Low level design >>>>>>>
+	https://github.com/prasadgujar/low-level-design-primer/blob/master/solutions.md
+	
+	
+	
+	
+	>>>>>>>>>
+	
+	
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+   
+
+
+	
+
+add omrs:
+https://community.ibm.com/HigherLogic/System/DownloadDocumentFile.ashx?DocumentFileKey=54e791d5-d7c7-bc6a-585f-3b5c2b5a7b6f
+
+
+>>>>>>>>>>>>>>
+challenges: match and merge
+            flush cache
+			dfart and publish mode using workflow using kafka(OMRS )
+
+
+https://sketchboard.me/new
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+SYSTEM DESIGN INTERVIEW TOPICS:
+
+
+TWITTER:
+https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/twitter/README.md
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+leetcode:
+https://leetcode.com/discuss/interview-question/system-design/344524/Amazon-or-Design-a-JobTask-Scheduler/330913
+
+https://preparingforcodinginterview.wordpress.com/2017/10/11/design-question-list/
+
+>>>>>>>>
+https://github.com/shashank88/system_design#start
+
+https://blog.pramp.com/how-to-succeed-in-a-system-design-interview-27b35de0df26
+
+https://leetcode.com/discuss/career/229177/My-System-Design-Template
+
+System design:
+https://www.youtube.com/channel/UC-nf8kVIeRMAzW3SRMzJ8-g/videos
+
+Twitter:
+https://www.youtube.com/watch?v=XkFL5sAmp-g&list=PLqOiaH9id5qtD7h8Zwu1abjKULtVq0nQA&index=5
+
+>>>>>>
+must:
+https://github.com/lei-hsia/grokking-system-design/tree/master/designs
+
+https://nlogn.in/what-are-long-polling-websockets-and-server-sent-events/
+
+
+>>>>>>>>>>>>>>>
+Systrem design
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>.
+
+top DS questions:
+https://dev.to/bitpunchz/51-important-algorithms-coding-interview-questions-asked-at-faang-chf
+
+https://www.interviewbit.com/coding-interview-questions/
+
+
+
+
+
+>>>>>>>>>>>>>>>
+String questios:
+https://leetcode.com/problems/minimum-window-substring/discuss/26808/Here-is-a-10-line-template-that-can-solve-most-'substring'-problems
+
+gOOGLE:
+https://leetcode.com/discuss/interview-question/448285/List-of-questions-sorted-by-common-patterns
+
+https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns
+
+https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>
+LFu cache:
+https://leetcode.com/problems/lfu-cache/discuss/94547/Java-O(1)-Solution-Using-Two-HashMap-and-One-DoubleLinkedList
+
+
+Leetcode:
+StefanPochmann
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>
+System design:
+  TEMPLATE
+1. UseCase and Constraints
+2. Justification for components
+3. Policy for Caching
+4. PriorityQueue/Messaging Queue
+5. Object Store Vs choice of NOSQL 
+6. API design: specific parameters and retrurn type
+7. CDN Vs  Cache
+8. CDN Perfoms Cache from geo. Distribted  location
+9. Pull and push Cache
+10. whem to use which NOSQl:
+11. DataBase Sharding
+
+
+   
+>>>>>>>>>>>>>>>>>>>>>>>>
+leetcode medium:
+
+
+
+
+
+
+=========================== DESIGN PROBLEM LEETCODE=============
+https://medium.com/@saisandeepmopuri/system-design-online-judge-with-data-modelling-40cb2b53bfeb
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>. leetcode interview questions========>>>>>>>>>>>>>>>>>>>>>>
+
+
+>>>>>>>>>>> APProch:
+Array:
+1. out of bound
+2. two pointer approach
+
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+google cloud:
+https://leetcode.com/discuss/interview-question/1105672/Main-and-Key-Topics-of-Google-Cloud-Professional-Cloud-Architect-Exam
+
+1. role
+
+2. preparation time: 1 month
+
+3. number of rounds
+
+https://medium.com/@earlg3/google-cloud-architect-exam-study-materials-5ab327b62bc8
+
+https://www.youtube.com/watch?v=t7mp5PjxnRU
+
+https://www.youtube.com/watch?v=MbKTV2y54uI
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+SalesForce: FINAL REVISION
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+https://leetcode.com/problems/longest-common-prefix/
+https://leetcode.com/problems/rotate-image/
+https://leetcode.com/problems/generate-parentheses/submissions/
+https://leetcode.com/problems/find-the-duplicate-number/
+https://leetcode.com/problems/sort-list/
+
+https://leetcode.com/submissions/detail/466762548/
+https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
+https://leetcode.com/problems/jump-game/
+https://leetcode.com/problems/jump-game/
+https://leetcode.com/problems/search-in-rotated-sorted-array/
+https://leetcode.com/problems/word-break/
+https://leetcode.com/problems/merge-intervals/
+
+Sys:
+https://leetcode.com/discuss/interview-experience/1116457/Salesforce-LMTS-role-hyderbad-offer/881231
+
+https://medium.baqend.com/nosql-databases-a-survey-and-decision-guidance-ea7823a822d#.wskogqenq
+NOSQL
+
+
+https://stackoverflow.blog/2020/03/16/how-event-driven-architecture-solves-modern-web-app-problems/
+Event Vs APi
+
+https://towardsdatascience.com/the-complete-guide-to-the-system-design-interview-ba118f48bdfc
+(All System Design)
+
+>>>
+points:
+1. substing
+2. return type
+3. sorting
+
+https://leetcode.com/problemset/all/?difficulty=Hard&listId=wpwgkgt
+
+>>>>>>>>>>>>>>>>>
+
+Leetcode top FAANG companies:
+https://github.com/neerazz/FAANG/blob/master/Algorithms/Top_LeetCode_Questions_By_Company.md
+
+
+googlyness:
+=======================================
+geeksForGeeks:
+https://www.geeksforgeeks.org/given-a-sorted-and-rotated-array-find-if-there-is-a-pair-with-a-given-sum/
+https://www.geeksforgeeks.org/maximum-sum-iarri-among-rotations-given-array/
+
+https://www.geeksforgeeks.org/rearrange-array-arri-arrj-even-arri/
+
+https://www.geeksforgeeks.org/find-the-minimum-distance-between-two-numbers/
+https://www.geeksforgeeks.org/minimize-the-maximum-difference-between-the-heights/
+
+https://www.geeksforgeeks.org/gold-mine-problem/
+
+
+??????????  Pseudo-polynomial time ?????????
+
+Asked preiously?:
+
+
+
+>>>>>>>>>>>>>>>>>
+Googleiness interview:
+https://www.interviewkickstart.com/blog/google-behavioral-interview-questions-to-get-hired-at-google
+
+
+2.
+Tell us about a time you executed a new task or project?
+Recruiters like to know how you solved problems you hadn't come across before. The best way to answer this question is to speak about a past project that involved significant learning. Big companies like Google look for candidates who can solve complex problems by applying sound logic and analytical thinking. If you found yourself in a situation where you successfully completed a project despite being unaware of certain functionalities at the start, mention your approach, how you implemented your learnings, and how you went about successfully completing it. 
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+deleteByRid by compactinf identity to rid
+
+
+3.
+hat are three things you consider important to maintain work-life balance?
+The biggest tech firms in the world don’t want their employees clocking 18-hour work shifts everyday. In fact, they like to recruit smart workers who can employ critical thinking and solve problems innovatively without mental or emotional strain. To answer this question, think about 3 productive activities that bring you joy everyday, and why you’d like to do them despite having a busy work day. Talk about what you expect from your company to keep yourself energized and motivated when you come in the next day.
+
+4.
+Tell us about an accomplishment you’re particularly proud of and why?
+Google hiring managers often ask candidates this question not because they want to know what they’ve accomplished, but why they’re particularly proud of it. To answer this question, think about a past project that involved dedicated efforts from other members of your team and how you achieved goals as a team. 
+
+
+5.
+How are you going to impact the team after you join?
+Google has a detailed team-matching exercise in which candidates are matched to teams based on a variety of factors such as  skills, interests, hobbies etc. Recruiters at Google often ask this question to understand what candidates can bring to the table and map you to an appropriate team. To answer this question, talk about fun and interesting activities that you’d like to be part of or initiate. Recruiters are always on the lookout for dynamic individuals who can bring in tons of energy and motivation to the team.  
+
+
+
+6.
+Have  you ever faced conflict while working as a team? If so,  how did you deal with it?
+Conflicts at workplaces aren’t uncommon and can surface every now and then, especially when working as a team. To answer this question, talk about how you were able to resolve a past conflict with a fellow colleague, and how you arrived at a consensus for the greater good of the project. 
+
+
+7.
+Why do you want to work at Google?
+This is a common question recruiters at Google ask. The intention is to find out what excites you about working with Google, and why you’re fascinated with Google’s efforts to create a world driven by supremely innovative technology.
+To answer this question, you can talk about your favorite Google products and what you like best about Google’s work culture.  
+
+8.
+Tell us about your favourite Google product and what you think about its future?
+This is similar to the previous question. Here, you talk specifically about how a particular Google product absolutely fascinates, and perhaps, inspired you to interview at Google. 
+
+
+
+
+https://leetcode.com/discuss/interview-experience/810079/google-l3-bangalore-august-2020-offer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>
+
+
+
+18001036286
+service.in@xiaomi.com
+
+or denail
+
+
+?>>>>>>>>>>>>>
+
+Hi Brittany
+   Hope you are doing good. This is regarding my phone interview  scheduled for 4th May at 7:30pm - 8:15pm. I haven't received the google hangout link yet.  Please do look into the same.Thanks & RegardsAkhil Gupta
+
+	meet.google.com/ztz-bmsn-sbj
+	
+	https://mail.google.com/mail/u/0/#search/churchill/FMfcgxwLtZsLLQgrsBwwnmQvfGMtFgrS
+	
+	
+
+>>>>>>>>>>>>>>>>>>>
+template:
+https://leetcode.com/problems/concatenated-words/discuss/348972/Java-Common-template-Word-Break-I-Word-Break-II-Concatenated-Words
+
+
+Must Do:
+https://github.com/neerazz/FAANG/blob/master/Algorithms/Top_LeetCode_Questions_By_Company.md
+
+FAANg questions:
+https://github.com/vaquarkhan/Notes-for-FAANG/tree/master/Algorithms
+
+https://github.com/neerazz/FAANG/blob/master/Algorithms/All_Topics_top_leetcode_by_frequency.md
+
+https://github.com/neerazz/FAANG/blob/master/Algorithms/All_Topics_top_leetcode_by_frequency.md
+
+to do againn:
+2,
+3,
+33,
+212
+394
+41: hard MUSt
+https://www.youtube.com/watch?v=ww4V7vRIzSk&t=244s
+
+
+Prepcoding
+https://www.youtube.com/watch?v=CqEsqfidKi0&list=PL-Jc9J83PIiG8fE6rj9F5a6uyQ5WPdqKy&index=10
+
+
+Dynamic Programming:
+https://github.com/neerazz/FAANG/blob/master/Algorithms/Top_LeetCode_Questions_By_Topic.md
+
+>>>>>>>>>>>>>>>>>>
+
+Why google:
+
+As I understand am always open to work on exciting and new challenges and done in past so specifically in vast google cloud platform I think i can contribute to
+either aspects be a storage, VMs,Docker Continerization to name some.
+Also am exciting to see the product specifically google distributed SQL database Spannner one of its kind in Industry
+
+
+
+I had been lucky enough to work on the opensource tech . specifically on Virtualization, Cloud platform and into Data Governance Domain
+
+I am willing to explore more of my stregth and work into areas I sure see a potential for me to grow
+
+
+ 
+ DFS: DP:
+ https://github.com/naresh1406/youtube/tree/master/src/main/cp/leetcode/december
+ 
+ 
+ 
+ >>>>>>>>>>>>>
+ 
+ https://github.com/IBM-ICP4D/icp4d-tutorials
+ 
+ >>>>>>>>>>>>>>
+ 
+ microsoft online:
+ https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions
+ 
+ 
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ 
+ FINAL FAANG:
+ https://github.com/neerazz/FAANG/blob/master/Algorithms/Top_LeetCode_Questions_By_Company.md
+ 
+ 
+ >>>>>>>>>>>>>>>>>>>
+ LOW LEVEL:
+ https://www.educative.io/courses/grokking-the-object-oriented-design-interview/gxM3gRxmr8Z
+ 
+ https://github.com/tssovi/grokking-the-object-oriented-design-interview/blob/master/object-oriented-design-case-studies/design-a-movie-ticket-booking-system.md#code
+ 
+ 
+ 
+ 
+ >>>>>>>>>>>>>>>>>
+ multithreading:
+ https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews?affiliate_id=5082902844932096&utm_source=google&utm_medium=cpc&utm_campaign=java-multithreading&gclid=CjwKCAjwtpGGBhBJEiwAyRZX2qZeHWjKjgx8vPc9ACGCAhFqWwIUvaQi-GjZ1i5T0nrykX3RNzx3PRoC5P8QAvD_BwE
+ 
+ 
+ syncronize block VS Lock
+ https://www.journaldev.com/2377/java-lock-example-reentrantlock
+ 
+ 
+ ==================
+ 
+ flats for sale:
+ Ashoka lakeside
+ 
+ 
+ >>>>>>>>>>>>>>>>>>>>>>>>>
+ ready to move in:
+ https://www.magicbricks.com/propertyDetails/2-BHK-1030-Sq-ft-Multistorey-Apartment-FOR-Sale-Narsingi-in-Hyderabad-r1&id=4d423338343534333537
+ 
+ https://www.magicbricks.com/propertyDetails/2-BHK-1040-Sq-ft-Multistorey-Apartment-FOR-Sale-Narsingi-in-Hyderabad-r1&id=4d423533333735393537
+ 
+ https://www.magicbricks.com/propertyDetails/2-BHK-1094-Sq-ft-Multistorey-Apartment-FOR-Sale-Narsingi-in-Hyderabad&id=4d423533393436343839
+ 
+ https://www.99acres.com/jaswitha-luxor-kokapet-hyderabad-npxid-r354774
+ 
+ hallmark:
+ https://www.commonfloor.com/listing/semi-furnished-2bhk-apartment-for-sale-in-manikonda-hyderabad-at-hallmark-rain-valley/ff1336wb3z3g7cw9
+ 
+ >>>>>>>>>>>>>>
+ 
+ MICROSERVICES:
+ https://www.youtube.com/watch?v=Z7A_M8HkJG0
+ 
+ 1. Feign Client : to cal another microservice
+   @Feign: specify url and port number; when not using any service Registry
+ 2. actuator : to refresh to get if upstream changes
+ 
+ 
+ >>>>>>>>>>>>>>
+ 
+ https://docs.google.com/spreadsheets/d/14aVAyDsQmz50TxhldNV5lmsyvYOJrAT9gzi7sGfMu9k/edit#gid=0
+ 
+ Design : to do:
+ https://www.youtube.com/watch?v=SJmYTJEVa_U&t=85s
+ In memory
+ 
+ https://www.youtube.com/watch?v=su3E22YwLB4
+ 
+ LFU cache
+ 
+ >>>>>>
+ autocomplete:
+ https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/642-design-search-autocomplete-system.html
+ 
+ 
+ >>>>>>>>>>>
+ Job schedler
+ https://gist.github.com/vasanthk/485d1c25737e8e72759f
+ 
+ 
+ 
+ sLIDING WINDOW:
+ https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/discuss/143726/C%2B%2BJavaPython-O(N)-Using-Deque
+ 
+ 
+ Low level design:******************************8IMPORTANT*******************************88
+ https://github.com/prasadgujar/low-level-design-primer/blob/master/solutions.md
+ 
+ https://github.com/prasadgujar/low-level-design-primer/blob/master/questions.md
+ 
+ High Level design:
+ https://github.com/prasadgujar/low-level-design-primer/blob/master/questions.md
+ 
+ 
+ >>>>>>>>>>>>>>>>>>>
+ 
+ Low level design points:
+ https://github.com/prasadgujar/low-level-design-primer/blob/master/questions.md
+ 
+ 
+ Restaurant table booking:
+ https://github.com/tssovi/grokking-the-object-oriented-design-interview/blob/master/object-oriented-design-case-studies/design-a-restaurant-management-system.md#use-case-diagram
+ 
+ https://github.com/tssovi/grokking-the-object-oriented-design-interview/blob/master/object-oriented-design-case-studies/design-a-restaurant-management-system.md
+ 
+ https://github.com/tssovi/grokking-the-object-oriented-design-interview/blob/master/object-oriented-design-case-studies/design-a-restaurant-management-system.md#code
+ 
+ 
+ 
+ >>>>>>>>>>>>>>>>>>>
+ Logger:
+ https://leetcode.com/discuss/interview-question/395160/Object-Oriented-design-for-Logger-Library-or-Flipkart-or-OA-2019/355270
+ 
+  LOGGERlIBRARYiMPL
+  
+  Design faceBook:
+  https://github.com/tssovi/grokking-the-object-oriented-design-interview/blob/master/object-oriented-design-case-studies/design-facebook.md
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
