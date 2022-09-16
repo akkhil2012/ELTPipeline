@@ -155,6 +155,52 @@ return COMPARATOR.compare(this, pn);
 ***************************************************
 comparator constrction methods example with java8 Streams*************
 
+============================
+stream
+============================
+
+============
+lambda:
+In Java 8, functional interfaces, lambdas, and method references were added to
+make it easier to create function objects.
+
+functional interfaces,
+
+Don’t use anonymous classes for function objects unless you
+have to create instances of types that aren’t functional interfaces
+
+Method ref vs Lambda:????????????????????
+on’t use anonymous classes for function objects unless you
+have to create instances of types that aren’t functional interfaces
+Method Ref Type Example Lambda Equivalent
+Static Integer::parseInt str -> Integer.parseInt(str)
+Bound Instant.now()::isAfter Instant then = Instant.now();
+t -> then.isAfter(t)
+Unbound String::toLowerCase str -> str.toLowerCase()
+Class Constructor TreeMap<K,V>::new () -> new TreeMap<K,V>
+Array Constructor int[]::new len -> new int[len]
+
+
+
+Java8 Map  vs Streams*************????????/
+Stream Vs Iteration??
+
+toMap Vs groupingBy??
+
+return iterable instead of stream
+In summary, when writing a method that returns a sequence of elements,
+remember that some of your users may want to process them as a stream while
+others may want to iterate over them. Try to accommodate both groups. If it’s feasible to return a collection, do so. If you already have the elements in a collection
+or the number of elements in the sequence is small enough to justify creating a
+new one, return a standard collection such as ArrayList. Otherwise, consider
+implementing a custom collection as we did for the power set. If it isn’t feasible to
+return a collection, return a stream or iterable, whichever seems more natural. If,
+in a future Java release, the Stream interface declaration is modified to extend
+Iterable, then you should feel free to return streams because they will allow for
+both stream processing and iteration
+
+============
+
 
 
 
