@@ -1,1 +1,18 @@
+Creational:
+  Singleton; Configuration
+  Factory Pattern
+  Builder Pattern
+  
+Structural:
+  Adapter
+  Decorator
+  Proxy
+  Facade
+  
+Behavirol:
+  Command
+  Observer
+  Stretegy
+  State
+  Template
 
