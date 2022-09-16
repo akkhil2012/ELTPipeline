@@ -2,8 +2,18 @@ can be used to offload common client connectivity tasks such as monitoring, logg
 
 Anti-corruption layer implements a façade between new and legacy applications, to ensure that the design of a new application is not limited by dependencies on legacy systems.
 
-Backends for Frontends creates separate backend services for different types of clients, such as desktop and mobile. That way, a single backend service doesn't need to handle the conflicting requirements of various client types. This pattern can help keep each microservice simple, by separating client-specific concerns.
-
+Backends for Frontends/API Gateway: creates separate backend services for different types of clients, such as desktop and mobile. That way, a single backend service doesn't need to handle the conflicting requirements of various client types. This pattern can help keep each microservice simple, by separating client-specific concerns.
+do the clients of a Microservices-based application access the individual services?
+  REASON:
+    The granularity of APIs provided by microservices is often different than what a client needs. Microservices typically provide fine-grained APIs, which means that clients need to interact with multiple services
+    Different clients need different data. For example, the desktop browser version of a product details page desktop is typically more elaborate then the mobile version
+    Network performance is different for different types of clients. For example, a mobile network is typically much slower and has much higher latency than a non-mobile network. And, of course, any WAN is much slower than a LAN
+    The number of service instances and their locations (host+port) changes dynamically
+    Partitioning into services can change over time and should be hidden from clients
+    Services might use a diverse set of protocols, some of which might not be web friendly
+    separate API gateway for each kind of client OR single gateway
+    How to implement:
+    How implement the API gateway? An event-driven/reactive approach is best if it must scale to scale to handle high loads. On the JVM, NIO-based libraries such as Netty, Spring Reactor, etc. make sense. NodeJS is another option.
 Bulkhead isolates critical resources, such as connection pool, memory, and CPU, for each workload or service. By using bulkheads, a single workload (or service) can't consume all of the resources, starving others. This pattern increases the resiliency of the system by preventing cascading failures caused by one service.
 
 Gateway Aggregation aggregates requests to multiple individual microservices into a single request, reducing chattiness between consumers and services.
