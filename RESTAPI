@@ -110,3 +110,33 @@ Custom-Header: api-version=1
 media-type version
 GET https://adventure-works.com/customers/3 HTTP/1.1
 Accept: application/vnd.adventure-works.v1+json
+
+
+ref: https://www.youtube.com/watch?v=J4J-eHq_Oms
+
+Long Running Operations
+
+They vary in name
+from one language to another (Python calls them Futures, JavaScript calls them Promises), but the goal is simple: start some work but don’t necessarily block on it. Instead,
+return an object that represents a placeholder for it. Then, perform the work and
+allow the placeholder to eventually either resolve (succeed with a result) or reject
+(throw an error). To handle these different scenarios, users can either register callbacks on the placeholder that will handle the result asynchronously or wait on the
+result to be returned, blocking code execution until resolution or rejection of that
+placeholder (effectively making the asynchronous work synchronous).
+
+Location header will have link/status for where operation is happenng; return is 202 Not 200 or 303 when re-directed
+the link received above return status, success , failed ,in progress
+Alternatively; can response with code 200 and token and location in response body
+
+Polling to check status of LRO
+LROs are promises or futures for web APIs that act as a tool for tracking work
+being done in the background by an API service.
+ LROs are parameterized interfaces, returning a specific result type (e.g., the
+resource resulting from the operation) and a metadata type for storing progress
+information about the operation itself.
+ LROs resolve after a certain amount of time to a result or an error and users discover this either by polling for status updates periodically or being notified of a
+result while waiting.
+ LROs may be paused, resumed, or canceled at the discretion of the API and
+rely on custom methods to do so.
+ LROs should be persisted to storage but should generally expire after some
+standard period of time, such as 30 days
