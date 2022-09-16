@@ -77,6 +77,83 @@ Always use try-with-resources in preference to tryfinally when working with reso
 ==============================================================================================
 ==============================================================================================
 CHAPTER  2:
+CHAPTER  2:
+
+
+Common methods in All Objects:
+when not to override equals:
+A superclass has already overridden equals, and the superclass behavior
+is appropriate for this class
+The class is private or package-private, and you are certain that its equals
+method will never be invoked
+
+One kind of value class that does not require the equals method to be overridden is a class that uses instance control (Item 1) to ensure that at most one object
+exists with each value. Enum types (Item 34) fall into this category. For these
+classes, logical equality is the same as object identity, so Object’s equals method
+functions as a logical equals method
+
+==============
+
+
+Don’t substitute another type for Object in the equals declaration. It is not
+uncommon for a programmer to write an equals method that looks like this
+and then spend hours puzzling over why it doesn’t work properly:
+// Broken - parameter type must be Object!
+public boolean equals(MyClass o) {
+...
+}
+The problem is that this method does not override Object.equals, whose
+argument is of type Object, but overloads it instead
+
+in practice, a class implementing
+Cloneable is expected to provide a properly functioning public clone method.
+
+Clone contrat:
+the expression
+x.clone() != x
+will be true, and the expression
+x.clone().getClass() == x.getClass()
+will be true, but these are not absolute requirements. While it is typically the
+case that
+x.clone().equals(x)
+will be true, this is not an absolute re
+
+immutable classes should never provide a clone method??????????????????Clonable???????????
+
+Clone vs copyconstructor vs factory copy??/
+
+By implementing Comparable, a class indicates that its instances have a natural ordering
+
+==============
+For example, consider the BigDecimal class, whose compareTo method is
+inconsistent with equals. If you create an empty HashSet instance and then add
+new BigDecimal("1.0") and new BigDecimal("1.00"), the set will contain two
+elements because the two BigDecimal instances added to the set are unequal
+when compared using the equals method. If, however, you perform the same
+procedure using a TreeSet instead of a HashSet, the set will contain only one
+element because the two BigDecimal instances are equal when compared using
+the compareTo method. (See the BigDecimal documentation for details.)*************************
+
+java8 comparator constrction methods:
+In Java 8, the Comparator interface was outfitted with a set of comparator
+construction methods, which enable fluent construction of comparators. These
+comparators can then be used to implement a compareTo method, as required by
+the Comparable interface. Many programmers prefer the conciseness of this
+approach, though it does come at a modest performance cost: sorting arrays of
+PhoneNumber instances is about 10% slower on my machine. When using this
+approach, consider using Java’s static import facility so you can refer to static
+comparator construction methods by their simple names for clarity and brevity.
+Here’s how the compareTo method for PhoneNumber looks using this approach:
+// Comparable with comparator construction methods
+private static final Comparator<PhoneNumber> COMPARATOR =
+comparingInt((PhoneNumber pn) -> pn.areaCode)
+.thenComparingInt(pn -> pn.prefix)
+.thenComparingInt(pn -> pn.lineNum);
+public int compareTo(PhoneNumber pn) {
+return COMPARATOR.compare(this, pn);
+}
+***************************************************
+comparator constrction methods example with java8 Streams*************
 
 
 
