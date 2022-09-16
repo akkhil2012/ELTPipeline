@@ -1,1 +1,83 @@
 JavaCore
+Java9
+
+CHAPTER 1:
+
+Static factory methods:
+1.
+In cases where a class seems to require
+multiple constructors with the same signature, replace the constructors with static
+factory methods and carefully chosen names to highlight their differences.
+2.
+A second advantage of static factory methods is that, unlike constructors,
+they are not required to create a new object each time they’re invoked
+This technique is similar to the
+Flyweight pattern [Gamma95]. It can greatly improve performance if equivalent
+objects are requested often, especially if they are expensive to create
+3.
+A third advantage of static factory methods is that, unlike constructors,
+they can return an object of any subtype of their return type
+4.
+A fourth advantage of static factories is that the class of the returned
+object can vary from call to call as a function of the input parameters.
+. Any subtype of the declared return type is permissible. The class of the returned object can
+also vary from release to release
+
+A fifth advantage of static factories is that the class of the returned object
+need not exist when the class containing the method is written. Such flexible
+static factory methods form the basis of service provider frameworks, like the Java
+Database Connectivity API (JDBC). A service provider framework is a system in
+which providers implement a service, and the system makes the implementations
+available to clients, decoupling the clients from the implementations??????????????????????????????????????????/
+
+The main limitation of providing only static factory methods is that
+classes without public or protected constructors cannot be subclassed.
+============================
+the Builder pattern is a good choice when designing classes
+whose constructors or static factories would have more than a handful of
+parameters
+=============================
+ Making a class a singleton can
+make it difficult to test its clients because it’s impossible to substitute a mock
+implementation for a singleton unless it implements an interface that serves as its
+type.
+a single-element
+enum type is often the best way to implement a singleton. ???????????????????????explain
+
+
+A default constructor is generated only if a class contains no explicit constructors, so a class can be
+made noninstantiable by including a private constructor: and not by using abstract class.
+
+Static utility classes and singletons are inappropriate for
+classes whose behavior is parameterized by an underlying resource
+
+Avoid using String and : prefer primitives to
+boxed primitives, and watch out for unintentional autoboxing as Autobox creates unnessasary objects???????????
+
+Nulling out object references should be the exception rather than the norm.
+The best way to eliminate an obsolete reference is to let the variable that contained
+the reference fall out of scope. This occurs naturally if you define each variable in
+the narrowest possible scope
+Eleminate obsolete ref with null****************
+
+A third common source of memory leaks is listeners and other callbacks.
+If you implement an API where clients register callbacks but don’t deregister them
+explicitly, they will accumulate unless you take some action. One way to ensure
+that callbacks are garbage collected promptly is to store only weak references to
+them, for instance, by storing them only as keys in a WeakHashMap??????????? example??????
+
+
+To protect nonfinal classes from finalizer attacks,
+write a final finalize method that does nothing????????????????explain
+
+Autoclosable???????????
+
+Always use try-with-resources in preference to tryfinally when working with resources that must be closed???????????
+
+==============================================================================================
+==============================================================================================
+CHAPTER  2:
+
+
+
+
