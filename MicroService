@@ -3695,7 +3695,19 @@ I am willing to explore more of my stregth and work into areas I sure see a pote
  
  
  
- 
+How can we optimize performance when we 𝐮𝐩𝐥𝐨𝐚𝐝 𝐥𝐚𝐫𝐠𝐞 𝐟𝐢𝐥𝐞𝐬 to object
+storage service such as S3?
+This
+process is called 𝐦𝐮𝐥𝐭𝐢𝐩𝐚𝐫𝐭 𝐮𝐩𝐥𝐨𝐚𝐝.
+
+===========================================
+
+At-most once, at-least once, and exactly once
+
+
+
+
+
  
  
  
