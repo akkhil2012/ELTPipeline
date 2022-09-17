@@ -66,3 +66,41 @@ Mutual TLS Authentication for service-to-service calls.
 
 
 
+Deploy services:
+  Blue-Green , Canary,Multiservice
+  
+  How to design a secure web API access for your
+website?
+When we open web API access to users, we need to make sure each
+API call is authenticated. This means the user must be who they claim
+to be.
+In this post, we explore two common ways:
+1. Token based authentication
+2. HMAC (Hash-based Message Authentication Code) authenticatio
+
+How do microservices collaborate and interact with each
+other?
+There are two ways: 𝐨𝐫𝐜𝐡𝐞𝐬𝐭𝐫𝐚𝐭𝐢𝐨𝐧 and 𝐜𝐡𝐨𝐫𝐞𝐨𝐠𝐫𝐚𝐩𝐡𝐲.
+
+The benefits of orchestration:
+1. Reliability - orchestration has built-in transaction management and
+error handling, while choreography is point-to-point communications
+and the fault tolerance scenarios are much more complicated.
+2. Scalability - when adding a new service into orchestration, only the
+orchestrator needs to modify the interaction rules, while in
+choreography all the interacting services need to be modified.
+Some limitations of orchestration:
+1. Performance - all the services talk via a centralized orchestrator, so
+latency is higher than it is with choreography. Also, the throughput is
+bound to the capacity of the orchestrator.
+2. Single point of failure - if the orchestrator goes down, no services
+can talk to each other. To mitigate this, the orchestrator must be highly
+available.
+
+🔹Containerization is considered to be a lightweight version of
+virtualization, which virtualizes the operating system instead of
+hardware. Without the hypervisor, the containers enjoy faster resource
+provisioning. All the resources (including code, dependencies) that are
+40
+needed to run the application or microservice are packaged together,
+so that the applications can run anywhere.
