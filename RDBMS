@@ -45,7 +45,27 @@ Higher Order Relationship: The relation ship that cannot be breakDown to binary 
 
 
 
+Optimistic locking
+Optimistic locking, also referred to as optimistic concurrency control,
+allows multiple concurrent users to attempt to update the same
+resource.
+There are two common ways to implement optimistic locking: version
+number and timestamp. Version number is generally considered to be
+a better option because the server clock can be inaccurate over time.
+We explain how optimistic locking works with version number.
 
+Optimistic locking is usually faster than pessimistic locking because we
+do not lock the database. However, the performance of optimistic
+locking drops dramatically when concurrency is high
+
+What are the top cache strategies?
+Read data from the system:
+🔹 Cache aside
+🔹 Read through
+Write data to the system:
+🔹 Write around
+🔹 Write back
+🔹 Write through
 
 
 
