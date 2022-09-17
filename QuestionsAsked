@@ -29,3 +29,8 @@ volatile vs atomic
 thread communication using synchronized
 circuit breaker
 resiliency pattern
+WebSocket Server
+Payment Gateway
+MultiMediaPlayer
+Distrbute logging in micro
+Producer-Consumer using wait notify
