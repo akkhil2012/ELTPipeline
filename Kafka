@@ -1,0 +1,3 @@
+Kafka achieves low latency message delivery through Sequential I/O
+and Zero Copy Principle
+
