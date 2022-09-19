@@ -1,3 +1,122 @@
 Kafka achieves low latency message delivery through Sequential I/O
 and Zero Copy Principle
+================
+kafka stream
+kafka streams:
+===
+
+The two APIs you can choose from are:
+• The high-level DSL
+• The low-level Processor API
+
+Processor API
+The Processor API lacks some of the abstractions available in the high-level DSL, and
+its syntax is more of a direct reminder that we’re building processor topologies, with
+methods like Topology.addSource, Topology.addProcessor, and Topology.addSink
+
+designing a processor topology
+involves specifying a set of source and sink processors, which correspond to the top‐
+ics your application will read from and write to. However, instead of working with
+Kafka topics directly, the Kafka Streams DSL allows you to work with different repre‐
+sentations of a topic, each of which are suitable for different use cases. There are two
+ways to model the data in your Kafka topics: as a stream (also called a record stream)
+or a table (also known as a changelog stream)
+
+KStream, KTable, GlobalKTable
+One of the benefits of using the high-level DSL over the lower-level Processor API in
+Kafka Streams is that the former includes a set of abstractions that make working
+with streams and tables extremely easy
+
+The following list includes a high-level overview of each:
+KStream
+A KStream is an abstraction of a partitioned record stream, in which data is repre‐
+sented using insert semantics (i.e., each event is considered to be independent of
+other events).
+KTable
+A KTable is an abstraction of a partitioned table (i.e., changelog stream), in which
+data is represented using update semantics (the latest representation of a given
+key is tracked by the application). Since KTables are partitioned, each Kafka
+Streams task contains only a subset of the full table.28
+GlobalKTable
+This is similar to a KTable, except each GlobalKTable contains a complete (i.e.,
+unpartitioned) copy of the underlying data. We’ll learn when to use KTables and
+when to use GlobalKTables
+
+Kafka Streams has a friendlier learning curve and a simpler deployment model
+than cluster-based solutions like Apache Flink and Apache Spark Streaming. It
+also supports event-at-a-time processing, which is considered true streaming
+
+=======================================
+=======================================
+
+
+Stateless Processing
+====================
+The simplest form of stream processing requires no memory of previously seen
+events. Each event is consumed, processed,1
+and subsequently forgotten. This para‐
+digm is called stateless processing, and Kafka Streams includes a rich set of operators
+for working with data in a stateless way
+
+most common stream processing tasks
+Filtering records
+• Adding and removing fields
+• Rekeying records
+• Branching streams
+• Merging streams
+• Transforming records into one or more outputs
+• Enriching records, one at a time
+
+
+Stateless Versus Stateful Processing
+In stateless, your
+application treats each event as a self-contained insert and requires no memory
+of previously seen events.
+Stateful applications, on the other hand, need to remember information about
+previously seen events in one or more steps of your processor topology, usually for
+the purpose of aggregating, windowing, or joining event streams. These applica‐
+tions are more complex under the hood since they need to track additional data,
+or state
+
+In the high-level DSL, the type of stream processing application you ultimately build
+boils down to the individual operators that are used in your topology.2
+ Operators are 
+stream processing functions (e.g., filter, map, flatMap, join, etc.) that are applied to
+events as they flow through your topology. Some operators, like filter, are consid‐
+ered stateless because they only need to look at the current record to perform an
+action (in this case, filter looks at each record individually to determine whether or
+not the record should be forwarded to downstream processors). Other operators, like
+count, are stateful since they require knowledge of previous events (count needs to
+know how many events it has seen so far in order to track the number of messages).
+
+
+Serialization/Deserialization
+Kafka is a bytes-in, bytes-out stream processing platform. This means that clients, like
+Kafka Streams, are responsible for converting the byte streams they consume into
+higher-level objects.This process is called deserialization. Similarly, clients must also
+convert any data they want to write back to Kafka back into byte arrays. This process
+is called serialization.
+
+
+In Kafka Streams, serializer and deserializer classes are often combined into a single 
+class called a Serdes
+
+
+Filtering Data
+One of the most common stateless tasks in a stream processing application is filtering
+data. Filtering involves selecting only a subset of records to be processed, and ignor‐
+ing the rest.
+Branching Data
+In the previous section, we learned how to use Boolean conditions called predicates
+to filter streams. Kafka Streams also allows us to use predicates to separate (or
+branch) streams
+
+
+When we serialize data using Avro, we have two choices:
+• Include the Avro schema in each record.
+• Use an even more compact format, by saving the Avro schema in Confluent
+Schema Registry, and only including a much smaller schema ID in each record
+instead of the entire schema
+
+
 
