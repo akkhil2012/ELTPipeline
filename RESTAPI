@@ -7,6 +7,20 @@ Backend APIs that are used for interservice communication.
 A public API must be compatible with client applications, typically browser applications or native mobile applications. Most of the time, that means the public API will use REST over HTTP. For the backend APIs, however, you need to take network performance into account. Depending on the granularity of your services, interservice communication can result in a lot of network traffic. Services can quickly become I/O bound. For that reason, considerations such as serialization speed and payload size become more important. Some popular alternatives to using REST over HTTP include gRPC, Apache Avro, and Apache Thrift. These protocols support binary serialization and are generally more efficient than HTTP
 
 REST versus RPC. Consider the tradeoffs between using a REST-style interface versus an RPC-style interface.
+REST is resource-oriented.	RPC is action-oriented.
+2
+
+Supports HTTP methods GET, POST, PUT, PATCH, and DELETE.	RPC only supports GET and POST requests.
+3
+
+It provides flexibility for hardware architecture	no flexibility in RPC for hardware architecture
+4
+
+It supports hypermedia and hyperlinks 	It does not supports hypermedia and hyperlinks
+5
+
+REST allows to specify Content-types or accept headers	Require payloads of a few data types as XML for XML-RPC.
+
 
 REST models resources, which can be a natural way to express your domain model. It defines a uniform interface based on HTTP verbs, which encourages evolvability. It has well-defined semantics in terms of idempotency, side effects, and response codes. And it enforces stateless communication, which improves scalability.
 
