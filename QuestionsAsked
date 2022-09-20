@@ -44,3 +44,6 @@ Payment Gateway
 MultiMediaPlayer
 Distrbute logging in micro
 Producer-Consumer using wait notify
+
+
+A Thread Pool is a famous design pattern which consists of a number N of threads running a number M of jobs concurrently. The main motivation behind using the pattern is to avoid the overhead associated with creating and destroying threads. The more straight-forward approach of handling M independent jobs would be to spawn a thread for each job and destroy the thread once the job is executed.
