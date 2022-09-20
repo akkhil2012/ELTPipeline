@@ -1,6 +1,26 @@
 JavaCore
 Java9
 
+Collections.sort(list,Comparator.comparing((Book t) -> t.getPrice())
+		  .thenComparing(t ->t.getName()));
+		  
+		  ==========================
+		  
+		  flatmap:
+		  
+		  Map<String,Long> res =
+wordsList.stream()
+  .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+
+
+map itr:
+      res.entrySet()
+      .stream()
+       .forEach((e) ->  System.out.print(" "+e.getKey()+": "+e.getValue()));
+
+ boolean all = wordsList.stream()
+      .allMatch((word) -> word.startsWith("c"));
+
 CHAPTER 1:
 
 Static factory methods:
