@@ -70,4 +70,32 @@ Write data to the system:
 
 
 
+======================================================================
+
+REDIS"
+=====
+
+
+in-memory, key-value data store
+Redis is a popular choice for caching, session management, gaming, leaderboards, real-time analytics, geospatial, ride-hailing, chat/messaging, media streaming, and pub/sub app
+
+Redis data types include:
+Strings – text or binary data up to 512MB in size
+Lists – a collection of Strings in the order they were added
+Sets – an unordered collection of strings with the ability to intersect, union, and diff other Set types
+Sorted Sets – Sets ordered by a value
+Hashes – a data structure for storing a list of fields and values
+Bitmaps – a data type that offers bit level operations
+HyperLogLogs – a probabilistic data structure to estimate the unique items in a data set
+Streams - a log data structure Message queue
+Geospatial - a longitude-/latitude-based entries Maps, "nearby"
+
+
+====================================
+ELASTIC SEARCH:
+==============
+
+Elasticsearch is a distributed search and analytics engine built on Apache Lucene
+You can send data in the form of JSON documents to Elasticsearch using the API or ingestion tools such as Logstash and Amazon Kinesis Firehose. Elasticsearch automatically stores the original document and adds a searchable reference to the document in the cluster’s index. You can then search and retrieve the document using the Elasticsearch API. You can also use Kibana, a visualization tool, with Elasticsearch to visualize your data and build interactive dashboards
+
 
