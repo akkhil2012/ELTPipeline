@@ -1,4 +1,36 @@
 RDBMS:
+
+=================================
+datatype:
+The TEXT and TINYTEXT SQL data types are great for data like quotes and phone numbers. You can fit a maximum character count of 256 bytes and 64kb respectively into the TINYTEXT and TEXT data types
+CHAR	256bytes	All kinds of specified texts like company abbreviations na phone numbers
+VARCHAR	~64kb	All kinds of unspecified texts like names, addresses, list of items
+ENUM	Unspecified	Human gender, sizes, all form discrete data
+MEDIUMTEXT	~16MB	A memo or perhaps an essay
+LONGTEXT	~4GB	An entire book of text
+TEXT	~64kb	Phone numbers
+TINYTEXT	256bytes	
+
+Numeric Data Types and When to Use Them
+When you need to perform mathematical operations on SQL data, it’s time to look into a numeric data type. Numeric data types allow you to store numbers you know will be used for some mathematical expression later on.
+
+INT
+  When you need to store a number without a decimal point, use an integer. Integers store whole numbers. The count of an item may be a good example for storing as an integer. The price of a supermarket item, on the other hand, would not.
+  
+Name	Size (byte) per character	Potential storage consumption
+Tiny BLOB	1 byte	255bytes
+BLOB	2 bytes	~65KB
+Medium BLOB	3 bytes	~16MB
+Long BLOB	4 bytes	~4GB
+
+what to store in BLOB TYPE?
+BLOB data types are great for storing related files such as product images, Excel invoices, audio files, video clips, or any other file type. To suppose binary data like this, SQL allows blob data types sizes of several gigabytes
+
+If you’d like to store files in a SQL database type, you have four different BLOB data type options; Tiny BLOB, BLOB, Medium Blob, and Long BLOB. Each data type possesses the same characteristics other than the maximum amount you can store inside each type.
+
+
+
+
 =================================================================================================
 DATABASE SHARDING:
 Sharding Architectures
