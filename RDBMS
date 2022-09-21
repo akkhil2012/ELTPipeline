@@ -1,5 +1,39 @@
 RDBMS:
+=================================================================================================
+DATABASE SHARDING:
+Sharding Architectures
+1.Key Based Sharding
+2.Horizontal or Range Based Sharding 
+3. Vertical Sharding
+4. Directory-Based Sharding
 
+
+his technique is also known as hash-based sharding. Here, we take the value of an entity such as customer ID, customer email, IP address of a client, zip code, etc and we use this value as an input of the hash function. This process generates a hash value which is used to determine which shard we need to use to store the data. We need to keep in mind that the values entered into the hash function should all come from the same column (shard key) just to ensure that data is placed in the correct order and in a consistent manner
+
+The downside of this method is elastic load balancing which means if you will try to add or remove the database servers dynamically it will be a difficult and expensive process. 
+
+
+
+
+
+Horizontal or Range Based Sharding 
+In this method, we split the data based on the ranges of a given value inherent in each entity
+The drawback of this method is that the data may not be evenly distributed on shards.
+
+
+ Vertical Sharding
+In this method, we split the entire column from the table and we put those columns into new distinct tables. Data is totally independent of one partition to the other ones. Also, each partition holds both distinct rows and columns. Take the example of Twitter features. We can split different features of an entity in different shards on different machines. On Twitter users might have a profile, number of followers, and some tweets posted by his/her own. We can place the user profiles on one shard, followers in the second shard, and tweets on a third shard.
+
+. Directory-Based Sharding
+In this method, we create and maintain a lookup service or lookup table for the original database. Basically we use a shard key for lookup table and we do mapping for each entity that exists in the database
+BEST ACHTECTURE   
+
+The major drawback of this approach is the single point of failure of the lookup table.
+
+
+
+
+=================================================================================================
 Conceptual Design
 Attributes:
    Multi-Value Attributes
