@@ -8,6 +8,27 @@ System Design API Design to functonal requirement
 ===========================
 
 Role based Authentication in spring
+============================
+
+role based authentication:
+
+https://www.baeldung.com/role-and-privilege-for-spring-security-registration
+
+
+
+Let's start with our entities. We have three main entities:
+
+The User
+The Role represents the high-level roles of the user in the system. Each role will have a set of low-level privileges.
+The Privilege represents a low-level, granular privilege/authority in the system.
+
+We're creating the privileges.
+Then we're creating the roles and assigning the privileges to them.
+Finally, we're creating a user and assigning a role to it
+
+
+
+============================
 OAuth
 completable future for Async
 database sharding
