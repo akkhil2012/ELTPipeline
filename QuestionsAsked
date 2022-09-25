@@ -62,7 +62,14 @@ volatile vs atomic
 thread communication using synchronized
 circuit breaker
 resiliency pattern
+
+
 WebSocket Server
+==================
+WebSockets is a thin layer built on top of TCP/IP, so anything beyond the basic handshake and specification for message framing is really something that needs to be handled either on a per-application or per-library basis.
+===================
+
+
 Payment Gateway
 MultiMediaPlayer
 Distrbute logging in micro
