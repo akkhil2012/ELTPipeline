@@ -58,7 +58,13 @@ Datamodel/availibilty
 1. comparable vs comparator
 2. default in java8
 3. groupBy in stream
+
 4. why kafka and one time gaurantee
+=========================================
+ Kafka has several ways to deal with these potential issues and enable its exactly-once delivery semantics.
+   1. Idempotent producer: With idempotency enabled in Kafka, all messages are tagged with a producer ID and a unique sequence number. If the producer tries to send a message again, the topic will only accept the message if the producer ID and sequence number are distinct. This prevents the same message from being accepted twice after a failure or crash.
+   2. Transactions: As the general concept of database transactions, Kafka transactions use an “all or nothing” approach: either all of the messages in a transaction are committed, or none of them are. Kafka 0.11 introduces the transaction coordinator and transaction log components that enable transactions in Kafka to be atomic. More specifically, the transaction coordinator keeps track of producer IDs to avoid “zombie instances” that are still running after a system restart, while the transaction log records the state of each transaction at each step of the process.
+=========================================
 5. Api by role in spring security
 6. real time data processing in videos
 7. diamond problem
