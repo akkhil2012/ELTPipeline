@@ -31,7 +31,26 @@ Finally, we're creating a user and assigning a role to it
 ============================
 OAuth
 completable future for Async
+
+
 database sharding
+===================
+1. Key based sharding, also known as hash based sharding, involves using a value taken from newly written data — such as a customer’s ID number, a client application’s IP address, a ZIP code, etc. — and plugging it into a hash function to determine which shard the data should go to. A hash function is a function that takes as input a piece of data (for example, a customer email) and outputs a discrete value, known as a hash value. In the case of sharding, the hash value is a shard ID used to determine which shard the incoming data will be stored on
+-ve :
+  it can make things tricky when trying to dynamically add or remove additional servers to a database. As you add servers, each one will need a corresponding hash value and many of your existing entries, if not all of them, will need to be remapped to their new, correct hash value and then migrated to the appropriate server
++ve : The main appeal of this strategy is that it can be used to evenly distribute data so as to prevent hotspots. Also, because it distributes data algorithmically, there’s no need to maintain a map of where all the data is located, as is necessary with other strategies like range or directory based sharding.
+
+2.Range based sharding:
+   On the other hand, range based sharding doesn’t protect data from being unevenly distributed, leading to the aforementioned database hotspots
+   
+3. Directory ased sadding:
+   Directory based sharding is a good choice over range based sharding in cases where the shard key has a low cardinality — meaning, it has a low number of possible values — and it doesn’t make sense for a shard to store a range of keys. Note that it’s also distinct from key based sharding in that it doesn’t process the shard key through a hash function; it just checks the key against a lookup table to see where the data needs to be written.
+   
+   
+ 
+
+
+==================
 A/B , unit testing
 SLA time,UP Time
 Role based Authntication
