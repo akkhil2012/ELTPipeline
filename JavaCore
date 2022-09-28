@@ -58,6 +58,99 @@ interface TestImpl2 extends Test {
 ==========================================================================
 
 
+----------------------------************************************------------------------------------------------
+Producer cosumer problem:
+package Threads;
+
+import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class ProducerConsumer {
+
+	private static BlockingQueue<Integer> channel;
+
+	public static void main(String args[]) {
+
+		channel = new LinkedBlockingQueue<Integer>();
+
+		Producer producer = new Producer(channel);
+		Consumer consumer = new Consumer(channel);
+
+		Thread t1 = new Thread(producer);
+
+		Thread t2 = new Thread(consumer);
+
+		t1.start();
+		t2.start();
+	}
+
+}
+
+class Producer implements Runnable {
+
+	BlockingQueue<Integer> channel;
+
+	public Producer(BlockingQueue<Integer> c) {
+		super();
+		channel = c;
+	}
+
+	@Override
+	public void run() {
+		// for (int i = 0; i < 10; i++) {
+		while (true) {
+			try {
+				int val = new Random().nextInt();
+				System.out.println(" Insered " + val + " ");
+				channel.put(val);
+
+				Thread.sleep(3000);
+
+			} catch (InterruptedException e) {
+				System.out.println(" Producer Interuppted ");
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}
+
+class Consumer implements Runnable {
+
+	BlockingQueue<Integer> channel;
+
+	public Consumer(BlockingQueue<Integer> c) {
+		super();
+		channel = c;
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			int read;
+			try {
+				read = channel.take();
+				System.out.println(" Reding " + read + " ");
+			} catch (InterruptedException e) {
+				System.out.println(" Consumer Interuppted ");
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+
+}
+
+
+
+
+----------------------------*************************************--------------------------------------------------
+
 
 
 ==========================
