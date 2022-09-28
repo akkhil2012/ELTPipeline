@@ -1,6 +1,57 @@
 JavaCore
 Java9
 
+==========================
+STREAM:
+==========================
+Set st = new TreeSet();
+
+		// Map<Object, String> mp = new TreeMap<Object, String>();
+
+		Map<Object, String> mp = new LinkedHashMap<Object, String>();
+
+		mp.put("place", "Hyd");
+		mp.put("profession", "Engineer");
+		mp.put("name", "akkhil");
+
+		mp.forEach((k, v) -> System.out.println(" " + k + " : " + v));
+
+		System.out.println("------------------");
+		mp.entrySet().forEach(k -> System.out.println(" " + k.getKey() + " :: " + k.getValue()));
+
+		System.out.println("------------------");
+
+		Map<String, Integer> mp1 = new LinkedHashMap<String, Integer>();
+
+		mp1.put("akhil", 3);
+		mp1.put("akhil", 4);
+		mp1.put("gupta", 2);
+
+		Map<Entry<String, Integer>, Long> res = mp1.entrySet().stream()
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+		System.out.println("------------------");
+		res.entrySet().forEach(k -> System.out.println(" " + k.getKey() + " :: " + k.getValue()));
+
+		List<Integer> lst = Arrays.asList(1, 2, 3, 4);
+
+		lst.stream().allMatch((w) -> w.equals(1));
+		mp1.computeIfAbsent("kumar", k -> 1);
+		System.out.println("------------------");
+		mp1.forEach((k, v) -> System.out.println(" " + k + " ??? " + v));
+		mp1.putIfAbsent("india", null);
+
+		System.out.println("------------------");
+		mp1.forEach((k, v) -> System.out.println(" " + k + " ??? " + v));
+
+		List<Double> res1 = lst.stream().map(x -> Math.pow(2, x)).collect(Collectors.toList());
+		System.out.println("------------------");
+		res1.forEach(x -> System.out.println(" " + x + " "));
+
+		List<String> words = Arrays.asList("tst", "one", "two", "three", "four", "five", "rotator", "deified");
+
+
+
 Collections.sort(list,Comparator.comparing((Book t) -> t.getPrice())
 		  .thenComparing(t ->t.getName()));
 		  
