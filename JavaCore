@@ -1,6 +1,65 @@
 JavaCore
 Java9
 
+===================
+Default
+===================
+class BaseClass {
+    public void foo() { System.out.println("BaseClass's foo"); }
+}
+interface BaseInterface {
+    default public void foo() { System.out.println("BaseInterface's foo"); }
+}
+public class Diamond extends BaseClass implements BaseInterface {
+    public static void main(String []args) {
+        new Diamond().foo();
+    }
+}
+==================================
+
+Default Method in Interface: to resolve Diamond problem:
+
+package java8;
+
+public class DefaultInterfaceExample implements TestImpl1, TestImpl2 {
+
+	public static void main(String args[]) {
+
+		new DefaultInterfaceExample().testMethod();
+	}
+
+	@Override
+	public int testMethod() {
+		// TODO Auto-generated method stub
+		return TestImpl2.super.testMethod();
+		// return new DefaultInterfaceExample().testMethod();
+	}
+
+}
+
+interface Test {
+	int testMethod();
+}
+
+interface TestImpl1 extends Test {
+	default int testMethod() {
+		System.out.println("In default method...1");
+		return 1;
+	}
+}
+
+interface TestImpl2 extends Test {
+	default int testMethod() {
+		System.out.println("In default method...2");
+		return 1;
+	}
+
+}
+==========================================================================
+
+
+
+
 ==========================
 STREAM:
 ==========================
