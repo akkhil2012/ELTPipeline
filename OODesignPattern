@@ -16,3 +16,15 @@ Behavirol:
   State
   Template
 
+==============
+
+SOLID:
+SRP - Single responsibility principle
+SRP - says that each method / class should be responsible for one specific activity. Inserting everything into one method does not meet the basic assumptions of objectivity, but also makes it difficult to read, repair or expand programs.
+
+LSP - Liskov substitution principle
+Functions that use pointers or references to base classes must also be able to use class objects that inherit from the base classes without having a thorough knowledge of these objects.
+
+DIP - Dependency inversion principle
+High-level modules should not depend on low-level modules.
+Both should depend on abstractions.
