@@ -1,5 +1,8 @@
 RDBMS:
 
+VIDEO:
+https://www.youtube.com/watch?v=ztHopE5Wnpc
+
 =================================
 datatype:
 The TEXT and TINYTEXT SQL data types are great for data like quotes and phone numbers. You can fit a maximum character count of 256 bytes and 64kb respectively into the TINYTEXT and TEXT data types
