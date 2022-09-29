@@ -1,6 +1,44 @@
 JavaCore
 Java9
 
+
+=====================
+TimerTask
+====================
+public class SchedulingTasksWithTimers {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.out.println("Thread main started");
+		CountDownLatch countDownLatch = new CountDownLatch(3);
+		
+		Timer timer = new Timer();
+		System.out.println("Scheduling task to run after 5 seconds... " + new Date());
+		timer.schedule(new MyTask(countDownLatch), 3000);
+		
+		countDownLatch.await();
+		
+		timer.cancel();
+		System.out.println("Thread main finished");
+	}
+}
+
+class MyTask extends TimerTask {
+	
+	private CountDownLatch countDownLatch;
+	
+	public MyTask(CountDownLatch countDownLatch) {
+		this.countDownLatch = countDownLatch;
+	}
+
+	@Override
+	public void run() {
+		System.out.println("Executing the task at: " + new Date());
+		countDownLatch.countDown();
+	}
+}
+
+
+====================== *********************================================
 ===================
 Default
 ===================
