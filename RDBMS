@@ -2,6 +2,27 @@ RDBMS:
 
 VIDEO:
 https://www.youtube.com/watch?v=ztHopE5Wnpc
+============================
+
+index
+=======
+There are two types of indexing in SQL.
+
+Clustered index
+Non-clustered index
+
+1.
+Clustered – Clustered index is the type of indexing that establishes a physical sorting order of rows. Suppose you have a table Student_info which contains ROLL_NO as a primary key, then Clustered index which is self created on that primary key will sort the Student_info table as per ROLL_NO. Clustered index is like Dictionary; in the dictionary, sorting order is alphabetical and there is no separate index page
+
+2.
+Clustered vs Non-Clustered index:
+
+In a table there can be only one clustered index or one or more than one non_clustered index.
+In Clustered index there is no separate index storage but in Non_Clustered index there is separate index storage for the index.
+Clustered index is slower than Non_Clustered index.
+
+
+
 
 =================================
 datatype:
