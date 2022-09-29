@@ -1,6 +1,20 @@
 JavaCore
 Java9
 
+CachedThreadPoolExample vs newSingleThreadExecutor ?
+
+/shutdown-and-awaittermination-which-first-
+
+Terminate thread using FlagThreadAPI and ThreadAPI?
+
+ForkJoin example?
+
+ReEntrantLock means?
+
+TimerTask??
+
+
+
 ===================
 ATOMIC COUNTER
 ===================
