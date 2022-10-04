@@ -10,6 +10,163 @@ https://github.com/kat-co/concurrency-in-go-src/tree/master/an-introduction-to-c
  GO DEMO:
 
 
+save to create mod file that has packages
+everthingis a packages
+
+>>>>>>>
+
+go env -w GO111MODULE=on
+
+>>>>>>>>>
+
+EX 1:
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Print("HelloWorld")
+	fmt.Print("HelloWorld 2")
+}
+
+go run main.go
+
+=======================
+
+EX 2:
+var firstName string
+	fmt.Println("Enter Your First Name: ")
+	fmt.Scanln(&firstName)
+	fmt.Println("Welcome ", firstName)
+====================
+
+EX 3:
+DataType:
+
+	var userName string
+	var userTickets int
+	userName = "Tom"
+	userTickets = 100
+	fmt.Printf("User %v booked %v tickets\n", userName, userTickets)
+	
+========================
+
+EX 4:
+Just 1 type loop: for loop
+
+
+
+
+======================
+
+ex5:
+ Map :
+ To create an empty map, use the builtin make: make(map[key-type]val-type).
+ 
+ j := 3
+	switch j {
+	case 1:
+		fmt.Println("One")
+	case 3:
+		fmt.Println("Two")
+	}
+
+	m := make(map[string]int)
+	m["k1"] = 1111
+	m["k2"] = 2222
+
+	fmt.Println("Map is ", m)
+
+	v1 := m["k1"]
+
+	delete(m, "k2")
+	fmt.Println("v1:========> ", v1)
+===============================
+
+
+ex 7:
+ Function and closures:
+ This function intSeq returns another function, which we define anonymously in the body of intSeq. The returned function closes over the variable i to form a closure.
+ 
+ https://gobyexample.com/multiple-return-values
+ func main() {
+	res := plus(1, 2)
+	fmt.Println("sum is ", res)
+	nextInt := intSeq()
+	fmt.Println(nextInt())
+}
+
+func plus(a int, b int) int {
+	return a + b
+}
+
+func intSeq() func() int {
+	i := 0
+	return func() int {
+		i += 4
+		return i
+
+	}
+}
+
+=============================
+
+ex 8:
+
+
+Go supports methods defined on struct types. ??? Struct Type means??
+
+Methods can be defined for either pointer or value receiver types. Here’s an example of a value receiver.
+type rect struct {
+	width, height int
+}
+func (r *rect) area() int {
+	return r.width * r.height
+}
+func main() {
+	r := rect{width: 10, height: 5}
+	fmt.Println("area", r.area())
+}
+
+==================================
+
+ ***************************Go Routine:
+ 
+ TO DO:
+ Channel Vs goRoutine Vs Channel Buffering
+ 
+ ========================
+ 
+ Channel Buffering:
+ 
+ By default channels are unbuffered, meaning that they will only accept sends (chan <-) if there is a corresponding receive (<- chan) ready to receive the sent value. Buffered channels accept a limited number of values without a corresponding receiver for those values
+ 
+ messages := make(chan string, 2)
+	messages <- "ping"
+	messages <- "pong"
+	fmt.Println(<-messages)
+	fmt.Println(<-messages)
+	
+	
+===============
+
+ex 9:
+channel directions:
+func worker(done chan bool) { // each goroutine has channel assigned
+	fmt.Print("working...")
+	time.Sleep(time.Second)
+	fmt.Println("done")
+	done <- true
+}
+
+func main() {
+	done := make(chan bool, 1)
+	go worker(done)
+	<-done
+}
+
+
+
 CASE1: DEFINE CHANNEL AND CONCURRENCY 
 func CalculatePi(begin, end int64) <-chan uint
 
