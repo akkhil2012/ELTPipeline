@@ -1,1 +1,131 @@
 https://www.youtube.com/watch?v=yyUHQIec83I
+
+
+https://github.com/kat-co/concurrency-in-go-src/tree/master/an-introduction-to-concurrency/why-is-concurrency-hard/deadlocks-livelocks-and-starvation
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>
+ GO DEMO:
+
+
+CASE1: DEFINE CHANNEL AND CONCURRENCY 
+func CalculatePi(begin, end int64) <-chan uint
+
+
+CASE 2: Example to show how many routines can be run
+memConsumed := func() uint64 {
+
+
+
+CASE 3:
+Context switching between OS threads and goRoutines 
+taskset -c 0 perf bench sched pipe -T
+
+
+CASE4:
+benchmark context switching:
+BenchmarkContextSwitch
+\\
+
+CASE 4:
+Mutex example for shared memory
+sync.Once
+Pool example 
+
+
+CASE 5:
+Example of Closed Stream and seperate in and out stream
+
+
+
+CASE 6:
+CHANNEL STATE AND RETURN TYPE.
+range as alternative to NOT to read the default values from closed channel
+
+
+CASE 7 :
+example of go pipeline:
+generator := func(done <-chan interface{}, integers ...int) <-chan int {
+
+
+CASE 8:
+or-Done, tee Channel
+
+
+
+CASE 9:
+Example of signal from parent to chil; to avoid go routine leaks
+
+
+
+
+CASE 10:
+error handling in go
+
+
+CASE 11:
+go pipeline
+
+
+
+
+
+
+
+
+Adhaar: 0102101104758320220117102438
+
+399090073338
+
+
+example comparing ccurrency in go and java:
+https://medium.com/@damithadayananda/golang-vs-java-concurrency-a-comparative-study-b0aea90f5fd7
+
+
+
+
+to do:
+https://github.com/lotusirous/go-concurrency-patterns (google talk)
+
+>>>>>>>>>>>>>>>>>>>
+go practical demo:
+https://blog.devgenius.io/concurrency-with-sample-project-in-golang-297400beb0a4
+
+How User uses GO:
+https://eng.uber.com/go-geofence-highest-query-per-second-service/
+
+
+
+Web Application:
+https://github.com/sohamkamani/blog_example__go_web_app/blob/master/bird_handlers_test.go
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>
+why golang for microservices:
+https://blog.getambassador.io/go-kubernetes-rapidly-developing-golang-microservices-bfe36cfb5893
+
+TO DO:
+ build contenierized app in golang in k8:
+ https://www.coding-bootcamps.com/blog/build-containerized-applications-with-golang-on-kubernetes.html
+ 
+	https://www.bacancytechnology.com/blog/golang-use-cases
+	
+	QPS using Go????
+	
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+4 biswa deoghat;
+
