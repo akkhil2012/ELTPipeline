@@ -1,3 +1,13 @@
+query:
+go example that calls multiple rest api
+
+Calling multiple REST APIs in parallel:
+https://www.eventslooped.com/posts/golang-make-multiple-api-calls/
+
+
+================================
+
+
 https://www.youtube.com/watch?v=yyUHQIec83I
 https://gobyexample.com/for
 
