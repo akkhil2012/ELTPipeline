@@ -32,6 +32,63 @@ everthingis a packages
 
 go env -w GO111MODULE=on
 
+>>>>>>>>
+Non blocking I/O Vs BLoccking I/O
+
+ths is the example for both non blocking send and receives both;
+in both cases when the message is NOT available; it chooses default case;
+
+
+>>>>>>
+
+import (
+	"fmt"
+)
+
+func main() {
+	messages := make(chan string)
+	signals := make(chan bool)
+	select {
+	case msg := <-messages:
+		fmt.Println("received message", msg)
+	default:
+		fmt.Println("NO received message")
+	}
+
+	msg := "hi"
+	select {
+	case messages <- msg:
+		fmt.Println("sent message", msg)
+	default:
+		fmt.Println("no message sent")
+	}
+
+	select {
+	case msg := <-messages:
+		fmt.Println("received message", msg)
+	case sig := <-signals:
+		fmt.Println("received signal", sig)
+	default:
+		fmt.Println("no activity")
+	}
+	
+	
+	
+	>>>>>>>>>>>.
+	
+	Closing Channel :
+	
+	????????????
+	
+	
+	
+	>>>>>>>>>>>>>
+	
+	 Channel Directions:
+	 
+????????????????
+
+
 >>>>>>>>>
 
 EX 1:
