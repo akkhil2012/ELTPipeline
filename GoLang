@@ -1,8 +1,13 @@
 query:
 go example that calls multiple rest api
 
+compare sync Vs parallel:
+https://github.com/atkinsonbg/calling-apis-concurrently-go-waitgroups/blob/main/synchronous/synchronous.go
+
 Calling multiple REST APIs in parallel:
 https://www.eventslooped.com/posts/golang-make-multiple-api-calls/
+
+
 
 
 ================================
