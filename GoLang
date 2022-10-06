@@ -3,6 +3,10 @@ KMagesh:
 https://github.com/tkmagesh/IBM-AdvGo-Sep-2022
 
 https://github.com/kat-co/concurrency-in-go-src/tree/master/concurrency-at-scale
+Pipeline:
+
+=====================MUST =======================
+https://github.com/kat-co/concurrency-in-go-src/blob/master/concurrency-patterns-in-go/pipelines/best-practices-for-constructing-pipelines/fig-pipelines-chan-stream-processing.go
 
 query:
 go example that calls multiple rest api
