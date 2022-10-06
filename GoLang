@@ -2,6 +2,8 @@
 KMagesh:
 https://github.com/tkmagesh/IBM-AdvGo-Sep-2022
 
+https://github.com/kat-co/concurrency-in-go-src/tree/master/concurrency-at-scale
+
 query:
 go example that calls multiple rest api
 
