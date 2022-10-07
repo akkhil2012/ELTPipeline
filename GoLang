@@ -3,6 +3,11 @@
 Architecture:/ hexagonal
 https://www.youtube.com/watch?v=MpFog2kZsHk
 
+
+fanIn - FanOut PPattern:
+https://mariocarrion.com/2021/08/19/learning-golang-concurrency-patterns-fan-in-fan-out.html
+
+
 KMagesh:
 https://github.com/tkmagesh/IBM-AdvGo-Sep-2022
 
