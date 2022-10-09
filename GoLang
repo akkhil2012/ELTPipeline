@@ -1,5 +1,6 @@
 GRPC:
 https://speedscale.com/using-grpc-with-golang/
+https://github.com/xNok/go-grpc-demo
 
 gRPC utilizes the HTTP/2 protocol, which offers multiple ways to improve performance:
 
