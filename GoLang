@@ -1,6 +1,13 @@
 GRPC:
 https://speedscale.com/using-grpc-with-golang/
 
+gRPC utilizes the HTTP/2 protocol, which offers multiple ways to improve performance:
+
+Header compression and reuse to reduce the message size
+Multiplexing to send multiple requests and receive multiple responses simultaneously over a single TCP connection
+Persistent TCP connections for multiple sequential requests and responses on a single TCP connection
+Binary format support such as protocol buffers
+
 
 Architecture:/ hexagonal
 https://www.youtube.com/watch?v=MpFog2kZsHk
