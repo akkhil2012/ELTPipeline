@@ -1,2 +1,14 @@
 Kafka Streams:
 https://developers.redhat.com/blog/2020/09/28/build-a-data-streaming-pipeline-using-kafka-streams-and-quarkus#the_traditional_messaging_system
+
+WKC:
+https://www.ibm.com/in-en/cloud/watson-knowledge-catalog/faq
+
+Worked on Watson Knowledge Catalog; a part of IBM Cloud Pak for data; is an extension to Information Governance Catalog that provides
+self-service access to data assets for knowledge workers who need to use those data assets to gain insights.
+is a cloud-based enterprise metadata repository that lets you catalog your knowledge and analytics assets, including machine learning models and structured and unstructured data wherever they reside. This enables these assets to be more easily accessed and used to fuel data science and all forms of AI.
+Through the IBM Watson Knowledge Catalog business glossary, users can create a common business vocabulary and associate them to your assets, policies and rules, providing the bridge between the business domain and your technical assets
+You can keep your data in its existing repositories. Watson Knowledge Catalog stores the metadata of your assets.
+IBM provides over 30 connectors to cloud or on-premises data sources, allowing you to connect to your remote data assets.
+ With the Standard and Lite plans, the limits are 1,000 and 50 assets
+ 
