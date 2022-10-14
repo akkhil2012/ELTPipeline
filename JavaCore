@@ -338,6 +338,40 @@ Set st = new TreeSet();
 Collections.sort(list,Comparator.comparing((Book t) -> t.getPrice())
 		  .thenComparing(t ->t.getName()));
 		  
+		  
+		  Integer[] empIds = { 1, 2, 3 };		
+		List<Integer> ls =Stream.of(empIds)
+					.map(Function.identity())
+							.collect(Collectors.toList());
+		
+		ls.forEach((n)-> System.out.println(n));
+		
+		
+		System.out.println("---------------------------------------");
+		
+		List<Integer> lst =Stream.of(empIds)
+				.map(Function.identity())
+						.filter(v ->v<3)
+							.collect(Collectors.toList());
+		
+		
+		lst.forEach((n)-> System.out.println(n));
+
+		
+		
+		 List<List<String>> namesNested = Arrays.asList( 
+			      Arrays.asList("Jeff", "Bezos"), 
+			      Arrays.asList("Bill", "Gates"), 
+			      Arrays.asList("Mark", "Zuckerberg"));
+		 
+		 List<String> namesFlatMap =
+				 			namesNested.stream()
+				 				.flatMap(Collection::stream)
+				 					.collect(Collectors.toList());
+		 
+		 namesFlatMap.forEach((m) -> System.out.println(" "+ m));
+
+		  
 		  ==========================
 		  
 		  flatmap:
