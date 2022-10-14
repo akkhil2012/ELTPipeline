@@ -1,5 +1,49 @@
 JavaCore
 Java9
+===============================
+Diamond Problem
+=================================
+package java8;
+
+public class Test implements TestInterImpl1, TestInterImpl2 {
+
+	public static void main(String arg[]) {
+
+		TestInter ti = new Test();
+		ti.test();
+
+	}
+
+	@Override
+	public void test() {
+		TestInterImpl2.super.test();
+		System.out.println("--------------------------");
+
+	}
+}
+
+interface TestInter {
+	void test();
+}
+
+interface TestInterImpl1 extends TestInter {
+
+	default void test() {
+		System.out.println("Hello this is interface 1");
+	}
+
+}
+
+interface TestInterImpl2 extends TestInter {
+
+	default void test() {
+		System.out.println("Hello this is interface 2");
+	}
+
+}
+
+======================********************************************************************************************************==========================================
+
 
 CachedThreadPoolExample vs newSingleThreadExecutor ?
 
