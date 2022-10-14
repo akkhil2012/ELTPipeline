@@ -1,5 +1,24 @@
 JavaCore
 Java9
+
+====================
+
+opional
+=======================
+
+
+String[] words = new String[10];
+		
+		Optional<String> op = Optional.ofNullable(words[5]);
+		
+		if(op.isPresent()) {
+			
+		}else {
+			System.out.println(" valus is null");
+		}
+		
+		
+		
 ===============================
 Diamond Problem
 =================================
